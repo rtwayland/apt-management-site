@@ -1,0 +1,33 @@
+{
+  "name": "apt-management-site",
+  "version": "1.0.0",
+  "description": "Website to manage properties and tenants.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rtwayland/apt-management-site.git"
+  },
+  "author": "Raleigh Wayland",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rtwayland/apt-management-site/issues"
+  },
+  "homepage": "https://github.com/rtwayland/apt-management-site#readme",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "express": "^4.14.1",
+    "babel-preset-es2015": "^6.22.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-cachebust": "^0.0.6",
+    "gulp-concat": "^2.6.1",
+    "gulp-print": "^2.0.1",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^2.2.0",
+    "gulp-uglify": "^2.0.1"
+  }
+}
