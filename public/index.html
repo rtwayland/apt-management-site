@@ -20,7 +20,17 @@
 </head>
 
 <body>
-    <ui-view></ui-view>
+    <nav>
+        <ul>
+            <li><a ui-sref="home">Home</a></li>
+            <li><a ui-sref="properties">Properties</a></li>
+            <li><a ui-sref="apply">Apply</a></li>
+            <li><a ui-sref="loginSignup">Resident Login / Signup</a></li>
+        </ul>
+    </nav>
+    <main id="main-wrapper">
+        <ui-view></ui-view>
+    </main>
 </body>
 
 </html>
