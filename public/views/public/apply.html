@@ -1,1 +1,63 @@
 <h1>Application</h1>
+<div class="form-container">
+    <form name="application-form">
+      <h2>Applicant Information</h2>
+        <!-- Names -->
+        <label for="first-name">First Name</label>
+        <input type="text" name="first-name" id="first-name" ng-model="firstName" required>
+        <label for="middle-name">Middle Name</label>
+        <input type="text" name="middle-name" id="middle-name" ng-model="middleName">
+        <label for="last-name">Last Name</label>
+        <input type="text" name="last-name" id="last-name" ng-model="lastName" required>
+        <!-- Bday -->
+        <label for="birth-date">Birth Date</label>
+        <input type="date" name="birth-date" id="birth-date" ng-model="birthDate">
+        <!-- SSN -->
+        <label for="ssn">Social Security Number</label>
+        <input type="text" name="ssn" id="ssn" ng-model="ssn">
+        <!-- Email -->
+        <label for="email">Email Address</label>
+        <input type="email" name="email" id="email" ng-model="email">
+        <!-- Phone -->
+        <label for="phone">Phone Number</label>
+        <input type="text" name="phone" id="phone" ng-model="phone">
+        <!-- Driver's Licence -->
+        <label for="drivers-licence">Driver's License Number</label>
+        <input type="text" name="drivers-licence" id="drivers-licence" ng-model="driversLicence">
+        <!-- Other Occupants -->
+        <!--  -->
+        <h2>Rental History</h2>
+        <h3>Current Residence</h3>
+        <!-- Address -->
+        <label for="current-street">Address</label>
+        <input type="text" name="current-street" id="current-street">
+        <label for="current-city">City</label>
+        <input type="text" name="current-city" id="current-city">
+        <label for="current-state">State</label>
+        <input type="text" name="current-state" id="current-state">
+        <label for="current-zip">Zip</label>
+        <input type="text" name="current-zip" id="current-zip">
+        <!-- Details -->
+        <label for="current-rent">Monthly Rent</label>
+        <input type="text" name="current-rent" id="current-rent">
+        <label for="current-res-start-date">Dates of residency (From/To)</label>
+        <input type="date" name="current-res-start-date" id="current-res-start-date">
+        <input type="date" name="current-res-end-date" id="current-res-end-date">
+        <label for="current-reason">Reason for moving</label>
+        <input type="text" name="current-reason" id="current-reason">
+        <!-- Manager Info -->
+        <label for="current-manager-name">Owner/Manager's name</label>
+        <input type="text" name="current-manager-name" id="current-manager-name">
+        <label for="current-manager-phone">Owner/Manager's phone</label>
+        <input type="text" name="current-manager-phone" id="current-manager-phone">
+        <!-- Previous Residence -->
+        <!--  -->
+        <h2>Employment History</h2>
+        <h3>Current Employer</h3>
+        <!-- Manager Info -->
+        <label for="current-employer-name">Owner/Manager's name</label>
+        <input type="text" name="current-employer-name" id="current-employer-name">
+        <label for="current-employer-phone">Owner/Manager's phone</label>
+        <input type="text" name="current-employer-phone" id="current-employer-phone">
+    </form>
+</div>
