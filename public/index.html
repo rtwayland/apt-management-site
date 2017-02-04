@@ -19,18 +19,19 @@
 
 </head>
 
-<body>
-    <nav>
-        <ul>
-            <li><a ui-sref="home">Home</a></li>
-            <li><a ui-sref="properties">Properties</a></li>
-            <li><a ui-sref="apply">Apply</a></li>
-            <li><a ui-sref="loginSignup">Resident Login / Signup</a></li>
-        </ul>
-    </nav>
+<body ng-controller="ViewCtrl">
+
+    <div ng-controller="NavCtrl">
+        <main-nav links="links"></main-nav>
+    </div>
+
     <main id="main-wrapper">
+        <a ui-sref="home">Public</a>
+        <a ui-sref="resident">Resident</a>
+        <a ui-sref="admin">Admin</a>
         <ui-view></ui-view>
     </main>
+
 </body>
 
 </html>
