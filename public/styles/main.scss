@@ -1,4 +1,6 @@
+@import url( 'https://fonts.googleapis.com/css?family=Alegreya');
 $font-main: 'Avenir Next', Avenir, sans-serif;
+$font-serif: 'Alegreya', serif;
 $nav-height: 70px;
 $bg-nav: rgba(255, 255, 255, 0.9);
 $color-text-dark: #222;
@@ -15,6 +17,25 @@ body {
 
 #main-wrapper {
     margin-top: $nav-height;
+}
+
+main-nav {
+    .company-title {
+        font-size: 1.5em;
+    }
+
+    a {
+        text-decoration: none;
+        color: $color-text-dark;
+        font-size: 1.2em;
+        font-family: $font-serif;
+
+        &:active,
+        &:visited {
+            text-decoration: none;
+            color: $color-text-dark;
+        }
+    }
 }
 
 nav {
