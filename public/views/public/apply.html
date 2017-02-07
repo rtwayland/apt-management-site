@@ -22,7 +22,10 @@
                 <div class="field four wide required">
                     <!-- Bday -->
                     <label for="birth-date">Birth Date</label>
-                    <input type="date" name="birth-date" id="birth-date" ng-model="birthDate">
+                    <div class="ui input right icon">
+                        <input type="date" name="birth-date" id="birth-date" ng-model="birthDate">
+                        <i class="calendar icon"></i>
+                    </div>
                 </div>
                 <div class="field six wide required">
                     <!-- Email -->
@@ -68,7 +71,10 @@
                 </div>
                 <div class="field">
                     <label for="current-res-start-date">Beginning Date of Residency</label>
-                    <input type="date" name="current-res-start-date" id="current-res-start-date">
+                    <div class="ui input right icon">
+                        <input type="date" name="current-res-start-date" id="current-res-start-date">
+                        <i class="calendar icon"></i>
+                    </div>
                 </div>
             </div>
             <div class="field">
@@ -162,19 +168,15 @@
         <div class="ui segment">
             <h2>General Information</h2>
             <!-- Late or Delinquent -->
-            <div class="inline fields">
+            <div class="inline field">
                 <label>Have you ever been late or delinquent on rent?</label>
-                <div class="field">
-                    <div class="ui radio checkbox">
-                        <input type="radio" name="late" checked="checked" ng-model="lateCheck" value="yes">
-                        <label>Yes</label>
-                    </div>
+                <div class="ui radio checkbox">
+                    <input type="radio" name="late" checked="checked" ng-model="lateCheck" value="yes">
+                    <label>Yes</label>
                 </div>
-                <div class="field">
-                    <div class="ui radio checkbox">
-                        <input type="radio" name="late" ng-model="lateCheck" value="no">
-                        <label>No</label>
-                    </div>
+                <div class="ui radio checkbox">
+                    <input type="radio" name="late" ng-model="lateCheck" value="no">
+                    <label>No</label>
                 </div>
             </div>
             <div class="field" ng-show="lateCheck == 'yes'">
@@ -182,19 +184,15 @@
                 <input type="text" name="" value="" ng-required="lateCheck == 'yes'">
             </div>
             <!-- Lawsuit -->
-            <div class="inline fields">
+            <div class="inline field">
                 <label>Have you ever been party to a lawsuit?</label>
-                <div class="field">
-                    <div class="ui radio checkbox">
-                        <input type="radio" name="lawsuit" checked="checked" ng-model="lawsuitCheck" value="yes">
-                        <label>Yes</label>
-                    </div>
+                <div class="ui radio checkbox">
+                    <input type="radio" name="lawsuit" checked="checked" ng-model="lawsuitCheck" value="yes">
+                    <label>Yes</label>
                 </div>
-                <div class="field">
-                    <div class="ui radio checkbox">
-                        <input type="radio" name="lawsuit" ng-model="lawsuitCheck" value="no">
-                        <label>No</label>
-                    </div>
+                <div class="ui radio checkbox">
+                    <input type="radio" name="lawsuit" ng-model="lawsuitCheck" value="no">
+                    <label>No</label>
                 </div>
             </div>
             <div class="field" ng-show="lawsuitCheck == 'yes'">
@@ -202,19 +200,15 @@
                 <input type="text" name="" value="" ng-required="lawsuitCheck == 'yes'">
             </div>
             <!-- Smoke -->
-            <div class="inline fields">
+            <div class="inline field">
                 <label>Do you smoke?</label>
-                <div class="field">
-                    <div class="ui radio checkbox">
-                        <input type="radio" name="smoke" checked="checked" ng-model="smokeCheck" value="yes">
-                        <label>Yes</label>
-                    </div>
+                <div class="ui radio checkbox">
+                    <input type="radio" name="smoke" checked="checked" ng-model="smokeCheck" value="yes">
+                    <label>Yes</label>
                 </div>
-                <div class="field">
-                    <div class="ui radio checkbox">
-                        <input type="radio" name="smoke" ng-model="smokeCheck" value="no">
-                        <label>No</label>
-                    </div>
+                <div class="ui radio checkbox">
+                    <input type="radio" name="smoke" ng-model="smokeCheck" value="no">
+                    <label>No</label>
                 </div>
             </div>
             <div class="field" ng-show="smokeCheck == 'yes'">
@@ -222,19 +216,15 @@
                 <input type="text" name="" value="" ng-required="smokeCheck == 'yes'">
             </div>
             <!-- Pets -->
-            <div class="inline fields">
+            <div class="inline field">
                 <label>Do you have any pets?</label>
-                <div class="field">
-                    <div class="ui radio checkbox">
-                        <input type="radio" name="pets" checked="checked" ng-model="petCheck" value="yes">
-                        <label>Yes</label>
-                    </div>
+                <div class="ui radio checkbox">
+                    <input type="radio" name="pets" checked="checked" ng-model="petCheck" value="yes">
+                    <label>Yes</label>
                 </div>
-                <div class="field">
-                    <div class="ui radio checkbox">
-                        <input type="radio" name="pets" ng-model="petCheck" value="no">
-                        <label>No</label>
-                    </div>
+                <div class="ui radio checkbox">
+                    <input type="radio" name="pets" ng-model="petCheck" value="no">
+                    <label>No</label>
                 </div>
             </div>
             <div class="field" ng-show="petCheck == 'yes'">
@@ -282,7 +272,10 @@
             </div>
             <div class="field six wide">
                 <label for="">Date</label>
-                <input type="date" name="" id="">
+                <div class="ui input right icon">
+                    <input type="date" name="" id="">
+                    <i class="calendar icon"></i>
+                </div>
             </div>
         </div>
         <button type="submit" class="huge ui positive basic button">Submit Application</button>
