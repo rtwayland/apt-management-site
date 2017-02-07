@@ -1,10 +1,6 @@
 angular.module('app')
     .controller('NavCtrl', function($scope, $rootScope) {
         var publicNavLinks = [{
-                link: 'home',
-                name: 'Home'
-            },
-            {
                 link: 'properties',
                 name: 'Properties'
             },
@@ -18,14 +14,10 @@ angular.module('app')
             },
             {
                 link: 'loginSignup',
-                name: 'Resident Login / Signup'
+                name: 'Residents'
             }
         ];
         var residentNavLinks = [{
-                link: 'home',
-                name: 'Home'
-            },
-            {
                 link: 'maintenance',
                 name: 'Maintenance Request'
             },
@@ -35,10 +27,6 @@ angular.module('app')
             }
         ];
         var adminNavLinks = [{
-                link: 'home',
-                name: 'Home'
-            },
-            {
                 link: 'maintenanceRequests',
                 name: 'Maintenance Requests'
             },
