@@ -19,16 +19,19 @@ body {
     margin-top: $nav-height;
 }
 
+.serif-font {
+    font-family: $font-serif;
+}
+
 main-nav {
     .company-title {
-        font-size: 1.5em;
+        font-size: 1.6em;
     }
 
     a {
         text-decoration: none;
         color: $color-text-dark;
         font-size: 1.2em;
-        font-family: $font-serif;
 
         &:active,
         &:visited {
@@ -41,15 +44,14 @@ main-nav {
 .form-container {
     margin: auto auto 50px;
     @media screen and (min-width: 1200px) {
-        width: 50%;
+        max-width: 80%;
     }
-    @media screen and (max-width: 1199px) {
-        width: 70%;
-    }
-    @media screen and (max-width: 800px) {
-        width: 90%;
-    }
-
+    // @media screen and (max-width: 1199px) {
+    //     width: 70%;
+    // }
+    // @media screen and (max-width: 800px) {
+    //     width: 90%;
+    // }
     button[type="submit"] {
         display: block;
         margin: 30px auto auto;
