@@ -1,383 +1,255 @@
 <h1>Application</h1>
 <div class="form-container">
-    <form name="application-form" class="ui equal width form">
-        <h2>Applicant Information</h2>
-        <!-- Names -->
-        <div class="fields">
-            <div class="field six wide required">
-                <label for="first-name">First Name</label>
-                <input type="text" name="first-name" id="first-name" ng-model="firstName" required>
+    <form name="application-form" class="ui equal width form" semantic-form>
+        <div class="ui segment">
+            <h2>Applicant Information</h2>
+            <!-- Names -->
+            <div class="fields">
+                <div class="field six wide required">
+                    <label for="first-name">First Name</label>
+                    <input type="text" name="first-name" id="first-name" ng-model="firstName" required>
+                </div>
+                <div class="field four wide">
+                    <label for="middle-name">Middle Name</label>
+                    <input type="text" name="middle-name" id="middle-name" ng-model="middleName">
+                </div>
+                <div class="field six wide required">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" name="last-name" id="last-name" ng-model="lastName" required>
+                </div>
             </div>
-            <div class="field four wide">
-                <label for="middle-name">Middle Name</label>
-                <input type="text" name="middle-name" id="middle-name" ng-model="middleName">
+            <div class="fields">
+                <div class="field four wide required">
+                    <!-- Bday -->
+                    <label for="birth-date">Birth Date</label>
+                    <input type="date" name="birth-date" id="birth-date" ng-model="birthDate">
+                </div>
+                <div class="field six wide required">
+                    <!-- Email -->
+                    <label for="email">Email Address</label>
+                    <input type="email" name="email" id="email" ng-model="email">
+                </div>
+                <div class="field six wide required">
+                    <!-- Phone -->
+                    <label for="phone">Phone Number</label>
+                    <input type="text" name="phone" id="phone" ng-model="phone">
+                </div>
             </div>
-            <div class="field six wide required">
-                <label for="last-name">Last Name</label>
-                <input type="text" name="last-name" id="last-name" ng-model="lastName" required>
-            </div>
-        </div>
-        <div class="fields">
-            <div class="field four wide required">
-                <!-- Bday -->
-                <label for="birth-date">Birth Date</label>
-                <input type="date" name="birth-date" id="birth-date" ng-model="birthDate">
-            </div>
-            <div class="field six wide required">
-                <!-- Email -->
-                <label for="email">Email Address</label>
-                <input type="email" name="email" id="email" ng-model="email">
-            </div>
-            <div class="field six wide required">
-                <!-- Phone -->
-                <label for="phone">Phone Number</label>
-                <input type="text" name="phone" id="phone" ng-model="phone">
-            </div>
-        </div>
-        <div class="fields">
-            <div class="field required">
-                <!-- SSN -->
-                <label for="ssn">Social Security Number</label>
-                <input type="text" name="ssn" id="ssn" ng-model="ssn">
-            </div>
-            <div class="field required">
-                <!-- Driver's Licence -->
-                <label for="drivers-licence">Driver's License Number</label>
-                <input type="text" name="drivers-licence" id="drivers-licence" ng-model="driversLicence">
+            <div class="fields">
+                <div class="field required">
+                    <!-- SSN -->
+                    <label for="ssn">Social Security Number</label>
+                    <input type="text" name="ssn" id="ssn" ng-model="ssn">
+                </div>
+                <div class="field required">
+                    <!-- Driver's Licence -->
+                    <label for="drivers-licence">Driver's License Number</label>
+                    <input type="text" name="drivers-licence" id="drivers-licence" ng-model="driversLicence">
+                </div>
             </div>
         </div>
         <!-- Other Occupants -->
         <!--  -->
-        <h2>Rental History</h2>
-        <h3>Current Residence</h3>
-        <!-- Address -->
-        <div class="fields">
-            <div class="field seven wide">
-                <label for="current-street">Address</label>
-                <input type="text" name="current-street" id="current-street">
-            </div>
-            <div class="field three wide">
-                <label for="current-city">City</label>
-                <input type="text" name="current-city" id="current-city">
-            </div>
-            <div class="field three wide">
-                <label for="current-state">State</label>
-                <!-- <input type="text" name="current-state" id="current-state"> -->
-                <select class="ui fluid search dropdown">
-                    <option value="">State</option>
-                    <option value="AL">Alabama</option>
-                    <option value="AK">Alaska</option>
-                    <option value="AZ">Arizona</option>
-                    <option value="AR">Arkansas</option>
-                    <option value="CA">California</option>
-                    <option value="CO">Colorado</option>
-                    <option value="CT">Connecticut</option>
-                    <option value="DE">Delaware</option>
-                    <option value="DC">District Of Columbia</option>
-                    <option value="FL">Florida</option>
-                    <option value="GA">Georgia</option>
-                    <option value="HI">Hawaii</option>
-                    <option value="ID">Idaho</option>
-                    <option value="IL">Illinois</option>
-                    <option value="IN">Indiana</option>
-                    <option value="IA">Iowa</option>
-                    <option value="KS">Kansas</option>
-                    <option value="KY">Kentucky</option>
-                    <option value="LA">Louisiana</option>
-                    <option value="ME">Maine</option>
-                    <option value="MD">Maryland</option>
-                    <option value="MA">Massachusetts</option>
-                    <option value="MI">Michigan</option>
-                    <option value="MN">Minnesota</option>
-                    <option value="MS">Mississippi</option>
-                    <option value="MO">Missouri</option>
-                    <option value="MT">Montana</option>
-                    <option value="NE">Nebraska</option>
-                    <option value="NV">Nevada</option>
-                    <option value="NH">New Hampshire</option>
-                    <option value="NJ">New Jersey</option>
-                    <option value="NM">New Mexico</option>
-                    <option value="NY">New York</option>
-                    <option value="NC">North Carolina</option>
-                    <option value="ND">North Dakota</option>
-                    <option value="OH">Ohio</option>
-                    <option value="OK">Oklahoma</option>
-                    <option value="OR">Oregon</option>
-                    <option value="PA">Pennsylvania</option>
-                    <option value="RI">Rhode Island</option>
-                    <option value="SC">South Carolina</option>
-                    <option value="SD">South Dakota</option>
-                    <option value="TN">Tennessee</option>
-                    <option value="TX">Texas</option>
-                    <option value="UT">Utah</option>
-                    <option value="VT">Vermont</option>
-                    <option value="VA">Virginia</option>
-                    <option value="WA">Washington</option>
-                    <option value="WV">West Virginia</option>
-                    <option value="WI">Wisconsin</option>
-                    <option value="WY">Wyoming</option>
-                  </select>
-            </div>
-            <div class="field three wide">
-                <label for="current-zip">Zip</label>
-                <input type="text" name="current-zip" id="current-zip">
-            </div>
-        </div>
-        <!-- Details -->
-        <div class="fields">
-            <div class="field">
-                <label for="current-rent">Monthly Rent</label>
-                <div class="ui right labeled input">
-                    <div class="ui label">$</div>
-                    <input type="text" name="current-rent" id="current-rent" placeholder="Amount">
-                    <div class="ui basic label">.00</div>
+        <div class="ui segment">
+            <h2>Rental History</h2>
+            <h3>Current Residence</h3>
+            <!-- Address -->
+            <address-inputs model-key="current" model="residentAddress" semantic-form></address-inputs>
+
+            <!-- Details -->
+            <div class="fields">
+                <div class="field">
+                    <label for="current-rent">Monthly Rent</label>
+                    <div class="ui right labeled input">
+                        <div class="ui label">$</div>
+                        <input type="text" name="current-rent" id="current-rent" placeholder="Amount">
+                        <div class="ui basic label">.00</div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="current-res-start-date">Beginning Date of Residency</label>
+                    <input type="date" name="current-res-start-date" id="current-res-start-date">
                 </div>
             </div>
             <div class="field">
-                <label for="current-res-start-date">Beginning Date of Residency</label>
-                <input type="date" name="current-res-start-date" id="current-res-start-date">
+                <label for="current-reason">Reason for moving</label>
+                <input type="text" name="current-reason" id="current-reason">
             </div>
-        </div>
-        <div class="field">
-            <label for="current-reason">Reason for moving</label>
-            <input type="text" name="current-reason" id="current-reason">
-        </div>
-        <!-- Manager Info -->
-        <div class="fields">
-            <div class="field">
-                <label for="current-manager-name">Owner/Manager's name</label>
-                <input type="text" name="current-manager-name" id="current-manager-name">
+            <!-- Manager Info -->
+            <div class="fields">
+                <div class="field">
+                    <label for="current-manager-name">Owner/Manager's name</label>
+                    <input type="text" name="current-manager-name" id="current-manager-name">
+                </div>
+                <div class="field">
+                    <label for="current-manager-phone">Owner/Manager's phone</label>
+                    <input type="text" name="current-manager-phone" id="current-manager-phone">
+                </div>
+
             </div>
-            <div class="field">
-                <label for="current-manager-phone">Owner/Manager's phone</label>
-                <input type="text" name="current-manager-phone" id="current-manager-phone">
+            <!-- Previous Residence -->
+            <!--  -->
+        </div>
+        <div class="ui segment">
+            <h2>Employment History</h2>
+            <h3>Current Employer</h3>
+            <div class="fields">
+                <div class="field">
+                    <label for="current-employer">Current Employer</label>
+                    <input type="text" name="current-employer" id="current-employer">
+                </div>
+                <div class="field">
+                    <label for="current-occupation">Occupation</label>
+                    <input type="text" name="current-occupation" id="current-occupation">
+                </div>
+                <div class="field">
+                    <label for="current-occupation-start">Start Date</label>
+                    <input type="text" name="current-occupation-start" id="current-occupation-start">
+                </div>
             </div>
 
-        </div>
-        <!-- Previous Residence -->
-        <!--  -->
-        <h2>Employment History</h2>
-        <h3>Current Employer</h3>
-        <div class="fields">
-            <div class="field">
-                <label for="current-employer">Current Employer</label>
-                <input type="text" name="current-employer" id="current-employer">
-            </div>
-            <div class="field">
-                <label for="current-occupation">Occupation</label>
-                <input type="text" name="current-occupation" id="current-occupation">
-            </div>
-            <div class="field">
-                <label for="current-occupation-start">Start Date</label>
-                <input type="text" name="current-occupation-start" id="current-occupation-start">
-            </div>
-        </div>
-        <div class="fields">
-            <div class="field seven wide">
-                <label for="current-employer-street">Employer Address</label>
-                <input type="text" name="current-employer-street" id="current-employer-street">
-            </div>
-            <div class="field three wide">
-                <label for="current-employer-city">City</label>
-                <input type="text" name="current-employer-city" id="current-employer-city">
-            </div>
-            <div class="field three wide">
-                <label for="current-employer-state">State</label>
-                <select class="ui fluid search dropdown">
-                    <option value="">State</option>
-                    <option value="AL">Alabama</option>
-                    <option value="AK">Alaska</option>
-                    <option value="AZ">Arizona</option>
-                    <option value="AR">Arkansas</option>
-                    <option value="CA">California</option>
-                    <option value="CO">Colorado</option>
-                    <option value="CT">Connecticut</option>
-                    <option value="DE">Delaware</option>
-                    <option value="DC">District Of Columbia</option>
-                    <option value="FL">Florida</option>
-                    <option value="GA">Georgia</option>
-                    <option value="HI">Hawaii</option>
-                    <option value="ID">Idaho</option>
-                    <option value="IL">Illinois</option>
-                    <option value="IN">Indiana</option>
-                    <option value="IA">Iowa</option>
-                    <option value="KS">Kansas</option>
-                    <option value="KY">Kentucky</option>
-                    <option value="LA">Louisiana</option>
-                    <option value="ME">Maine</option>
-                    <option value="MD">Maryland</option>
-                    <option value="MA">Massachusetts</option>
-                    <option value="MI">Michigan</option>
-                    <option value="MN">Minnesota</option>
-                    <option value="MS">Mississippi</option>
-                    <option value="MO">Missouri</option>
-                    <option value="MT">Montana</option>
-                    <option value="NE">Nebraska</option>
-                    <option value="NV">Nevada</option>
-                    <option value="NH">New Hampshire</option>
-                    <option value="NJ">New Jersey</option>
-                    <option value="NM">New Mexico</option>
-                    <option value="NY">New York</option>
-                    <option value="NC">North Carolina</option>
-                    <option value="ND">North Dakota</option>
-                    <option value="OH">Ohio</option>
-                    <option value="OK">Oklahoma</option>
-                    <option value="OR">Oregon</option>
-                    <option value="PA">Pennsylvania</option>
-                    <option value="RI">Rhode Island</option>
-                    <option value="SC">South Carolina</option>
-                    <option value="SD">South Dakota</option>
-                    <option value="TN">Tennessee</option>
-                    <option value="TX">Texas</option>
-                    <option value="UT">Utah</option>
-                    <option value="VT">Vermont</option>
-                    <option value="VA">Virginia</option>
-                    <option value="WA">Washington</option>
-                    <option value="WV">West Virginia</option>
-                    <option value="WI">Wisconsin</option>
-                    <option value="WY">Wyoming</option>
-                  </select>
-            </div>
-            <div class="field three wide">
-                <label for="current-employer-zip">Zip</label>
-                <input type="text" name="current-employer-zip" id="current-employer-zip">
-            </div>
-        </div>
-        <div class="fields">
-            <div class="field six wide">
-                <label for="current-supervisor-name">Supervisor's Name</label>
-                <input type="text" name="current-supervisor-name" id="current-supervisor-name">
-            </div>
-            <div class="field six wide">
-                <label for="current-employer-phone">Employer's phone</label>
-                <input type="text" name="current-employer-phone" id="current-employer-phone">
-            </div>
-            <div class="field four wide">
-                <label for="current-monthly-pay">Monthly Pay</label>
-                <div class="ui right labeled input">
-                    <div class="ui label">$</div>
-                    <input type="text" name="current-monthly-pay" id="current-monthly-pay" placeholder="Amount">
-                    <div class="ui basic label">.00</div>
+            <address-inputs model-key="current-employer" model="employerAddress" semantic-form></address-inputs>
+
+            <div class="fields">
+                <div class="field six wide">
+                    <label for="current-supervisor-name">Supervisor's Name</label>
+                    <input type="text" name="current-supervisor-name" id="current-supervisor-name">
+                </div>
+                <div class="field six wide">
+                    <label for="current-employer-phone">Employer's phone</label>
+                    <input type="text" name="current-employer-phone" id="current-employer-phone">
+                </div>
+                <div class="field four wide">
+                    <label for="current-monthly-pay">Monthly Pay</label>
+                    <div class="ui right labeled input">
+                        <div class="ui label">$</div>
+                        <input type="text" name="current-monthly-pay" id="current-monthly-pay" placeholder="Amount">
+                        <div class="ui basic label">.00</div>
+                    </div>
                 </div>
             </div>
         </div>
         <!-- Credit History -->
-        <h2>Credit History</h2>
-        <h2>References</h2>
-        <div class="fields">
-            <div class="field">
-                <label for="">Name</label>
-                <input type="text">
-            </div>
-            <div class="field">
-                <label for="">Phone Number</label>
-                <input type="text">
-            </div>
-            <div class="field">
-                <label for="">Relationship</label>
-                <input type="text">
-            </div>
-        </div>
-        <div class="fields">
-            <div class="field">
-                <input type="text">
-            </div>
-            <div class="field">
-                <input type="text">
-            </div>
-            <div class="field">
-                <input type="text">
-            </div>
-        </div>
-        <h2>General Information</h2>
-        <!-- Late or Delinquent -->
-        <div class="inline fields">
-            <label>Have you ever been late or delinquent on rent?</label>
-            <div class="field">
-                <div class="ui radio checkbox">
-                    <input type="radio" name="late" checked="checked" ng-model="lateCheck" value="yes">
-                    <label>Yes</label>
+        <div class="ui segment">
+            <h2>Credit History</h2>
+            <h2>References</h2>
+            <div class="fields">
+                <div class="field">
+                    <label for="">Name</label>
+                    <input type="text">
+                </div>
+                <div class="field">
+                    <label for="">Phone Number</label>
+                    <input type="text">
+                </div>
+                <div class="field">
+                    <label for="">Relationship</label>
+                    <input type="text">
                 </div>
             </div>
-            <div class="field">
-                <div class="ui radio checkbox">
-                    <input type="radio" name="late" ng-model="lateCheck" value="no">
-                    <label>No</label>
+            <div class="fields">
+                <div class="field">
+                    <input type="text">
+                </div>
+                <div class="field">
+                    <input type="text">
+                </div>
+                <div class="field">
+                    <input type="text">
                 </div>
             </div>
         </div>
-        <div class="field" ng-show="lateCheck == 'yes'">
-            <label for="">Please Explain</label>
-            <input type="text" name="" value="" ng-required="lateCheck == 'yes'">
-        </div>
-        <!-- Lawsuit -->
-        <div class="inline fields">
-            <label>Have you ever been party to a lawsuit?</label>
-            <div class="field">
-                <div class="ui radio checkbox">
-                    <input type="radio" name="lawsuit" checked="checked" ng-model="lawsuitCheck" value="yes">
-                    <label>Yes</label>
+        <div class="ui segment">
+            <h2>General Information</h2>
+            <!-- Late or Delinquent -->
+            <div class="inline fields">
+                <label>Have you ever been late or delinquent on rent?</label>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="late" checked="checked" ng-model="lateCheck" value="yes">
+                        <label>Yes</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="late" ng-model="lateCheck" value="no">
+                        <label>No</label>
+                    </div>
                 </div>
             </div>
-            <div class="field">
-                <div class="ui radio checkbox">
-                    <input type="radio" name="lawsuit" ng-model="lawsuitCheck" value="no">
-                    <label>No</label>
+            <div class="field" ng-show="lateCheck == 'yes'">
+                <label for="">Please Explain</label>
+                <input type="text" name="" value="" ng-required="lateCheck == 'yes'">
+            </div>
+            <!-- Lawsuit -->
+            <div class="inline fields">
+                <label>Have you ever been party to a lawsuit?</label>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="lawsuit" checked="checked" ng-model="lawsuitCheck" value="yes">
+                        <label>Yes</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="lawsuit" ng-model="lawsuitCheck" value="no">
+                        <label>No</label>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="field" ng-show="lawsuitCheck == 'yes'">
-            <label for="">Please Explain</label>
-            <input type="text" name="" value="" ng-required="lawsuitCheck == 'yes'">
-        </div>
-        <!-- Smoke -->
-        <div class="inline fields">
-            <label>Do you smoke?</label>
-            <div class="field">
-                <div class="ui radio checkbox">
-                    <input type="radio" name="smoke" checked="checked" ng-model="smokeCheck" value="yes">
-                    <label>Yes</label>
+            <div class="field" ng-show="lawsuitCheck == 'yes'">
+                <label for="">Please Explain</label>
+                <input type="text" name="" value="" ng-required="lawsuitCheck == 'yes'">
+            </div>
+            <!-- Smoke -->
+            <div class="inline fields">
+                <label>Do you smoke?</label>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="smoke" checked="checked" ng-model="smokeCheck" value="yes">
+                        <label>Yes</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="smoke" ng-model="smokeCheck" value="no">
+                        <label>No</label>
+                    </div>
                 </div>
             </div>
-            <div class="field">
-                <div class="ui radio checkbox">
-                    <input type="radio" name="smoke" ng-model="smokeCheck" value="no">
-                    <label>No</label>
+            <div class="field" ng-show="smokeCheck == 'yes'">
+                <label for="">Please Explain</label>
+                <input type="text" name="" value="" ng-required="smokeCheck == 'yes'">
+            </div>
+            <!-- Pets -->
+            <div class="inline fields">
+                <label>Do you have any pets?</label>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="pets" checked="checked" ng-model="petCheck" value="yes">
+                        <label>Yes</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="pets" ng-model="petCheck" value="no">
+                        <label>No</label>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="field" ng-show="smokeCheck == 'yes'">
-            <label for="">Please Explain</label>
-            <input type="text" name="" value="" ng-required="smokeCheck == 'yes'">
-        </div>
-        <!-- Pets -->
-        <div class="inline fields">
-            <label>Do you have any pets?</label>
+            <div class="field" ng-show="petCheck == 'yes'">
+                <label for="">List the breed, weight, and age</label>
+                <input type="text" name="" value="" ng-required="petCheck == 'yes'">
+            </div>
+            <!-- Questions -->
             <div class="field">
-                <div class="ui radio checkbox">
-                    <input type="radio" name="pets" checked="checked" ng-model="petCheck" value="yes">
-                    <label>Yes</label>
-                </div>
+                <label for="">Why are you moving from your current address?</label>
+                <textarea rows="2"></textarea>
             </div>
             <div class="field">
-                <div class="ui radio checkbox">
-                    <input type="radio" name="pets" ng-model="petCheck" value="no">
-                    <label>No</label>
-                </div>
+                <label for="">Is there anything negative in your credit or background check you want to comment on?</label>
+                <textarea rows="2"></textarea>
             </div>
-        </div>
-        <div class="field" ng-show="petCheck == 'yes'">
-            <label for="">List the breed, weight, and age</label>
-            <input type="text" name="" value="" ng-required="petCheck == 'yes'">
-        </div>
-        <!-- Questions -->
-        <div class="field">
-            <label for="">Why are you moving from your current address?</label>
-            <textarea rows="2"></textarea>
-        </div>
-        <div class="field">
-            <label for="">Is there anything negative in your credit or background check you want to comment on?</label>
-            <textarea rows="2"></textarea>
         </div>
         <div class="inline fields">
             <label class="eleven wide">Rental application fee:</label>
