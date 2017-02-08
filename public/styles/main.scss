@@ -39,6 +39,12 @@ main-nav {
             color: $color-text-dark;
         }
     }
+
+    #nav-collapse {
+        width: 100% !important;
+        margin-top: 56px !important;
+        display: none;
+    }
 }
 
 .form-container {

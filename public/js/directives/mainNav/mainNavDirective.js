@@ -7,7 +7,11 @@ angular.module('app')
                 links: '='
             },
             link: function(scope, elem, attrs) {
-
+                $('.right.menu.open').on('click', function(event) {
+                    event.preventDefault();
+                    $('.ui.vertical.menu').slideToggle();
+                });
+                $('.ui.dropdown').dropdown();
             },
             controller: function($scope) {
                 function getListItemWidth() {

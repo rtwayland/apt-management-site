@@ -1,13 +1,31 @@
-<!-- <nav>
-    <ul>
-        <li ng-repeat="link in links" ng-style="{ 'width' : listItemWidth }">
-          <a ui-sref="{{ link.link }}">{{ link.name }}</a>
-        </li>
-    </ul>
-</nav> -->
-<div class="ui top stackable fixed menu">
+<div class="ui grid">
+    <div class="computer tablet only row">
+        <div class="ui top fixed menu">
+            <div class="header item">
+                <a class="company-title serif-font" ui-sref="home">Fox Briar Properties</a>
+            </div>
+            <a ng-repeat="link in links" class="item" ui-sref="{{ link.link }}">{{ link.name }}</a>
+        </div>
+    </div>
+    <div class="mobile only row">
+        <div class="ui top fixed navbar menu">
+            <div class="header item">
+                <a class="company-title serif-font" ui-sref="home">Fox Briar Properties</a>
+            </div>
+            <div class="right menu open">
+                <a href="#" class="menu item">
+                    <i class="content icon"></i>
+                </a>
+            </div>
+        </div>
+        <div class="ui top fixed vertical navbar menu" id="nav-collapse">
+            <a ng-repeat="link in links" class="item" ui-sref="{{ link.link }}">{{ link.name }}</a>
+        </div>
+    </div>
+</div>
+<!-- <div class="ui top fixed navbar menu">
   <div class="header item">
     <a class="company-title serif-font" ui-sref="home">Fox Briar Properties</a>
   </div>
   <a ng-repeat="link in links" class="item" ui-sref="{{ link.link }}">{{ link.name }}</a>
-</div>
+</div> -->
