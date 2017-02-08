@@ -138,6 +138,74 @@
         <!-- Credit History -->
         <div class="ui segment">
             <h2>Credit History</h2>
+            <h3>Checking Account</h3>
+            <div class="fields">
+                <div class="field">
+                    <!-- <label for="checking-account-name">Bank / Institution</label> -->
+                    <!-- <div class="ui left labeled input"> -->
+                        <!-- <div class="ui label">Checking Account</div> -->
+                        <input type="text" name="checking-account-name" id="checking-account-name" placeholder="Bank / Institution">
+                    <!-- </div> -->
+                </div>
+                <div class="field">
+                    <!-- <label for="checking-account-balance">Balance on Deposit</label> -->
+                    <div class="ui right labeled input">
+                        <div class="ui label">$</div>
+                        <input type="text" name="checking-account-balance" id="checking-account-balance" placeholder="Balance on Deposit">
+                        <div class="ui basic label">.00</div>
+                    </div>
+                    <!-- <div class="ui left labeled input">
+                        <div class="ui label">Checking Account</div>
+                        <input type="text" name="checking-account-balance" id="checking-account-balance" placeholder="Balance on Deposit">
+                    </div> -->
+                </div>
+            </div>
+            <h3>Savings Account</h3>
+            <div class="fields">
+                <div class="field">
+                    <label for="savings-account-name">Bank / Institution</label>
+                    <input type="text" name="savings-account-name" id="savings-account-name">
+                </div>
+                <div class="field">
+                    <label for="savings-account-balance">Balance on Deposit</label>
+                    <input type="text" name="savings-account-balance" id="savings-account-balance">
+                </div>
+            </div>
+            <h3>Credit Card</h3>
+            <div class="fields">
+                <div class="field">
+                    <label for="credit-account-name">Bank / Institution</label>
+                    <input type="text" name="credit-account-name" id="credit-account-name">
+                </div>
+                <div class="field">
+                    <label for="credit-account-balance">Balance Owed</label>
+                    <input type="text" name="credit-account-balance" id="credit-account-balance">
+                </div>
+            </div>
+            <h3>Auto Loan</h3>
+            <div class="fields">
+                <div class="field">
+                    <label for="auto-account-name">Bank / Institution</label>
+                    <input type="text" name="auto-account-name" id="auto-account-name">
+                </div>
+                <div class="field">
+                    <label for="auto-account-balance">Balance Owed</label>
+                    <input type="text" name="auto-account-balance" id="auto-account-balance">
+                </div>
+            </div>
+            <h3>Additional Debt</h3>
+            <div class="fields">
+                <div class="field">
+                    <label for="debt-account-name">Bank / Institution</label>
+                    <input type="text" name="debt-account-name" id="debt-account-name">
+                </div>
+                <div class="field">
+                    <label for="debt-account-balance">Balance Owed</label>
+                    <input type="text" name="debt-account-balance" id="debt-account-balance">
+                </div>
+            </div>
+        </div>
+        <div class="ui segment">
             <h2>References</h2>
             <div class="fields">
                 <div class="field">
@@ -181,7 +249,7 @@
             </div>
             <div class="field" ng-show="lateCheck == 'yes'">
                 <label for="">Please Explain</label>
-                <input type="text" name="" value="" ng-required="lateCheck == 'yes'">
+                <input type="text" name="" ng-required="lateCheck == 'yes'">
             </div>
             <!-- Lawsuit -->
             <div class="inline field">
@@ -197,7 +265,7 @@
             </div>
             <div class="field" ng-show="lawsuitCheck == 'yes'">
                 <label for="">Please Explain</label>
-                <input type="text" name="" value="" ng-required="lawsuitCheck == 'yes'">
+                <input type="text" name="" ng-required="lawsuitCheck == 'yes'">
             </div>
             <!-- Smoke -->
             <div class="inline field">
@@ -213,10 +281,26 @@
             </div>
             <div class="field" ng-show="smokeCheck == 'yes'">
                 <label for="">Please Explain</label>
-                <input type="text" name="" value="" ng-required="smokeCheck == 'yes'">
+                <input type="text" name="" ng-required="smokeCheck == 'yes'">
+            </div>
+            <!-- Credit History -->
+            <div class="inline field">
+                <label>Is there anything negative in your credit or background check?</label>
+                <div class="ui radio checkbox">
+                    <input type="radio" name="credit" checked="checked" ng-model="creditCheck" value="yes">
+                    <label>Yes</label>
+                </div>
+                <div class="ui radio checkbox">
+                    <input type="radio" name="credit" ng-model="creditCheck" value="no">
+                    <label>No</label>
+                </div>
+            </div>
+            <div class="field" ng-show="creditCheck == 'yes'">
+                <label for="">Please Explain</label>
+                <input type="text" name="" ng-required="creditCheck == 'yes'">
             </div>
             <!-- Pets -->
-            <div class="inline field">
+            <!-- <div class="inline field">
                 <label>Do you have any pets?</label>
                 <div class="ui radio checkbox">
                     <input type="radio" name="pets" checked="checked" ng-model="petCheck" value="yes">
@@ -229,17 +313,17 @@
             </div>
             <div class="field" ng-show="petCheck == 'yes'">
                 <label for="">List the breed, weight, and age</label>
-                <input type="text" name="" value="" ng-required="petCheck == 'yes'">
-            </div>
+                <input type="text" name="" ng-required="petCheck == 'yes'">
+            </div> -->
             <!-- Questions -->
             <div class="field">
                 <label for="">Why are you moving from your current address?</label>
                 <textarea rows="2"></textarea>
             </div>
-            <div class="field">
+            <!-- <div class="field">
                 <label for="">Is there anything negative in your credit or background check you want to comment on?</label>
                 <textarea rows="2"></textarea>
-            </div>
+            </div> -->
         </div>
         <div class="inline fields">
             <label class="eleven wide">Rental application fee:</label>
