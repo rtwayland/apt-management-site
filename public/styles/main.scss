@@ -41,14 +41,18 @@ main-nav {
     }
 
     .hamburger-menu-icon {
-        margin: auto !important;
-        font-size: 1.5em;
-    }
+        cursor: pointer;
 
-    #nav-collapse {
-        width: 100% !important;
-        margin-top: 56px !important;
-        display: none;
+        i {
+            margin: auto !important;
+            font-size: 1.5em;
+        }
+    }
+}
+
+#nav-collapse {
+    .item {
+        font-size: 1.2em !important;
     }
 }
 

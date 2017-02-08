@@ -24,19 +24,19 @@
 
 </head>
 
-<body ng-controller="ViewCtrl">
+<body>
+    <div class="pusher">
+        <div ng-controller="NavCtrl">
+            <main-nav links="links"></main-nav>
+        </div>
 
-    <div ng-controller="NavCtrl">
-        <main-nav links="links"></main-nav>
+        <main id="main-wrapper" class="ui container">
+            <a ui-sref="home">Public</a>
+            <a ui-sref="resident">Resident</a>
+            <a ui-sref="admin">Admin</a>
+            <ui-view></ui-view>
+        </main>
     </div>
-
-    <main id="main-wrapper" class="ui container">
-        <a ui-sref="home">Public</a>
-        <a ui-sref="resident">Resident</a>
-        <a ui-sref="admin">Admin</a>
-        <ui-view></ui-view>
-    </main>
-
 </body>
 
 </html>
