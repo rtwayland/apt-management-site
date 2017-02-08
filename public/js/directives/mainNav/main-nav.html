@@ -12,20 +12,14 @@
             <div class="header item">
                 <a class="company-title serif-font" ui-sref="home">Fox Briar Properties</a>
             </div>
-            <div class="right menu open">
+            <div class="right menu open" ng-click="toggleMenu()">
                 <a href="#" class="menu item">
-                    <i class="content icon"></i>
+                    <i class="content icon hamburger-menu-icon"></i>
                 </a>
             </div>
         </div>
-        <div class="ui top fixed vertical navbar menu" id="nav-collapse">
-            <a ng-repeat="link in links" class="item" ui-sref="{{ link.link }}">{{ link.name }}</a>
+        <div class="ui top sidebar vertical menu" id="nav-collapse">
+            <a ng-repeat="link in links" class="item" ui-sref="{{ link.link }}" ng-click="toggleMenu()">{{ link.name }}</a>
         </div>
     </div>
 </div>
-<!-- <div class="ui top fixed navbar menu">
-  <div class="header item">
-    <a class="company-title serif-font" ui-sref="home">Fox Briar Properties</a>
-  </div>
-  <a ng-repeat="link in links" class="item" ui-sref="{{ link.link }}">{{ link.name }}</a>
-</div> -->
