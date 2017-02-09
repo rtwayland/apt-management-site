@@ -51,8 +51,17 @@
                 </div>
             </div>
         </div>
-        <!-- Other Occupants -->
-        <!--  -->
+        <!-- Additional Occupants -->
+        <div class="ui segment">
+            <h2>Additional Occupants</h2>
+            <div class="inline field">
+                <label>How many occupants in addition to the applicant?</label>
+                <input type="number" name="" id="" min="0" max="7" ng-model="numAddOccupants">
+            </div>
+            <div ng-show="numAddOccupants > 0">
+                <additional-occupant-fields num="numAddOccupants"></additional-occupant-fields>
+            </div>
+        </div>
         <div class="ui segment">
             <h2>Rental History</h2>
             <h3>Current Residence</h3>
@@ -143,8 +152,8 @@
                 <div class="field">
                     <!-- <label for="checking-account-name">Bank / Institution</label> -->
                     <!-- <div class="ui left labeled input"> -->
-                        <!-- <div class="ui label">Checking Account</div> -->
-                        <input type="text" name="checking-account-name" id="checking-account-name" placeholder="Bank / Institution">
+                    <!-- <div class="ui label">Checking Account</div> -->
+                    <input type="text" name="checking-account-name" id="checking-account-name" placeholder="Bank / Institution">
                     <!-- </div> -->
                 </div>
                 <div class="field">
@@ -168,7 +177,11 @@
                 </div>
                 <div class="field">
                     <label for="savings-account-balance">Balance on Deposit</label>
-                    <input type="text" name="savings-account-balance" id="savings-account-balance">
+                    <div class="ui right labeled input">
+                        <div class="ui label">$</div>
+                        <input type="text" name="savings-account-balance" id="savings-account-balance" placeholder="Balance on Deposit">
+                        <div class="ui basic label">.00</div>
+                    </div>
                 </div>
             </div>
             <h3>Credit Card</h3>
@@ -179,7 +192,11 @@
                 </div>
                 <div class="field">
                     <label for="credit-account-balance">Balance Owed</label>
-                    <input type="text" name="credit-account-balance" id="credit-account-balance">
+                    <div class="ui right labeled input">
+                        <div class="ui label">$</div>
+                        <input type="text" name="credit-account-balance" id="credit-account-balance" placeholder="Balance Owed">
+                        <div class="ui basic label">.00</div>
+                    </div>
                 </div>
             </div>
             <h3>Auto Loan</h3>
@@ -190,7 +207,11 @@
                 </div>
                 <div class="field">
                     <label for="auto-account-balance">Balance Owed</label>
-                    <input type="text" name="auto-account-balance" id="auto-account-balance">
+                    <div class="ui right labeled input">
+                        <div class="ui label">$</div>
+                        <input type="text" name="auto-account-balance" id="auto-account-balance" placeholder="Balance Owed">
+                        <div class="ui basic label">.00</div>
+                    </div>
                 </div>
             </div>
             <h3>Additional Debt</h3>
@@ -201,7 +222,11 @@
                 </div>
                 <div class="field">
                     <label for="debt-account-balance">Balance Owed</label>
-                    <input type="text" name="debt-account-balance" id="debt-account-balance">
+                    <div class="ui right labeled input">
+                        <div class="ui label">$</div>
+                        <input type="text" name="debt-account-balance" id="debt-account-balance" placeholder="Balance Owed">
+                        <div class="ui basic label">.00</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -223,12 +248,15 @@
             </div>
             <div class="fields">
                 <div class="field">
+                    <label for="">Name</label>
                     <input type="text">
                 </div>
                 <div class="field">
+                    <label for="">Phone Number</label>
                     <input type="text">
                 </div>
                 <div class="field">
+                    <label for="">Relationship</label>
                     <input type="text">
                 </div>
             </div>
