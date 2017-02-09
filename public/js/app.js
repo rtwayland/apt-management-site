@@ -20,8 +20,8 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router'])
             })
             .state('apply', {
                 url: '/apply',
-                templateUrl: './views/public/apply.html'
-                // controller: ''
+                templateUrl: './views/public/apply.html',
+                controller: 'ApplicationCtrl'
             })
             .state('loginSignup', {
                 url: '/login-signup',
