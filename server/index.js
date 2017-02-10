@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const config = require('./../config');
 // CONTROLLERS
 // ============================================================
-const mainCtrl = require('./controllers/mainCtrl');
+const applicationCtrl = require('./controllers/ApplicationCtrl');
 // INITILIZE APP
 // ============================================================
 const app = express();
@@ -15,25 +15,25 @@ const app = express();
 // ============================================================
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static(__dirname + './../public'));
+app.use(express.static(__dirname + './../dist'));
 // ENDPOINTS
 // ============================================================
 // MODEL ENDPOINTS
-app.get('/api/model', mainCtrl.read);
-app.post('/api/model', mainCtrl.create);
-app.put('/api/model/:id', mainCtrl.update);
-app.delete('/api/model/:id', mainCtrl.delete);
+app.get('/api/application', applicationCtrl.read);
+app.post('/api/application', applicationCtrl.create);
+app.put('/api/application/:id', applicationCtrl.update);
+app.delete('/api/application/:id', applicationCtrl.delete);
 // VARIABLES
 // ============================================================
 const port = config.port;
 const mongoURI = config.mongoURI;
 // MONGO CONNECTION
 // ============================================================
-mongoose.set('debug', true);
-mongoose.connect(mongoURI);
-mongoose.connection.once('open', function() {
-  console.log('Connected to mongo at: ', mongoURI);
-  });
+// mongoose.set('debug', true);
+// mongoose.connect(mongoURI);
+// mongoose.connection.once('open', function() {
+//   console.log('Connected to mongo at: ', mongoURI);
+//   });
 // LISTEN
 // ============================================================
 app.listen(port, function() {
