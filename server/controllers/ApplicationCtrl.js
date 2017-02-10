@@ -1,13 +1,13 @@
 // REQUIRE DEPENDENCIES
 // ============================================================
-const Model = require('./../models/Model');
+const Application = require('./../models/Application');
 // EXPORT METHODS
 // ============================================================
 module.exports = {
     // CRUD METHODS
     // ============================================================
     read(req, res) {
-        Model.find(req.query, function(err, result) {
+        Application.find(req.query, function(err, result) {
             if (err) {
                 res.status(500).send(err);
             }
@@ -15,7 +15,7 @@ module.exports = {
         });
     },
     create(req, res) {
-        Model.create(req.body, function(err, result) {
+        Application.create(req.body, function(err, result) {
             if (err) {
                 res.status(500).send(err);
             }
@@ -23,7 +23,7 @@ module.exports = {
         });
     },
     update(req, res) {
-        Model.findByIdAndUpdate(req.params.id, req.body, function(err, result) {
+        Application.findByIdAndUpdate(req.params.id, req.body, function(err, result) {
             if (err) {
                 res.status(500).send(err);
             }
@@ -31,7 +31,7 @@ module.exports = {
         });
     },
     delete(req, res) {
-        Model.findByIdAndRemove(req.params.id, function(err, result) {
+        Application.findByIdAndRemove(req.params.id, function(err, result) {
             if (err) {
                 res.status(500).send(err);
             }
