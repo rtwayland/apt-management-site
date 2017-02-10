@@ -1,53 +1,60 @@
 <h1>Application</h1>
+<button class="ui grey basic button" type="button" ng-click="fillForm()">Fill Form</button>
 <div class="form-container">
-    <form name="application-form" class="ui equal width form" semantic-form>
+    <form name="applicationForm" class="ui equal width form" ng-submit="submitApplication()" semantic-form>
+        <div class="ui segment">
+            <h2>Selected Property</h2>
+            <property-dropdown model="application.propertyName" semantic-form></property-dropdown>
+            <div class="ui red message" ng-show="applicationForm.property-name.$dirty">Please enter a value for this field.</div>
+        </div>
         <div class="ui segment">
             <h2>Applicant Information</h2>
             <!-- Names -->
             <div class="fields">
-                <div class="field six wide required">
+                <div class="field six wide">
                     <label for="first-name">First Name</label>
-                    <input type="text" name="first-name" id="first-name" ng-model="firstName" required>
+                    <input type="text" name="first-name" id="first-name" ng-model="application.user.firstName" required>
+                    <div class="ui red message" ng-show="applicationForm.first-name.$dirty">Please enter a value for this field.</div>
                 </div>
                 <div class="field four wide">
                     <label for="middle-name">Middle Name</label>
-                    <input type="text" name="middle-name" id="middle-name" ng-model="middleName">
+                    <input type="text" name="middle-name" id="middle-name" ng-model="application.user.middleName">
                 </div>
-                <div class="field six wide required">
+                <div class="field six wide">
                     <label for="last-name">Last Name</label>
-                    <input type="text" name="last-name" id="last-name" ng-model="lastName" required>
+                    <input type="text" name="last-name" id="last-name" ng-model="application.user.lastName" required>
                 </div>
             </div>
             <div class="fields">
-                <div class="field four wide required">
+                <div class="field four wide">
                     <!-- Bday -->
                     <label for="birth-date">Birth Date</label>
                     <div class="ui input right icon">
-                        <input type="date" name="birth-date" id="birth-date" ng-model="birthDate">
+                        <input type="date" name="birth-date" id="birth-date" ng-model="application.user.birthdate" required>
                         <i class="calendar icon"></i>
                     </div>
                 </div>
-                <div class="field six wide required">
+                <div class="field six wide">
                     <!-- Email -->
                     <label for="email">Email Address</label>
-                    <input type="email" name="email" id="email" ng-model="email">
+                    <input type="email" name="email" id="email" ng-model="application.user.email" required>
                 </div>
-                <div class="field six wide required">
+                <div class="field six wide">
                     <!-- Phone -->
                     <label for="phone">Phone Number</label>
-                    <input type="text" name="phone" id="phone" ng-model="phone">
+                    <input type="text" name="phone" id="phone" ng-model="application.user.phone" required>
                 </div>
             </div>
             <div class="fields">
-                <div class="field required">
+                <div class="field">
                     <!-- SSN -->
                     <label for="ssn">Social Security Number</label>
-                    <input type="text" name="ssn" id="ssn" ng-model="ssn">
+                    <input type="text" name="ssn" id="ssn" ng-model="application.user.ssn" required>
                 </div>
-                <div class="field required">
+                <div class="field">
                     <!-- Driver's Licence -->
                     <label for="drivers-licence">Driver's License Number</label>
-                    <input type="text" name="drivers-licence" id="drivers-licence" ng-model="driversLicence">
+                    <input type="text" name="drivers-licence" id="drivers-licence" ng-model="application.user.driversLicence" required>
                 </div>
             </div>
         </div>
@@ -56,17 +63,17 @@
             <h2>Additional Occupants</h2>
             <div class="inline field">
                 <label>How many occupants in addition to the applicant?</label>
-                <input type="number" name="" id="" min="0" max="7" ng-model="numAddOccupants">
+                <input type="number" name="" id="" min="0" max="7" ng-model="numAddOccupants" placeholder="0" required>
             </div>
             <div ng-show="numAddOccupants > 0">
-                <additional-occupant-fields num="numAddOccupants"></additional-occupant-fields>
+                <additional-occupant-fields num="numAddOccupants" model="application.user.relations"></additional-occupant-fields>
             </div>
         </div>
         <div class="ui segment">
             <h2>Rental History</h2>
             <h3>Current Residence</h3>
             <!-- Address -->
-            <address-inputs model-key="current" model="residentAddress" semantic-form></address-inputs>
+            <address-inputs model-key="current" model="application.currentResidence.address" semantic-form></address-inputs>
 
             <!-- Details -->
             <div class="fields">
@@ -74,36 +81,34 @@
                     <label for="current-rent">Monthly Rent</label>
                     <div class="ui right labeled input">
                         <div class="ui label">$</div>
-                        <input type="text" name="current-rent" id="current-rent" placeholder="Amount">
+                        <input type="text" name="current-rent" id="current-rent" ng-model="application.currentResidence.monthlyRent" placeholder="Amount" required>
                         <div class="ui basic label">.00</div>
                     </div>
                 </div>
                 <div class="field">
                     <label for="current-res-start-date">Beginning Date of Residency</label>
                     <div class="ui input right icon">
-                        <input type="date" name="current-res-start-date" id="current-res-start-date">
+                        <input type="date" name="current-res-start-date" id="current-res-start-date" ng-model="application.currentResidence.beginningDate" required>
                         <i class="calendar icon"></i>
                     </div>
                 </div>
             </div>
             <div class="field">
                 <label for="current-reason">Reason for moving</label>
-                <input type="text" name="current-reason" id="current-reason">
+                <input type="text" name="current-reason" id="current-reason" ng-model="application.currentResidence.reasonForMoving" required>
             </div>
             <!-- Manager Info -->
             <div class="fields">
                 <div class="field">
                     <label for="current-manager-name">Owner/Manager's name</label>
-                    <input type="text" name="current-manager-name" id="current-manager-name">
+                    <input type="text" name="current-manager-name" id="current-manager-name" ng-model="application.currentResidence.managerName" required>
                 </div>
                 <div class="field">
                     <label for="current-manager-phone">Owner/Manager's phone</label>
-                    <input type="text" name="current-manager-phone" id="current-manager-phone">
+                    <input type="text" name="current-manager-phone" id="current-manager-phone" ng-model="application.currentResidence.managerPhone" required>
                 </div>
 
             </div>
-            <!-- Previous Residence -->
-            <!--  -->
         </div>
         <div class="ui segment">
             <h2>Employment History</h2>
@@ -111,120 +116,71 @@
             <div class="fields">
                 <div class="field">
                     <label for="current-employer">Current Employer</label>
-                    <input type="text" name="current-employer" id="current-employer">
+                    <input type="text" name="current-employer" id="current-employer" ng-model="application.currentEmployment.employer" required>
                 </div>
                 <div class="field">
                     <label for="current-occupation">Occupation</label>
-                    <input type="text" name="current-occupation" id="current-occupation">
+                    <input type="text" name="current-occupation" id="current-occupation" ng-model="application.currentEmployment.occupation" required>
                 </div>
                 <div class="field">
                     <label for="current-occupation-start">Start Date</label>
-                    <input type="text" name="current-occupation-start" id="current-occupation-start">
+                    <div class="ui input right icon">
+                        <input type="date" name="current-occupation-start" id="current-occupation-start" ng-model="application.currentEmployment.startDate" required>
+                        <i class="calendar icon"></i>
+                    </div>
                 </div>
             </div>
 
-            <address-inputs model-key="current-employer" model="employerAddress" semantic-form></address-inputs>
+            <address-inputs model-key="current-employer" model="application.currentEmployment.address" semantic-form></address-inputs>
 
             <div class="fields">
                 <div class="field six wide">
                     <label for="current-supervisor-name">Supervisor's Name</label>
-                    <input type="text" name="current-supervisor-name" id="current-supervisor-name">
+                    <input type="text" name="current-supervisor-name" id="current-supervisor-name" ng-model="application.currentEmployment.supervisorName" required>
                 </div>
                 <div class="field six wide">
                     <label for="current-employer-phone">Employer's phone</label>
-                    <input type="text" name="current-employer-phone" id="current-employer-phone">
+                    <input type="text" name="current-employer-phone" id="current-employer-phone" ng-model="application.currentEmployment.supervisorPhone" required>
                 </div>
                 <div class="field four wide">
                     <label for="current-monthly-pay">Monthly Pay</label>
                     <div class="ui right labeled input">
                         <div class="ui label">$</div>
-                        <input type="text" name="current-monthly-pay" id="current-monthly-pay" placeholder="Amount">
+                        <input type="text" name="current-monthly-pay" id="current-monthly-pay" ng-model="application.currentEmployment.monthlyPay" placeholder="Amount" required>
                         <div class="ui basic label">.00</div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Credit History -->
+        <!-- Account Info -->
         <div class="ui segment">
-            <h2>Credit History</h2>
+            <h2>Account Information</h2>
             <h3>Checking Account</h3>
             <div class="fields">
                 <div class="field">
-                    <!-- <label for="checking-account-name">Bank / Institution</label> -->
-                    <!-- <div class="ui left labeled input"> -->
-                    <!-- <div class="ui label">Checking Account</div> -->
-                    <input type="text" name="checking-account-name" id="checking-account-name" placeholder="Bank / Institution">
-                    <!-- </div> -->
+                    <label for="checking-account-name">Bank / Institution</label>
+                    <input type="text" name="checking-account-name" id="checking-account-name" ng-model="application.bankInfo.checking.name" required>
                 </div>
                 <div class="field">
-                    <!-- <label for="checking-account-balance">Balance on Deposit</label> -->
+                    <label for="checking-account-balance">Balance on Deposit</label>
                     <div class="ui right labeled input">
                         <div class="ui label">$</div>
-                        <input type="text" name="checking-account-balance" id="checking-account-balance" placeholder="Balance on Deposit">
+                        <input type="text" name="checking-account-balance" id="checking-account-balance" ng-model="application.bankInfo.checking.balance" required>
                         <div class="ui basic label">.00</div>
                     </div>
-                    <!-- <div class="ui left labeled input">
-                        <div class="ui label">Checking Account</div>
-                        <input type="text" name="checking-account-balance" id="checking-account-balance" placeholder="Balance on Deposit">
-                    </div> -->
                 </div>
             </div>
             <h3>Savings Account</h3>
             <div class="fields">
                 <div class="field">
                     <label for="savings-account-name">Bank / Institution</label>
-                    <input type="text" name="savings-account-name" id="savings-account-name">
+                    <input type="text" name="savings-account-name" id="savings-account-name" ng-model="application.bankInfo.savings.name" required>
                 </div>
                 <div class="field">
                     <label for="savings-account-balance">Balance on Deposit</label>
                     <div class="ui right labeled input">
                         <div class="ui label">$</div>
-                        <input type="text" name="savings-account-balance" id="savings-account-balance" placeholder="Balance on Deposit">
-                        <div class="ui basic label">.00</div>
-                    </div>
-                </div>
-            </div>
-            <h3>Credit Card</h3>
-            <div class="fields">
-                <div class="field">
-                    <label for="credit-account-name">Bank / Institution</label>
-                    <input type="text" name="credit-account-name" id="credit-account-name">
-                </div>
-                <div class="field">
-                    <label for="credit-account-balance">Balance Owed</label>
-                    <div class="ui right labeled input">
-                        <div class="ui label">$</div>
-                        <input type="text" name="credit-account-balance" id="credit-account-balance" placeholder="Balance Owed">
-                        <div class="ui basic label">.00</div>
-                    </div>
-                </div>
-            </div>
-            <h3>Auto Loan</h3>
-            <div class="fields">
-                <div class="field">
-                    <label for="auto-account-name">Bank / Institution</label>
-                    <input type="text" name="auto-account-name" id="auto-account-name">
-                </div>
-                <div class="field">
-                    <label for="auto-account-balance">Balance Owed</label>
-                    <div class="ui right labeled input">
-                        <div class="ui label">$</div>
-                        <input type="text" name="auto-account-balance" id="auto-account-balance" placeholder="Balance Owed">
-                        <div class="ui basic label">.00</div>
-                    </div>
-                </div>
-            </div>
-            <h3>Additional Debt</h3>
-            <div class="fields">
-                <div class="field">
-                    <label for="debt-account-name">Bank / Institution</label>
-                    <input type="text" name="debt-account-name" id="debt-account-name">
-                </div>
-                <div class="field">
-                    <label for="debt-account-balance">Balance Owed</label>
-                    <div class="ui right labeled input">
-                        <div class="ui label">$</div>
-                        <input type="text" name="debt-account-balance" id="debt-account-balance" placeholder="Balance Owed">
+                        <input type="text" name="savings-account-balance" id="savings-account-balance" ng-model="application.bankInfo.savings.balance" required>
                         <div class="ui basic label">.00</div>
                     </div>
                 </div>
@@ -235,29 +191,29 @@
             <div class="fields">
                 <div class="field">
                     <label for="">Name</label>
-                    <input type="text">
+                    <input type="text" ng-model="application.references[0].name" required>
                 </div>
                 <div class="field">
                     <label for="">Phone Number</label>
-                    <input type="text">
+                    <input type="text" ng-model="application.references[0].phone" required>
                 </div>
                 <div class="field">
                     <label for="">Relationship</label>
-                    <input type="text">
+                    <input type="text" ng-model="application.references[0].relationship" required>
                 </div>
             </div>
             <div class="fields">
                 <div class="field">
                     <label for="">Name</label>
-                    <input type="text">
+                    <input type="text" ng-model="application.references[1].name" required>
                 </div>
                 <div class="field">
                     <label for="">Phone Number</label>
-                    <input type="text">
+                    <input type="text" ng-model="application.references[1].phone" required>
                 </div>
                 <div class="field">
                     <label for="">Relationship</label>
-                    <input type="text">
+                    <input type="text" ng-model="application.references[1].relationship" required>
                 </div>
             </div>
         </div>
@@ -267,112 +223,76 @@
             <div class="inline field">
                 <label>Have you ever been late or delinquent on rent?</label>
                 <div class="ui radio checkbox">
-                    <input type="radio" name="late" checked="checked" ng-model="lateCheck" value="yes">
+                    <input type="radio" name="late" checked="checked" ng-model="application.generalInfo.hasBeenLate" value="true" required>
                     <label>Yes</label>
                 </div>
                 <div class="ui radio checkbox">
-                    <input type="radio" name="late" ng-model="lateCheck" value="no">
+                    <input type="radio" name="late" ng-model="application.generalInfo.hasBeenLate" value="false" required>
                     <label>No</label>
                 </div>
             </div>
-            <div class="field" ng-show="lateCheck == 'yes'">
+            <div class="field" ng-show="application.generalInfo.hasBeenLate == 'true'">
                 <label for="">Please Explain</label>
-                <input type="text" name="" ng-required="lateCheck == 'yes'">
+                <input type="text" name="" ng-model="application.generalInfo.lateExplaination" ng-required="application.generalInfo.hasBeenLate == 'true'">
             </div>
             <!-- Lawsuit -->
             <div class="inline field">
                 <label>Have you ever been party to a lawsuit?</label>
                 <div class="ui radio checkbox">
-                    <input type="radio" name="lawsuit" checked="checked" ng-model="lawsuitCheck" value="yes">
+                    <input type="radio" name="lawsuit" checked="checked" ng-model="application.generalInfo.hasHadLawsuit" value="true" required>
                     <label>Yes</label>
                 </div>
                 <div class="ui radio checkbox">
-                    <input type="radio" name="lawsuit" ng-model="lawsuitCheck" value="no">
+                    <input type="radio" name="lawsuit" ng-model="application.generalInfo.hasHadLawsuit" value="false" required>
                     <label>No</label>
                 </div>
             </div>
-            <div class="field" ng-show="lawsuitCheck == 'yes'">
+            <div class="field" ng-show="application.generalInfo.hasHadLawsuit == 'true'">
                 <label for="">Please Explain</label>
-                <input type="text" name="" ng-required="lawsuitCheck == 'yes'">
-            </div>
-            <!-- Smoke -->
-            <div class="inline field">
-                <label>Do you smoke?</label>
-                <div class="ui radio checkbox">
-                    <input type="radio" name="smoke" checked="checked" ng-model="smokeCheck" value="yes">
-                    <label>Yes</label>
-                </div>
-                <div class="ui radio checkbox">
-                    <input type="radio" name="smoke" ng-model="smokeCheck" value="no">
-                    <label>No</label>
-                </div>
-            </div>
-            <div class="field" ng-show="smokeCheck == 'yes'">
-                <label for="">Please Explain</label>
-                <input type="text" name="" ng-required="smokeCheck == 'yes'">
+                <input type="text" name="" ng-model="application.generalInfo.lawsuitExplaination" ng-required="application.generalInfo.hasHadLawsuit == 'true'">
             </div>
             <!-- Credit History -->
             <div class="inline field">
                 <label>Is there anything negative in your credit or background check?</label>
                 <div class="ui radio checkbox">
-                    <input type="radio" name="credit" checked="checked" ng-model="creditCheck" value="yes">
+                    <input type="radio" name="credit" checked="checked" ng-model="application.generalInfo.hasNegativeCredit" value="true" required>
                     <label>Yes</label>
                 </div>
                 <div class="ui radio checkbox">
-                    <input type="radio" name="credit" ng-model="creditCheck" value="no">
+                    <input type="radio" name="credit" ng-model="application.generalInfo.hasNegativeCredit" value="false" required>
                     <label>No</label>
                 </div>
             </div>
-            <div class="field" ng-show="creditCheck == 'yes'">
+            <div class="field" ng-show="application.generalInfo.hasNegativeCredit == 'true'">
                 <label for="">Please Explain</label>
-                <input type="text" name="" ng-required="creditCheck == 'yes'">
+                <input type="text" name="" ng-model="application.generalInfo.creditExplaination" ng-required="application.generalInfo.hasNegativeCredit == 'true'">
             </div>
-            <!-- Pets -->
-            <!-- <div class="inline field">
-                <label>Do you have any pets?</label>
-                <div class="ui radio checkbox">
-                    <input type="radio" name="pets" checked="checked" ng-model="petCheck" value="yes">
-                    <label>Yes</label>
-                </div>
-                <div class="ui radio checkbox">
-                    <input type="radio" name="pets" ng-model="petCheck" value="no">
-                    <label>No</label>
-                </div>
-            </div>
-            <div class="field" ng-show="petCheck == 'yes'">
-                <label for="">List the breed, weight, and age</label>
-                <input type="text" name="" ng-required="petCheck == 'yes'">
-            </div> -->
-            <!-- Questions -->
-            <div class="field">
-                <label for="">Why are you moving from your current address?</label>
-                <textarea rows="2"></textarea>
-            </div>
-            <!-- <div class="field">
-                <label for="">Is there anything negative in your credit or background check you want to comment on?</label>
-                <textarea rows="2"></textarea>
-            </div> -->
         </div>
-        <div class="inline fields">
-            <label class="eleven wide">Rental application fee:</label>
-            <div class="field three wide">
-                <div class="ui right labeled input">
-                    <div class="ui label">$</div>
-                    <input type="text" placeholder="Amount">
-                    <div class="ui basic label">.00</div>
+        <div class="ui segment">
+            <h2>Stipulations</h2>
+            <div class="field">
+                <div class="ui checkbox">
+                    <input type="checkbox" name="noPets" required>
+                    <label>I understand that pets are not allowed</label>
                 </div>
             </div>
-            <div class="field two wide">
+            <div class="field">
                 <div class="ui checkbox">
-                    <input type="checkbox" name="paid">
-                    <label>Paid</label>
+                    <input type="checkbox" name="noSmoking" required>
+                    <label>I understand that smoking is not allowed</label>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui checkbox">
+                    <input type="checkbox" name="appFee" required>
+                    <label>I understand that there will be a $20 application fee upon application approval</label>
                 </div>
             </div>
         </div>
         <!-- Additional Questions -->
         <div class="field">
             <label for="">Additional Questions</label>
-            <textarea></textarea>
+            <textarea rows="2" ng-model="application.additionalQuestions"></textarea>
         </div>
         <h2>Agreement &amp; Authorization</h2>
         <p>By signing this application, I verify that the statements in this application are true and correct. I authorize the use of the information and contacts provided to complete a credit, reference, and/or background check. I understand that false
@@ -380,12 +300,12 @@
         <div class="fields">
             <div class="field ten wide">
                 <label for="">Signature of Applicant</label>
-                <input type="text" name="" id="">
+                <input type="text" name="" id="" ng-model="application.signature" required>
             </div>
             <div class="field six wide">
                 <label for="">Date</label>
                 <div class="ui input right icon">
-                    <input type="date" name="" id="">
+                    <input type="date" name="" id="" ng-model="application.signDate" required>
                     <i class="calendar icon"></i>
                 </div>
             </div>

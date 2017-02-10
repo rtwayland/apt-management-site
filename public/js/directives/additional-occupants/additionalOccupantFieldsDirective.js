@@ -4,7 +4,8 @@ angular.module('app')
             restrict: 'E',
             templateUrl: './js/directives/additional-occupants/additional-occupant-fields.html',
             scope: {
-                num: '='
+                num: '=',
+                model: '='
             },
             link: function(scope, elem, attrs) {
                 scope.getNumOccupants = function() {

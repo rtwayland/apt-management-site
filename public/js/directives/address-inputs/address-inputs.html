@@ -1,15 +1,15 @@
 <div class="fields">
     <div class="field seven wide">
         <label for="{{modelKey}}-street">Address</label>
-        <input type="text" name="{{modelKey}}-street" id="{{modelKey}}-street" ng-model="model.address">
+        <input type="text" name="{{modelKey}}-street" id="{{modelKey}}-street" ng-model="model.street" required>
     </div>
     <div class="field three wide">
         <label for="{{modelKey}}-city">City</label>
-        <input type="text" name="{{modelKey}}-city" id="{{modelKey}}-city" ng-model="model.city">
+        <input type="text" name="{{modelKey}}-city" id="{{modelKey}}-city" ng-model="model.city" required>
     </div>
     <div class="field three wide">
         <label for="{{modelKey}}-state">State</label>
-        <select class="ui fluid search dropdown" ng-model="model.state">
+        <select class="ui fluid search dropdown" ng-model="model.state" required>
             <option value="">State</option>
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
@@ -66,6 +66,6 @@
     </div>
     <div class="field three wide">
         <label for="{{modelKey}}-zip">Zip</label>
-        <input type="text" name="{{modelKey}}-zip" id="{{modelKey}}-zip" ng-model="model.zip">
+        <input type="text" name="{{modelKey}}-zip" id="{{modelKey}}-zip" ng-model="model.zip" required>
     </div>
 </div>

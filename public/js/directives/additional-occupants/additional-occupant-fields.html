@@ -2,12 +2,12 @@
     <div class="field">
         <label for="">Birthdate</label>
         <div class="ui input right icon">
-            <input type="date" name="" id="">
+            <input type="date" name="" id="" ng-model="model[$index].birthdate">
             <i class="calendar icon"></i>
         </div>
     </div>
     <div class="field">
         <label for="">Relation to Applicant</label>
-        <input type="text" name="" value="" placeholder="Relationship">
+        <input type="text" name="" value="" ng-model="model[$index].relationship" placeholder="Relationship">
     </div>
 </div>
