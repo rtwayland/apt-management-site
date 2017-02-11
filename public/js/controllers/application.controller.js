@@ -72,7 +72,8 @@ angular.module('app')
                 },
                 additionalQuestions: '',
                 signature: 'My Sig',
-                signDate: new Date()
+                signDate: new Date(),
+                status: 'pending'
             }
 
         }
@@ -164,7 +165,8 @@ angular.module('app')
                 },
                 additionalQuestions: '',
                 signature: '',
-                signDate: new Date()
+                signDate: new Date(),
+                status: 'pending'
             }
         }
 
