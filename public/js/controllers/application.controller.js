@@ -73,7 +73,7 @@ angular.module('app')
                 additionalQuestions: '',
                 signature: 'My Sig',
                 signDate: new Date(),
-                status: 'pending'
+                applicationStatus: 'pending'
             }
 
         }
@@ -83,7 +83,7 @@ angular.module('app')
                 $scope.application.currentResidence.address.state !== '' &&
                 $scope.application.currentEmployment.address.state !== '') {
 
-                console.log($scope.application);
+                // console.log($scope.application);
                 ApplicationService.submitApplication($scope.application)
                     .then(function(res) {
                         $state.go('home');
@@ -166,7 +166,7 @@ angular.module('app')
                 additionalQuestions: '',
                 signature: '',
                 signDate: new Date(),
-                status: 'pending'
+                applicationStatus: 'pending'
             }
         }
 
