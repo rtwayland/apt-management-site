@@ -30,10 +30,10 @@ const mongoURI = config.mongoURI;
 // MONGO CONNECTION
 // ============================================================
 // mongoose.set('debug', true);
-// mongoose.connect(mongoURI);
-// mongoose.connection.once('open', function() {
-//   console.log('Connected to mongo at: ', mongoURI);
-//   });
+mongoose.connect(mongoURI);
+mongoose.connection.once('open', function() {
+  console.log('Connected to mongo at: ', mongoURI);
+  });
 // LISTEN
 // ============================================================
 app.listen(port, function() {

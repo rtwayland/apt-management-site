@@ -73,7 +73,7 @@ const applicationSchema = mongoose.Schema({
     additionalQuestions: String,
     signature: {type: String, require: true},
     signDate: {type: Date, require: true},
-    status: {type: String, require: true}
+    applicationStatus: {type: String, require: true}
 });
 // EXPORT SCHEMA
 // ============================================================
