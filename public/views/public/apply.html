@@ -1,11 +1,11 @@
-<h1>Application</h1>
 <button class="ui grey basic button" type="button" ng-click="fillForm()">Fill Form</button>
+<h1 class="serif-font text-center">Fox Briar Properties<br><small>Application Form</small></h1>
 <div class="form-container">
     <form name="applicationForm" class="ui equal width form" ng-submit="submitApplication()" semantic-form>
         <div class="ui segment">
             <h2>Selected Property</h2>
             <property-dropdown model="application.propertyName" semantic-form></property-dropdown>
-            <div class="ui red message" ng-show="applicationForm.property-name.$dirty">Please enter a value for this field.</div>
+            <div class="ui red message" ng-show="applicationForm.property-name.$invalid">Please enter a value for this field.</div>
         </div>
         <div class="ui segment">
             <h2>Applicant Information</h2>
@@ -14,7 +14,6 @@
                 <div class="field six wide">
                     <label for="first-name">First Name</label>
                     <input type="text" name="first-name" id="first-name" ng-model="application.user.firstName" required>
-                    <div class="ui red message" ng-show="applicationForm.first-name.$dirty">Please enter a value for this field.</div>
                 </div>
                 <div class="field four wide">
                     <label for="middle-name">Middle Name</label>
@@ -305,12 +304,11 @@
             <div class="field six wide">
                 <label for="">Date</label>
                 <div class="ui input right icon">
-                    <input type="date" name="" id="" ng-model="application.signDate" required>
+                    <input type="date" name="" id="" value="{{application.signDate | date:'yyyy-MM-dd'}}" disabled>
                     <i class="calendar icon"></i>
                 </div>
             </div>
         </div>
         <button type="submit" class="huge ui positive basic button">Submit Application</button>
-        <dropdown-select></dropdown-select>
     </form>
 </div>
