@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const config = require('./../config');
 // CONTROLLERS
 // ============================================================
-const applicationCtrl = require('./controllers/ApplicationCtrl');
+const applicationCtrl = require('./controllers/application.server.controller');
 // INITILIZE APP
 // ============================================================
 const app = express();
