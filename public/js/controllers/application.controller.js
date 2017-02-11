@@ -1,6 +1,8 @@
 angular.module('app')
     .controller('ApplicationCtrl', function($scope, $state, ApplicationService) {
+
         $scope.fillForm = function() {
+            $scope.numAddOccupants = 0;
             $scope.application = {
                 user: {
                     firstName: 'MyName',
@@ -16,7 +18,7 @@ angular.module('app')
                     address: {
                         street: '123 N 123 E',
                         city: 'Somewhere',
-                        state: 'SomeState',
+                        state: '',
                         zip: '12345'
                     },
                     monthlyRent: '1045',
@@ -32,7 +34,7 @@ angular.module('app')
                     address: {
                         street: '123 N 123 E',
                         city: 'Somewhere',
-                        state: 'SomeState',
+                        state: '',
                         zip: '12345'
                     },
                     supervisorName: 'Wes',
@@ -76,10 +78,95 @@ angular.module('app')
         }
 
         $scope.submitApplication = function() {
-          // console.log($scope.application);
-            ApplicationService.submitApplication($scope.application)
-            .then(function (res) {
-              $state.go('home');
-            })
+            if ($scope.application.propertyName !== '' &&
+                $scope.application.currentResidence.address.state !== '' &&
+                $scope.application.currentEmployment.address.state !== '') {
+
+                console.log($scope.application);
+                ApplicationService.submitApplication($scope.application)
+                    .then(function(res) {
+                        $state.go('home');
+                    })
+            } else {
+                // Trigger error message
+                console.log('Please fill out all the fields.');
+            }
         }
+
+        function init() {
+            $scope.application = {
+                propertyName: '',
+                user: {
+                    firstName: '',
+                    middleName: '',
+                    lastName: '',
+                    birthdate: '',
+                    email: '',
+                    phone: '',
+                    ssn: '',
+                    driversLicence: ''
+                },
+                currentResidence: {
+                    address: {
+                        street: '',
+                        city: '',
+                        state: '',
+                        zip: ''
+                    },
+                    monthlyRent: '',
+                    beginningDate: '',
+                    reasonForMoving: '',
+                    managerName: '',
+                    managerPhone: ''
+                },
+                currentEmployment: {
+                    employer: '',
+                    occupation: '',
+                    startDate: '',
+                    address: {
+                        street: '',
+                        city: '',
+                        state: '',
+                        zip: ''
+                    },
+                    supervisorName: '',
+                    supervisorPhone: '',
+                    monthlyPay: ''
+                },
+                bankInfo: {
+                    checking: {
+                        name: '',
+                        balance: ''
+                    },
+                    savings: {
+                        name: '',
+                        balance: ''
+                    }
+                },
+                references: [{
+                        name: '',
+                        phone: '',
+                        relationship: ''
+                    },
+                    {
+                        name: '',
+                        phone: '',
+                        relationship: ''
+                    }
+                ],
+                generalInfo: {
+                    hasBeenLate: '',
+                    lateExplaination: '',
+                    hasHadLawsuit: '',
+                    lawsuitExplaination: '',
+                    hasNegativeCredit: '',
+                    creditExplaination: ''
+                },
+                additionalQuestions: '',
+                signature: '',
+                signDate: new Date()
+            }
+        }
+
+        init();
     });
