@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('ApplicationCtrl', function($scope) {
+    .controller('ApplicationCtrl', function($scope, $state, ApplicationService) {
         $scope.fillForm = function() {
             $scope.application = {
                 user: {
@@ -30,10 +30,10 @@ angular.module('app')
                     occupation: 'Developer',
                     startDate: new Date(),
                     address: {
-                      street: '123 N 123 E',
-                      city: 'Somewhere',
-                      state: 'SomeState',
-                      zip: '12345'
+                        street: '123 N 123 E',
+                        city: 'Somewhere',
+                        state: 'SomeState',
+                        zip: '12345'
                     },
                     supervisorName: 'Wes',
                     supervisorPhone: '1234567890',
@@ -75,8 +75,11 @@ angular.module('app')
 
         }
 
-        $scope.submitApplication = function(isValid) {
-            console.log('Application Form\n', $scope.application);
-            if (isValid) {}
+        $scope.submitApplication = function() {
+          // console.log($scope.application);
+            ApplicationService.submitApplication($scope.application)
+            .then(function (res) {
+              $state.go('home');
+            })
         }
     });
