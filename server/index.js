@@ -13,7 +13,7 @@ const applicationCtrl = require('./controllers/ApplicationCtrl');
 const app = express();
 // INITILIZE DEPENDENCIES
 // ============================================================
-app.use(cors());
+// app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(__dirname + './../dist'));
 // ENDPOINTS

@@ -1,6 +1,6 @@
 // REQUIRE DEPENDENCIES
 // ============================================================
-// const Application = require('./../models/Application');
+// const Application = require('./../models/applicationSchema');
 // EXPORT METHODS
 // ============================================================
 module.exports = {
@@ -15,7 +15,8 @@ module.exports = {
         // });
     },
     create(req, res) {
-      console.log('Application\n', req.body);
+      console.log('Application', req.body);
+      res.status(200).send('Submitted');
         // Application.create(req.body, function(err, result) {
         //     if (err) {
         //         res.status(500).send(err);

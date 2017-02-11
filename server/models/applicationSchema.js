@@ -3,9 +3,9 @@
 const mongoose = require('mongoose');
 // DEFINE SCHEMA
 // ============================================================
-const ApplicationSchema = mongoose.Schema({
+const applicationSchema = mongoose.Schema({
 
 });
 // EXPORT SCHEMA
 // ============================================================
-module.exports = mongoose.model('Application', ApplicationSchema);
+module.exports = mongoose.model('Application', applicationSchema);
