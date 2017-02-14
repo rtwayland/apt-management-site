@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + './../dist'));
 // ENDPOINTS
 // ============================================================
-// MODEL ENDPOINTS
+// APPLICATION ENDPOINTS
 app.get('/api/application', applicationCtrl.read);
 app.post('/api/application', applicationCtrl.create);
 app.put('/api/application/:id', applicationCtrl.update);
