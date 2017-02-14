@@ -12,7 +12,8 @@ angular.module('app')
                     email: 'email@email.com',
                     phone: '1234567890',
                     ssn: '1234567890',
-                    driversLicence: '1234567890'
+                    driversLicence: '1234567890',
+                    relations: []
                 },
                 currentResidence: {
                     address: {
@@ -105,7 +106,8 @@ angular.module('app')
                     email: '',
                     phone: '',
                     ssn: '',
-                    driversLicence: ''
+                    driversLicence: '',
+                    relations: []
                 },
                 currentResidence: {
                     address: {
