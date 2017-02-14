@@ -1,11 +1,12 @@
 <p>Pending applications</p>
 
-<table class="ui table">
+<table class="ui table applications-table">
     <thead>
         <tr>
             <th>Applicant Name</th>
             <th>Applicant email</th>
             <th>Property Name</th>
+            <th>Submission Date</th>
             <th></th>
             <th></th>
             <th></th>
@@ -16,6 +17,7 @@
             <td>{{application.user.firstName}} {{application.user.lastName}}</td>
             <td>{{application.user.email}}</td>
             <td>{{application.propertyName}}</td>
+            <td>{{application.signDate | date:'medium'}}</td>
             <td><button type="button" class="ui grey basic button" ui-sref="application-details({ id: application._id })">View</button></td>
             <td><button type="button" class="ui positive basic button">Approve</button></td>
             <td><button type="button" class="ui negative basic button">Decline</button></td>

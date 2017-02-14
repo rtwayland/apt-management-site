@@ -27,52 +27,7 @@ body {
     text-align: center;
 }
 
-main-nav {
-    .company-title {
-        font-size: 1.6em;
-    }
-
-    a {
-        text-decoration: none;
-        color: $color-text-dark;
-        font-size: 1.2em;
-
-        &:active,
-        &:visited {
-            text-decoration: none;
-            color: $color-text-dark;
-        }
-    }
-
-    .hamburger-menu-icon {
-        cursor: pointer;
-
-        i {
-            margin: auto !important;
-            font-size: 1.5em;
-        }
-    }
-}
-
-#nav-collapse {
-    .item {
-        font-size: 1.2em !important;
-    }
-}
-
-.form-container {
-    margin: auto auto 50px;
-    @media screen and (min-width: 1200px) {
-        max-width: 80%;
-    }
-    // @media screen and (max-width: 1199px) {
-    //     width: 70%;
-    // }
-    // @media screen and (max-width: 800px) {
-    //     width: 90%;
-    // }
-    button[type="submit"] {
-        display: block;
-        margin: 30px auto auto;
-    }
-}
+@import 'partials/main-nav';
+@import 'partials/application-form';
+@import 'partials/applications-tables';
+@import 'partials/application-details-form';
