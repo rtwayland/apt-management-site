@@ -71,4 +71,9 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router'])
                 templateUrl: './views/admin/applications/declined.html'
                 // controller: 'PendingApplications'
             })
+            .state('application-details', {
+                url: '/application-details/:id',
+                templateUrl: './views/admin/application-details.html',
+                controller: 'ApplicationDetails'
+            })
     });

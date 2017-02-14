@@ -7,12 +7,22 @@ module.exports = {
     // CRUD METHODS
     // ============================================================
     read(req, res) {
-        Application.find(req.query, function(err, result) {
-            if (err) {
-                res.status(500).send(err);
-            }
-            res.status(200).send(result);
-        });
+        if (req.query.id) {
+            Application.findById(req.query.id, function(err, result) {
+                if (err) {
+                    res.status(500).send(err);
+                }
+                res.status(200).send(result);
+            });
+        } else {
+            Application.find({}, function(err, result) {
+                if (err) {
+                    res.status(500).send(err);
+                }
+                res.status(200).send(result);
+            });
+
+        }
     },
     create(req, res) {
         // Create schema variable from req.body
