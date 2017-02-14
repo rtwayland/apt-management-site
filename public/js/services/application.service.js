@@ -6,5 +6,8 @@ angular.module('app')
                     console.log(res);
                     return res.data;
                 });
+        },
+        this.getPendingApplications = function () {
+          return $http.get('/api/application?applicationStatus=pending');
         }
     });

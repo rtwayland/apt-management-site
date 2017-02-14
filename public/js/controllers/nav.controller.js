@@ -27,6 +27,10 @@ angular.module('app')
             }
         ];
         var adminNavLinks = [{
+                link: 'applications',
+                name: 'Applications'
+            },
+            {
                 link: 'maintenanceRequests',
                 name: 'Maintenance Requests'
             },
@@ -41,14 +45,14 @@ angular.module('app')
         ];
 
         function updateNav() {
-            switch ($rootScope.state) {
-                case 1:
+            switch (sessionStorage.state) {
+                case '1':
                     $scope.links = publicNavLinks;
                     break;
-                case 2:
+                case '2':
                     $scope.links = residentNavLinks;
                     break;
-                case 3:
+                case '3':
                     $scope.links = adminNavLinks;
                     break;
                 default:

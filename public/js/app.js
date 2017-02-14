@@ -4,12 +4,14 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router'])
     })
     .config(function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.when('/applications', '/applications/pending');
 
         $stateProvider
             .state('home', {
                 url: '/',
                 templateUrl: './views/public/home.html',
                 controller: function($scope, $rootScope) {
+                    sessionStorage.setItem("state", 1);
                     $rootScope.state = 1;
                 }
             })
@@ -37,6 +39,7 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router'])
                 url: '/resident',
                 template: '<h1>Resident Page</h1>',
                 controller: function($scope, $rootScope) {
+                    sessionStorage.setItem("state", 2);
                     $rootScope.state = 2;
                 }
             })
@@ -44,7 +47,28 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router'])
                 url: '/admin',
                 template: '<h1>Admin Page</h1>',
                 controller: function($scope, $rootScope) {
+                    sessionStorage.setItem("state", 3);
                     $rootScope.state = 3;
                 }
+            })
+            .state('applications', {
+                url: '/applications',
+                templateUrl: './views/admin/applications.html',
+                controller: 'AdminApplications'
+            })
+            .state('applications.pending', {
+                url: '/pending',
+                templateUrl: './views/admin/applications/pending.html',
+                controller: 'PendingApplications'
+            })
+            .state('applications.approved', {
+                url: '/approved',
+                templateUrl: './views/admin/applications/approved.html'
+                // controller: 'PendingApplications'
+            })
+            .state('applications.declined', {
+                url: '/declined',
+                templateUrl: './views/admin/applications/declined.html'
+                // controller: 'PendingApplications'
             })
     });
