@@ -31,5 +31,14 @@ angular.module('app')
                         console.log('Single Application from Service\n', res);
                         return res.data;
                     });
+            },
+            this.updateStatus = function(id, status) {
+                let statusObj = angular.toJson({
+                    applicationStatus: status
+                });
+                return $http.put('/api/application/' + id, statusObj);
+            },
+            this.deleteApplication = function(id) {
+                return $http.delete('/api/application/' + id);
             }
     });

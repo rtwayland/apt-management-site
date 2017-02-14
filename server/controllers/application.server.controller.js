@@ -14,6 +14,15 @@ module.exports = {
                 }
                 res.status(200).send(result);
             });
+        } else if (req.query.applicationStatus) {
+            Application.find({
+                applicationStatus: req.query.applicationStatus
+            }, function(err, result) {
+                if (err) {
+                    res.status(500).send(err);
+                }
+                res.status(200).send(result);
+            });
         } else {
             Application.find({}, function(err, result) {
                 if (err) {
@@ -56,20 +65,20 @@ module.exports = {
         // });
     },
     update(req, res) {
-        // Application.findByIdAndUpdate(req.params.id, req.body, function(err, result) {
-        //     if (err) {
-        //         res.status(500).send(err);
-        //     }
-        //     res.status(200).send(result);
-        // });
+        Application.findByIdAndUpdate(req.params.id, req.body, function(err, result) {
+            if (err) {
+                res.status(500).send(err);
+            }
+            res.status(200).send(result);
+        });
     },
     delete(req, res) {
-        // Application.findByIdAndRemove(req.params.id, function(err, result) {
-        //     if (err) {
-        //         res.status(500).send(err);
-        //     }
-        //     res.status(200).send(result);
-        // });
+        Application.findByIdAndRemove(req.params.id, function(err, result) {
+            if (err) {
+                res.status(500).send(err);
+            }
+            res.status(200).send(result);
+        });
     }
     // OTHER METHODS
     // ============================================================
