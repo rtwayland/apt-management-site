@@ -12,7 +12,6 @@ angular.module('app')
         $scope.approveApplication = function(id) {
             ApplicationService.updateStatus(id, 'approved')
                 .then(function(res) {
-                    console.log(res);
                     removeById(id);
                 }, function(err) {
                     console.log(err);
@@ -22,7 +21,6 @@ angular.module('app')
         $scope.declineApplication = function(id) {
             ApplicationService.updateStatus(id, 'declined')
                 .then(function(res) {
-                    console.log(res);
                     removeById(id);
                 }, function(err) {
                     console.log(err);
