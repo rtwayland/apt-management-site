@@ -10,7 +10,8 @@ var applicationUserSchema = mongoose.Schema({
     email: {type: String, require: true},
     phone: {type: String, require: true},
     ssn: {type: String, require: true},
-    driversLicence: {type: String, require: true}
+    driversLicence: {type: String, require: true},
+    relations: Array
 });
 // Address SCHEMA
 var addressSchema = mongoose.Schema({
