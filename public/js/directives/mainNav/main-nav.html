@@ -4,7 +4,7 @@
             <div class="header item">
                 <a class="company-title serif-font" ui-sref="home">Fox Briar Properties</a>
             </div>
-            <a ng-repeat="link in links" class="item" ui-sref="{{ link.link }}">{{ link.name }}</a>
+            <a ng-repeat="link in links" class="item" ui-sref="{{ link.link }}" nav-toggle>{{ link.name }}</a>
         </div>
     </div>
     <div class="mobile only row">
