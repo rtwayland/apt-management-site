@@ -1,0 +1,309 @@
+<form class="ui equal width form">
+    <div class="ui segment">
+        <h2>Selected Property</h2>
+        <div class="field">
+
+            <input type="text" value="{{application.propertyName}}" disabled>
+        </div>
+    </div>
+    <div class="ui segment">
+        <h2>Applicant Information</h2>
+        <!-- Names -->
+        <div class="fields">
+            <div class="field six wide">
+                <label>First Name</label>
+                <input type="text" value="{{application.user.firstName}}" disabled>
+            </div>
+            <div class="field four wide">
+                <label>Middle Name</label>
+                <input type="text" value="{{application.user.middleName}}" disabled>
+            </div>
+            <div class="field six wide">
+                <label>Last Name</label>
+                <input type="text" value="{{application.user.lastName}}" disabled>
+            </div>
+        </div>
+        <div class="fields">
+            <div class="field four wide">
+                <!-- Bday -->
+                <label for="birth-date">Birth Date</label>
+                <div class="ui input right icon">
+                    <input type="text" value="{{application.user.birthdate | date:'mediumDate'}}" disabled>
+                    <i class="calendar icon"></i>
+                </div>
+            </div>
+            <div class="field six wide">
+                <!-- Email -->
+                <label>Email Address</label>
+                <input type="text" value="{{application.user.email}}" disabled>
+            </div>
+            <div class="field six wide">
+                <!-- Phone -->
+                <label>Phone Number</label>
+                <input type="text" value="{{application.user.phone}}" disabled>
+            </div>
+        </div>
+        <div class="fields">
+            <div class="field">
+                <!-- SSN -->
+                <label>Social Security Number</label>
+                <input type="text" value="{{application.user.ssn}}" disabled>
+            </div>
+            <div class="field">
+                <!-- Driver's Licence -->
+                <label>Driver's License Number</label>
+                <input type="text" value="{{application.user.driversLicence}}" disabled>
+            </div>
+        </div>
+    </div>
+    <!-- Additional Occupants -->
+    <div class="ui segment" ng-if="application.user.relations.length">
+        <h2>Additional Occupants</h2>
+        <div class="fields" ng-repeat="relation in application.user.relations">
+            <div class="field">
+                <label>Birthdate</label>
+                <div class="ui input right icon">
+                    <input type="text" value="{{relation.birthdate | date:'mediumDate'}}" disabled>
+                    <i class="calendar icon"></i>
+                </div>
+            </div>
+            <div class="field">
+                <label>Relation to Applicant</label>
+                <input type="text" value="{{relation.relationship}}" disabled>
+            </div>
+        </div>
+    </div>
+    <div class="ui segment">
+        <h2>Rental History</h2>
+        <h3>Current Residence</h3>
+        <!-- Address -->
+        <div class="fields">
+            <div class="field seven wide">
+                <label>Address</label>
+                <input type="text" value="{{application.currentResidence.address.street}}" disabled>
+            </div>
+            <div class="field three wide">
+                <label>City</label>
+                <input type="text" value="{{application.currentResidence.address.city}}" disabled>
+            </div>
+            <div class="field three wide">
+                <label>State</label>
+                <input type="text" value="{{application.currentResidence.address.state}}" disabled>
+            </div>
+            <div class="field three wide">
+                <label>Zip</label>
+                <input type="text" value="{{application.currentResidence.address.zip}}" disabled>
+            </div>
+        </div>
+
+        <!-- Details -->
+        <div class="fields">
+            <div class="field">
+                <label>Monthly Rent</label>
+                <div class="ui right labeled input">
+                    <div class="ui label">$</div>
+                    <input type="text" value="{{application.currentResidence.monthlyRent}}" disabled>
+                    <div class="ui basic label">.00</div>
+                </div>
+            </div>
+            <div class="field">
+                <label>Beginning Date of Residency</label>
+                <div class="ui input right icon">
+                    <input type="text" value="{{application.currentResidence.beginningDate | date:'mediumDate'}}" disabled>
+                    <i class="calendar icon"></i>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label>Reason for moving</label>
+            <input type="text" value="{{application.currentResidence.reasonForMoving}}" disabled>
+        </div>
+        <!-- Manager Info -->
+        <div class="fields">
+            <div class="field">
+                <label>Owner/Manager's name</label>
+                <input type="text" value="{{application.currentResidence.managerName}}" disabled>
+            </div>
+            <div class="field">
+                <label>Owner/Manager's phone</label>
+                <input type="text" value="{{application.currentResidence.managerPhone}}" disabled>
+            </div>
+
+        </div>
+    </div>
+    <div class="ui segment">
+        <h2>Employment History</h2>
+        <h3>Current Employer</h3>
+        <div class="fields">
+            <div class="field">
+                <label>Current Employer</label>
+                <input type="text" value="{{application.currentEmployment.employer}}" disabled>
+            </div>
+            <div class="field">
+                <label>Occupation</label>
+                <input type="text" value="{{application.currentEmployment.occupation}}" disabled>
+            </div>
+            <div class="field">
+                <label>Start Date</label>
+                <div class="ui input right icon">
+                    <input type="text" value="{{application.currentEmployment.startDate | date:'mediumDate'}}" disabled>
+                    <i class="calendar icon"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="fields">
+            <div class="field seven wide">
+                <label>Address</label>
+                <input type="text" value="{{application.currentEmployment.address.street}}" disabled>
+            </div>
+            <div class="field three wide">
+                <label>City</label>
+                <input type="text" value="{{application.currentEmployment.address.city}}" disabled>
+            </div>
+            <div class="field three wide">
+                <label>State</label>
+                <input type="text" value="{{application.currentEmployment.address.state}}" disabled>
+            </div>
+            <div class="field three wide">
+                <label>Zip</label>
+                <input type="text" value="{{application.currentEmployment.address.zip}}" disabled>
+            </div>
+        </div>
+
+        <div class="fields">
+            <div class="field six wide">
+                <label>Supervisor's Name</label>
+                <input type="text" value="{{application.currentEmployment.supervisorName}}" disabled>
+            </div>
+            <div class="field six wide">
+                <label>Employer's phone</label>
+                <input type="text" value="{{application.currentEmployment.supervisorPhone}}" disabled>
+            </div>
+            <div class="field four wide">
+                <label>Monthly Pay</label>
+                <div class="ui right labeled input">
+                    <div class="ui label">$</div>
+                    <input type="text" value="{{application.currentEmployment.monthlyPay}}" disabled>
+                    <div class="ui basic label">.00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Account Info -->
+    <div class="ui segment">
+        <h2>Account Information</h2>
+        <h3>Checking Account</h3>
+        <div class="fields">
+            <div class="field">
+                <label>Bank / Institution</label>
+                <input type="text" value="{{application.bankInfo.checking.name}}" disabled>
+            </div>
+            <div class="field">
+                <label>Balance on Deposit</label>
+                <div class="ui right labeled input">
+                    <div class="ui label">$</div>
+                    <input type="text" value="{{application.bankInfo.checking.balance}}" disabled>
+                    <div class="ui basic label">.00</div>
+                </div>
+            </div>
+        </div>
+        <h3>Savings Account</h3>
+        <div class="fields">
+            <div class="field">
+                <label>Bank / Institution</label>
+                <input type="text" value="{{application.bankInfo.savings.name}}" disabled>
+            </div>
+            <div class="field">
+                <label>Balance on Deposit</label>
+                <div class="ui right labeled input">
+                    <div class="ui label">$</div>
+                    <input type="text" value="{{application.bankInfo.savings.balance}}" disabled>
+                    <div class="ui basic label">.00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui segment">
+        <h2>References</h2>
+        <div class="fields">
+            <div class="field">
+                <label>Name</label>
+                <input type="text" value="{{application.references[0].name}}" disabled>
+            </div>
+            <div class="field">
+                <label>Phone Number</label>
+                <input type="text" value="{{application.references[0].phone}}" disabled>
+            </div>
+            <div class="field">
+                <label>Relationship</label>
+                <input type="text" value="{{application.references[0].relationship}}" disabled>
+            </div>
+        </div>
+        <div class="fields">
+            <div class="field">
+                <label>Name</label>
+                <input type="text" value="{{application.references[1].name}}" disabled>
+            </div>
+            <div class="field">
+                <label>Phone Number</label>
+                <input type="text" value="{{application.references[1].phone}}" disabled>
+            </div>
+            <div class="field">
+                <label>Relationship</label>
+                <input type="text" value="{{application.references[1].relationship}}" disabled>
+            </div>
+        </div>
+    </div>
+    <div class="ui segment">
+        <h2>General Information</h2>
+        <!-- Late or Delinquent -->
+        <div class="inline field">
+            <label>Have you ever been late or delinquent on rent?</label>
+            <span>{{application.generalInfo.hasBeenLate == 'true' ? 'Yes' : 'No'}}</span>
+        </div>
+        <div class="field" ng-show="application.generalInfo.hasBeenLate == 'true'">
+            <label for="">Explaination</label>
+            <input type="text" value="{{application.generalInfo.lateExplaination}}" disabled>
+        </div>
+        <!-- Lawsuit -->
+        <div class="inline field">
+            <label>Have you ever been party to a lawsuit?</label>
+            <span>{{application.generalInfo.hasHadLawsuit == 'true' ? 'Yes' : 'No'}}</span>
+        </div>
+        <div class="field" ng-show="application.generalInfo.hasHadLawsuit == 'true'">
+            <label>Explaination</label>
+            <input type="text" value="{{application.generalInfo.lawsuitExplaination}}" disabled>
+        </div>
+        <!-- Credit History -->
+        <div class="inline field">
+            <label>Is there anything negative in your credit or background check?</label>
+            <span>{{application.generalInfo.hasNegativeCredit == 'true' ? 'Yes' : 'No'}}</span>
+        </div>
+        <div class="field" ng-show="application.generalInfo.hasNegativeCredit == 'true'">
+            <label>Explaination</label>
+            <input type="text" value="{{application.generalInfo.creditExplaination}}" disabled>
+        </div>
+    </div>
+    <!-- Additional Questions -->
+    <div class="field" ng-if="application.additionalQuestions">
+        <label>Additional Questions</label>
+        <textarea rows="2" value="{{application.additionalQuestions}}"></textarea>
+    </div>
+    <h2>Agreement &amp; Authorization</h2>
+    <p>By signing this application, I verify that the statements in this application are true and correct. I authorize the use of the information and contacts provided to complete a credit, reference, and/or background check. I understand that false or lack
+        of information may result in the rejection of this application.</p>
+    <div class="fields">
+        <div class="field ten wide">
+            <label>Signature of Applicant</label>
+            <input type="text" value="{{application.signature}}" disabled>
+        </div>
+        <div class="field six wide">
+            <label>Date</label>
+            <div class="ui input right icon">
+                <input type="text" value="{{application.signDate | date:'mediumDate'}}" disabled>
+                <i class="calendar icon"></i>
+            </div>
+        </div>
+    </div>
+</form>
