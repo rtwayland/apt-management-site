@@ -2,7 +2,7 @@
 
 <table class="ui table applications-table">
     <thead>
-        <tr>
+        <tr class="center aligned">
             <th>Applicant Name</th>
             <th>Applicant email</th>
             <th>Property Name</th>
@@ -11,7 +11,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="application in approvedApplications">
+        <tr class="center aligned" ng-repeat="application in approvedApplications">
             <td>{{application.user.firstName}} {{application.user.lastName}}</td>
             <td>{{application.user.email}}</td>
             <td>{{application.propertyName}}</td>
