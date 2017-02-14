@@ -63,13 +63,13 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router'])
             })
             .state('applications.approved', {
                 url: '/approved',
-                templateUrl: './views/admin/applications/approved.html'
-                // controller: 'PendingApplications'
+                templateUrl: './views/admin/applications/approved.html',
+                controller: 'ApprovedApplications'
             })
             .state('applications.declined', {
                 url: '/declined',
-                templateUrl: './views/admin/applications/declined.html'
-                // controller: 'PendingApplications'
+                templateUrl: './views/admin/applications/declined.html',
+                controller: 'DeclinedApplications'
             })
             .state('application-details', {
                 url: '/application-details/:id',
