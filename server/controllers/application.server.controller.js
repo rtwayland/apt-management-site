@@ -54,7 +54,7 @@ module.exports = {
                 return res.status(500).send(err);
             }
 
-            console.log('Application', newApplication);
+            // console.log('Application', newApplication);
             return res.status(200).json(newApplication);
         });
         // Application.create(req.body, function(err, result) {
