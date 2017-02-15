@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('PendingApplications', function($scope, ApplicationService) {
+    .controller('PendingApplications', function($scope, ApplicationService, EmailService) {
         function getPendingApplications() {
             ApplicationService.getPendingApplications()
                 .then(function(res) {
@@ -9,19 +9,39 @@ angular.module('app')
                 });
         }
 
-        $scope.approveApplication = function(id) {
-            ApplicationService.updateStatus(id, 'approved')
+        $scope.approveApplication = function(application) {
+            // Add approved status to database
+            ApplicationService.updateStatus(application._id, 'approved')
                 .then(function(res) {
-                    removeById(id);
+                    // Remove from pending section
+                    removeById(application._id);
+
+                    // Send out the approval email
+                    EmailService.sendApprovedEmail(application.user.email)
+                        .then(function(res) {
+                            console.log(res);
+                        }, function(err) {
+                            console.log(err);
+                        });
+
                 }, function(err) {
                     console.log(err);
-                })
+                });
         };
 
-        $scope.declineApplication = function(id) {
-            ApplicationService.updateStatus(id, 'declined')
+        $scope.declineApplication = function(application) {
+            ApplicationService.updateStatus(application._id, 'declined')
                 .then(function(res) {
-                    removeById(id);
+                    removeById(application._id);
+
+                    // Send out the denial email
+                    EmailService.sendDeclinedEmail(application.user.email)
+                        .then(function(res) {
+                            console.log(res);
+                        }, function(err) {
+                            console.log(err);
+                        });
+
                 }, function(err) {
                     console.log(err);
                 })

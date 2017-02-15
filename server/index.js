@@ -8,6 +8,7 @@ const config = require('./../config');
 // CONTROLLERS
 // ============================================================
 const applicationCtrl = require('./controllers/application.server.controller');
+const emailCtrl = require('./controllers/email.server.controller');
 // INITILIZE APP
 // ============================================================
 const app = express();
@@ -23,6 +24,11 @@ app.get('/api/application', applicationCtrl.read);
 app.post('/api/application', applicationCtrl.create);
 app.put('/api/application/:id', applicationCtrl.update);
 app.delete('/api/application/:id', applicationCtrl.delete);
+
+// EMAIL ENDPOINTS
+app.post('/api/email-approval', emailCtrl.sendApprovedEmail);
+app.post('/api/email-denial', emailCtrl.sendDeclinedEmail);
+
 // VARIABLES
 // ============================================================
 const port = config.port;
