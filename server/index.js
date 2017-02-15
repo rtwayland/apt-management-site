@@ -37,6 +37,7 @@ passport.use(new Auth0Strategy({
         callbackURL: authConfig.callbackURL
     },
     function(accessToken, refreshToken, extraParams, profile, done) {
+      console.log('Profile', profile);
         //Find user in database
         db.getUserByAuthId([profile.id], function(err, user) {
             user = user[0];
@@ -79,6 +80,7 @@ app.get('/auth/callback',
         successRedirect: '/'
     }),
     function(req, res) {
+      console.log('Here in callback');
         res.status(200).send(req.user);
     })
 
@@ -121,6 +123,6 @@ mongoose.connection.once('open', function() {
 });
 // LISTEN
 // ============================================================
-app.listen(port, function() {
+app.listen(port, () => {
     console.log(`listening on port ${port}`);
 });
