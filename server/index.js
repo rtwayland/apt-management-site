@@ -1,15 +1,19 @@
 // REQUIRE DEPENDENCIES
 // ============================================================
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const config = require('./../config');
+const express = require('express'),
+    session = require('express-session'),
+    cors = require('cors'),
+    bodyParser = require('body-parser'),
+    mongoose = require('mongoose'),
+    passport = require('passport'),
+    Auth0Strategy = require('passport-auth0'),
+    authConfig = require('./../authConfig'),
+    config = require('./../config');
 // CONTROLLERS
 // ============================================================
-const applicationCtrl = require('./controllers/application.server.controller');
-const userCtrl = require('./controllers/user.server.controller');
-const emailCtrl = require('./controllers/email.server.controller');
+const applicationCtrl = require('./controllers/application.server.controller'),
+    userCtrl = require('./controllers/user.server.controller'),
+    emailCtrl = require('./controllers/email.server.controller');
 // INITILIZE APP
 // ============================================================
 const app = express();
@@ -17,9 +21,77 @@ const app = express();
 // ============================================================
 // app.use(cors());
 app.use(bodyParser.json());
+app.use(session({
+    resave: true,
+    saveUninitialized: true,
+    secret: config.secret
+}))
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(__dirname + './../dist'));
+
+passport.use(new Auth0Strategy({
+        domain: authConfig.domain,
+        clientID: authConfig.clientID,
+        clientSecret: authConfig.clientSecret,
+        callbackURL: authConfig.callbackURL
+    },
+    function(accessToken, refreshToken, extraParams, profile, done) {
+        //Find user in database
+        db.getUserByAuthId([profile.id], function(err, user) {
+            user = user[0];
+            if (!user) { //if there isn't one, we'll create one!
+                console.log('CREATING USER');
+                db.createUserByAuth([profile.displayName, profile.id], function(err, user) {
+                    console.log('USER CREATED', userA);
+                    return done(err, user[0]); // GOES TO SERIALIZE USER
+                })
+            } else { //when we find the user, return it
+                console.log('FOUND USER', user);
+                return done(err, user);
+            }
+        })
+    }
+));
+
+//THIS IS INVOKED ONE TIME TO SET THINGS UP
+passport.serializeUser(function(userA, done) {
+    console.log('serializing', userA);
+    var userB = userA;
+    //Things you might do here :
+    //Serialize just the id, get other information to add to session,
+    done(null, userB); //PUTS 'USER' ON THE SESSION
+});
+
+//USER COMES FROM SESSION - THIS IS INVOKED FOR EVERY ENDPOINT
+passport.deserializeUser(function(userB, done) {
+    var userC = userC;
+    //Things you might do here :
+    // Query the database with the user id, get other information to put on req.user
+    done(null, userC); //PUTS 'USER' ON REQ.USER
+});
 // ENDPOINTS
 // ============================================================
+// AUTH ENDPOINTS
+app.get('/auth', passport.authenticate('auth0'));
+app.get('/auth/callback',
+    passport.authenticate('auth0', {
+        successRedirect: '/'
+    }),
+    function(req, res) {
+        res.status(200).send(req.user);
+    })
+
+app.get('/auth/me', function(req, res) {
+    if (!req.user) return res.sendStatus(404);
+    //THIS IS WHATEVER VALUE WE GOT FROM userC variable above.
+    res.status(200).send(req.user);
+})
+
+app.get('/auth/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+})
 // APPLICATION ENDPOINTS
 app.get('/api/application', applicationCtrl.read);
 app.post('/api/application', applicationCtrl.create);
@@ -45,10 +117,10 @@ const mongoURI = config.mongoURI;
 // mongoose.set('debug', true);
 mongoose.connect(mongoURI);
 mongoose.connection.once('open', function() {
-  console.log('Connected to mongo at: ', mongoURI);
-  });
+    console.log('Connected to mongo at: ', mongoURI);
+});
 // LISTEN
 // ============================================================
 app.listen(port, function() {
-  console.log(`listening on port ${port}`);
+    console.log(`listening on port ${port}`);
 });
