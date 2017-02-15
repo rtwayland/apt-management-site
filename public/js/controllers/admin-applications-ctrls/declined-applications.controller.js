@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('DeclinedApplications', function($scope, ApplicationService) {
+    .controller('DeclinedApplications', function($scope, ApplicationService, EmailService) {
         function getDeclinedApplications() {
             ApplicationService.getDeclinedApplications()
                 .then(function(res) {
@@ -8,13 +8,32 @@ angular.module('app')
                     console.log(err);
                 });
         }
-        $scope.approveApplication = function(id) {
-            ApplicationService.updateStatus(id, 'approved')
+        $scope.approveApplication = function(application) {
+            // Add approved status to database
+            ApplicationService.updateStatus(application._id, 'approved')
                 .then(function(res) {
-                    removeById(id);
+                    // Remove from pending section
+                    removeById(application._id);
+
+                    // Create the user
+                    UserService.createUser(application)
+                        .then(function(res) {
+                            console.log('User from Ctrl', res);
+                            // Send out the approval email
+                            EmailService.sendApprovedEmail(application.user.email)
+                                .then(function(res) {
+                                    console.log(res);
+                                }, function(err) {
+                                    console.log(err);
+                                });
+
+                        }, function(err) {
+                            console.log(err);
+                        });
+
                 }, function(err) {
                     console.log(err);
-                })
+                });
         };
 
         $scope.deleteApplication = function(id) {

@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('PendingApplications', function($scope, ApplicationService, EmailService) {
+    .controller('PendingApplications', function($scope, ApplicationService, EmailService, UserService) {
         function getPendingApplications() {
             ApplicationService.getPendingApplications()
                 .then(function(res) {
@@ -16,13 +16,22 @@ angular.module('app')
                     // Remove from pending section
                     removeById(application._id);
 
-                    // Send out the approval email
-                    EmailService.sendApprovedEmail(application.user.email)
+                    // Create the user
+                    UserService.createUser(application)
                         .then(function(res) {
-                            console.log(res);
+                            console.log('User from Ctrl', res);
+                            // Send out the approval email
+                            EmailService.sendApprovedEmail(application.user.email)
+                                .then(function(res) {
+                                    console.log(res);
+                                }, function(err) {
+                                    console.log(err);
+                                });
+
                         }, function(err) {
                             console.log(err);
                         });
+
 
                 }, function(err) {
                     console.log(err);
