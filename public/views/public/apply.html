@@ -284,7 +284,7 @@
             <div class="field">
                 <div class="ui checkbox">
                     <input type="checkbox" name="appFee" required>
-                    <label>I understand that there will be a $20 application fee upon application approval</label>
+                    <label>I understand that there will be a $20 application fee in order to submit this application</label>
                 </div>
             </div>
         </div>
@@ -309,6 +309,7 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="huge ui positive basic button">Submit Application</button>
+        <!-- <button type="submit" class="huge ui positive basic button">Submit Application</button> -->
+        <button type="button" class="huge ui positive basic button" ng-click="payApplicationFee()">Pay Application Fee</button>
     </form>
 </div>
