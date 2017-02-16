@@ -37,21 +37,30 @@ passport.use(new Auth0Strategy({
         callbackURL: authConfig.callbackURL
     },
     function(accessToken, refreshToken, extraParams, profile, done) {
-      console.log('Profile', profile);
+        // console.log('Profile', profile);
         //Find user in database
-        db.getUserByAuthId([profile.id], function(err, user) {
-            user = user[0];
-            if (!user) { //if there isn't one, we'll create one!
-                console.log('CREATING USER');
-                db.createUserByAuth([profile.displayName, profile.id], function(err, user) {
-                    console.log('USER CREATED', userA);
-                    return done(err, user[0]); // GOES TO SERIALIZE USER
-                })
-            } else { //when we find the user, return it
-                console.log('FOUND USER', user);
-                return done(err, user);
-            }
-        })
+        const User = require('./models/userSchema');
+        var userSearchResult;
+        User.find({
+                email: profile.displayName
+            }).exec()
+            .then(function(user) {
+                userSearchResult = user;
+            });
+        console.log('userSearchResult:', userSearchResult);
+        // db.getUserByAuthId([profile.id], function(err, user) {
+        //     user = user[0];
+        //     if (!user) { //if there isn't one, we'll create one!
+        //         console.log('CREATING USER');
+        //         db.createUserByAuth([profile.displayName, profile.id], function(err, user) {
+        //             console.log('USER CREATED', userA);
+        //             return done(err, user[0]); // GOES TO SERIALIZE USER
+        //         })
+        //     } else { //when we find the user, return it
+        //         console.log('FOUND USER', user);
+        return done(null, profile);
+        //     }
+        // })
     }
 ));
 
@@ -80,7 +89,7 @@ app.get('/auth/callback',
         successRedirect: '/'
     }),
     function(req, res) {
-      console.log('Here in callback');
+        console.log('Here in callback');
         res.status(200).send(req.user);
     })
 
