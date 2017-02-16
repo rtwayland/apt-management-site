@@ -1,13 +1,13 @@
 // REQUIRE DEPENDENCIES
 // ============================================================
-const Appartment = require('./../models/appartmentSchema');
+const Apartment = require('./../models/apartmentSchema');
 // EXPORT METHODS
 // ============================================================
 module.exports = {
     // CRUD METHODS
     // ============================================================
     read(req, res) {
-        Appartment.find(req.query, function(err, result) {
+        Apartment.find(req.query, function(err, result) {
             if (err) {
                 res.status(500).send(err);
             }
@@ -15,7 +15,7 @@ module.exports = {
         });
     },
     create(req, res) {
-        Appartment.create(req.body, function(err, result) {
+        Apartment.create(req.body, function(err, result) {
             if (err) {
                 res.status(500).send(err);
             }
@@ -23,7 +23,7 @@ module.exports = {
         });
     },
     update(req, res) {
-        Appartment.findByIdAndUpdate(req.params.id, req.body, function(err, result) {
+        Apartment.findByIdAndUpdate(req.params.id, req.body, function(err, result) {
             if (err) {
                 res.status(500).send(err);
             }
@@ -31,7 +31,7 @@ module.exports = {
         });
     },
     delete(req, res) {
-        Appartment.findByIdAndRemove(req.params.id, function(err, result) {
+        Apartment.findByIdAndRemove(req.params.id, function(err, result) {
             if (err) {
                 res.status(500).send(err);
             }

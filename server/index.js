@@ -13,7 +13,7 @@ const express = require('express'),
 // ============================================================
 const applicationCtrl = require('./controllers/application.server.controller'),
     userCtrl = require('./controllers/user.server.controller'),
-    appartmentCtrl = require('./controllers/appartment.server.controller');
+    apartmentCtrl = require('./controllers/apartment.server.controller');
     stripeCtrl = require('./controllers/stripe.server.controller'),
     emailCtrl = require('./controllers/email.server.controller');
 // INITILIZE APP
@@ -117,11 +117,11 @@ app.post('/api/user', userCtrl.create);
 app.put('/api/user/:id', userCtrl.update);
 app.delete('/api/user/:id', userCtrl.delete);
 
-// APPARTMENT ENDPOINTS
-app.get('/api/appartment', appartmentCtrl.read);
-app.post('/api/appartment', appartmentCtrl.create);
-app.put('/api/appartment/:id', appartmentCtrl.update);
-app.delete('/api/appartment/:id', appartmentCtrl.delete);
+// APARTMENT ENDPOINTS
+app.get('/api/apartment', apartmentCtrl.read);
+app.post('/api/apartment', apartmentCtrl.create);
+app.put('/api/apartment/:id', apartmentCtrl.update);
+app.delete('/api/apartment/:id', apartmentCtrl.delete);
 
 // EMAIL ENDPOINTS
 app.post('/api/email-approval', emailCtrl.sendApprovedEmail);

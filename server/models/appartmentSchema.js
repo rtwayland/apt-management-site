@@ -11,7 +11,7 @@ var addressSchema = mongoose.Schema({
 });
 // DEFINE SCHEMA
 // ============================================================
-const appartmentSchema = mongoose.Schema({
+const apartmentSchema = mongoose.Schema({
   name: {type: String, require: true},
   description: {type: String, require: true},
   address: addressSchema,
@@ -28,4 +28,4 @@ const appartmentSchema = mongoose.Schema({
 });
 // EXPORT SCHEMA
 // ============================================================
-module.exports = mongoose.model('Appartment', appartmentSchema);
+module.exports = mongoose.model('Apartment', apartmentSchema);
