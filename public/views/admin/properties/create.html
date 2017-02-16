@@ -1,0 +1,185 @@
+<div class="form-container">
+    <div class="ui segment">
+        <form name="appartmentCreationForm" class="ui equal width form" ng-submit="submitProperty()" semantic-form>
+            <div class="fields">
+                <div class="field required">
+                    <label for="name">Property Title</label>
+                    <input type="text" name="name" id="name" ng-model="property.name" required>
+                </div>
+                <div class="field required">
+                    <label for="rent">Monthly Rent</label>
+                    <div class="ui right labeled input">
+                        <div class="ui label">$</div>
+                        <input type="text" name="rent" id="rent" ng-model="property.rent" placeholder="Rent Amount" required>
+                        <div class="ui basic label">.00</div>
+                    </div>
+                </div>
+                <div class="field required">
+                    <label for="deposit">Deposit</label>
+                    <div class="ui right labeled input">
+                        <div class="ui label">$</div>
+                        <input type="text" name="deposit" id="deposit" ng-model="property.deposit" placeholder="Deposit Amount" required>
+                        <div class="ui basic label">.00</div>
+                    </div>
+                </div>
+            </div>
+            <div class="field required">
+                <label for="description">Description</label>
+                <textarea id="description" ng-model="property.description" required></textarea>
+            </div>
+            <property-address-inputs model-key="new-property" model="property.address" semantic-form></property-address-inputs>
+
+            <div class="fields">
+                <div class="field required">
+                    <label for="beds">Bedrooms</label>
+                    <input type="number" name="beds" id="beds" ng-model="property.beds" required>
+                </div>
+                <div class="field required">
+                    <label for="baths">Bathrooms</label>
+                    <input type="number" name="baths" id="baths" ng-model="property.baths" required>
+                </div>
+                <div class="field">
+                    <label for="year">Year Built</label>
+                    <input type="number" name="year" id="year" ng-model="property.year">
+                </div>
+                <div class="field">
+                    <label for="sqfeet">Square Feet</label>
+                    <input type="number" name="sqfeet" id="sqfeet" ng-model="property.sqfeet">
+                </div>
+                <div class="field">
+                    <label for="acres">Acres</label>
+                    <input type="number" name="acres" id="acres" ng-model="property.acres">
+                </div>
+            </div>
+            <div>
+                <h2>Amenities</h2>
+                <div class="fields">
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="ac" ng-model="property.amenities.ac">
+                            <label>Central Air Conditioning</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="dishwasher" ng-model="property.amenities.dishwasher">
+                            <label>Dishwasher</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="washer-dryer" ng-model="property.amenities.washerDryer">
+                            <label>Washer / Dryer Hookups</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="microwave" ng-model="property.amenities.microwave">
+                            <label>Microwave</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="fields">
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="park" ng-model="property.amenities.playground">
+                            <label>Playground / Park</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="storage" ng-model="property.amenities.storage">
+                            <label>Storage</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="covered-parking" ng-model="property.amenities.coveredParking">
+                            <label>Covered Parking</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="internet" ng-model="property.amenities.internet">
+                            <label>Internet</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="fields">
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="cable" ng-model="property.amenities.cable">
+                            <label>Cable</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="pool" ng-model="property.amenities.pool">
+                            <label>Outdoor Pool</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="landscaping" ng-model="property.amenities.landscaping">
+                            <label>Landscaping Maintenance</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="snow" ng-model="property.amenities.snow">
+                            <label>Snow Removal</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="fields">
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="fitness" ng-model="property.amenities.fitness">
+                            <label>Fitness Center</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="water" ng-model="property.amenities.water">
+                            <label>Water</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="sewage" ng-model="property.amenities.sewage">
+                            <label>Sewage</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="garbage" ng-model="property.amenities.garbage">
+                            <label>Garbage</label>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2>Additional Amenities</h2>
+                    <div class="inline field">
+                        <label for="additional-amenities">How many additional amenities would you like to add?</label>
+                        <input type="number" name="additional-amenities" id="additional-amenities" min="0" max="10" ng-model="numAddAmenities" placeholder="0">
+                    </div>
+                    <div ng-show="numAddAmenities > 0">
+                        <additional-amenity-fields num="numAddAmenities" model="property.amenities"></additional-amenity-fields>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label for="photos">Photos</label>
+                <input type="file" name="photos" id="photos" multiple accept="image/*">
+            </div>
+            <div class="field required">
+                <select class="ui fluid search dropdown" name="status" id="status" ng-model="property.status" required>
+                  <option value="">Status</option>
+                  <option value="available">Available</option>
+                  <option value="unavailable">Unavailable</option>
+                </select>
+            </div>
+            <button type="submit" class="huge ui positive basic button">Submit</button>
+        </form>
+    </div>
+</div>
