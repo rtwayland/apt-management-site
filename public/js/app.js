@@ -7,6 +7,7 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router'])
         $urlRouterProvider.when('/applications', '/applications/pending');
 
         $stateProvider
+            // PUBLIC PAGES
             .state('home', {
                 url: '/',
                 templateUrl: './views/public/home.html',
@@ -35,6 +36,7 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router'])
                 templateUrl: './views/public/contact.html'
                 // controller: ''
             })
+            // RESIDENT PAGES
             .state('resident', {
                 url: '/resident',
                 template: '<h1>Resident Page</h1>',
@@ -43,6 +45,7 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router'])
                     $rootScope.state = 2;
                 }
             })
+            // ADMIN PAGES
             .state('admin', {
                 url: '/admin',
                 template: '<h1>Admin Page</h1>',
@@ -51,6 +54,7 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router'])
                     $rootScope.state = 3;
                 }
             })
+            // Applications
             .state('applications', {
                 url: '/applications',
                 templateUrl: './views/admin/applications.html',
@@ -75,5 +79,21 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router'])
                 url: '/application-details/:id',
                 templateUrl: './views/admin/application-details.html',
                 controller: 'ApplicationDetails'
+            })
+            // Properties
+            .state('properties', {
+                url: '/properties',
+                templateUrl: './views/admin/properties.html',
+                controller: 'AdminProperties'
+            })
+            .state('properties.view', {
+                url: '/view',
+                templateUrl: './views/admin/properties/view.html',
+                controller: 'AllProperties'
+            })
+            .state('properties.create', {
+                url: '/create',
+                templateUrl: './views/admin/properties/create.html',
+                controller: 'CreateProperty'
             })
     });
