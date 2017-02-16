@@ -15,9 +15,9 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router'])
                     $rootScope.state = 1;
                 }
             })
-            .state('properties', {
-                url: '/properties',
-                templateUrl: './views/public/properties.html'
+            .state('available-properties', {
+                url: '/available-properties',
+                templateUrl: './views/public/available-properties.html'
                 // controller: ''
             })
             .state('apply', {
@@ -25,9 +25,9 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router'])
                 templateUrl: './views/public/apply.html',
                 controller: 'ApplicationCtrl'
             })
-            .state('loginSignup', {
-                url: '/login-signup',
-                templateUrl: './views/public/login-signup.html'
+            .state('resident-login', {
+                url: '/resident-login',
+                templateUrl: './views/public/resident-login.html'
                 // controller: ''
             })
             .state('contact', {
