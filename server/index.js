@@ -15,6 +15,7 @@ const applicationCtrl = require('./controllers/application.server.controller'),
     userCtrl = require('./controllers/user.server.controller'),
     apartmentCtrl = require('./controllers/apartment.server.controller');
     stripeCtrl = require('./controllers/stripe.server.controller'),
+    amazonS3 = require('./controllers/amazonS3.server.controller'),
     emailCtrl = require('./controllers/email.server.controller');
 // INITILIZE APP
 // ============================================================
@@ -126,6 +127,9 @@ app.delete('/api/apartment/:id', apartmentCtrl.delete);
 // EMAIL ENDPOINTS
 app.post('/api/email-approval', emailCtrl.sendApprovedEmail);
 app.post('/api/email-denial', emailCtrl.sendDeclinedEmail);
+
+// AMAZON ENDPOINTS
+app.post('/api/upload-photos', amazonS3.upload);
 
 // STIPE PAYMENT ENDPOINTS
 app.post('/application-fee-charge', stripeCtrl.chargeApplicationFee);
