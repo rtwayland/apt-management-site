@@ -13,6 +13,7 @@ const express = require('express'),
 // ============================================================
 const applicationCtrl = require('./controllers/application.server.controller'),
     userCtrl = require('./controllers/user.server.controller'),
+    stripeCtrl = require('./controllers/stripe.server.controller'),
     emailCtrl = require('./controllers/email.server.controller');
 // INITILIZE APP
 // ============================================================
@@ -118,6 +119,9 @@ app.delete('/api/user/:id', userCtrl.delete);
 // EMAIL ENDPOINTS
 app.post('/api/email-approval', emailCtrl.sendApprovedEmail);
 app.post('/api/email-denial', emailCtrl.sendDeclinedEmail);
+
+// STIPE PAYMENT ENDPOINTS
+app.post('/application-fee-charge', stripeCtrl.chargeApplicationFee);
 
 // VARIABLES
 // ============================================================
