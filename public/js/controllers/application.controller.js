@@ -1,6 +1,37 @@
 angular.module('app')
-    .controller('ApplicationCtrl', function($scope, $state, ApplicationService) {
+    .controller('ApplicationCtrl', function($scope, $state, $window, ApplicationService, StripeService) {
+        $scope.payApplicationFee = function() {
+            var handler = StripeCheckout.configure({
+                key: 'pk_test_GfjALqHyZhwYmd38SfJANoe4',
+                image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+                locale: 'auto',
+                token: function(token) {
+                    console.log('Token ID from Ctrl\n', token.id);
+                    StripeService.payApplicationFee(token.id)
+                        .then(function(res) {
+                            if (res.status == 200) {
+                                state.go('applications');
+                            } else {
+                                state.go('home');
+                            }
+                        }, function(err) {
+                            console.log(err);
+                        });
+                    // You can access the token ID with `token.id`.
+                    // Get the token ID to your server-side code for use.
+                }
+            });
 
+            handler.open({
+                name: 'Fox Briar Properties',
+                description: 'Application Fee',
+                amount: 2000
+            });
+
+            $window.addEventListener('popstate', function() {
+                handler.close();
+            });
+        }
         $scope.fillForm = function() {
             $scope.numAddOccupants = 0;
             $scope.application = {
