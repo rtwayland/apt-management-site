@@ -3,3 +3,4 @@ node_modules
 config.js
 authConfig.js
 stripeConfig.js
+awsConfig.js
