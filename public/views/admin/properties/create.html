@@ -10,7 +10,7 @@
                     <label for="rent">Monthly Rent</label>
                     <div class="ui right labeled input">
                         <div class="ui label">$</div>
-                        <input type="text" name="rent" id="rent" ng-model="property.rent" placeholder="Rent Amount" required>
+                        <input type="number" name="rent" id="rent" ng-model="property.rent" placeholder="Rent Amount" required>
                         <div class="ui basic label">.00</div>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                     <label for="deposit">Deposit</label>
                     <div class="ui right labeled input">
                         <div class="ui label">$</div>
-                        <input type="text" name="deposit" id="deposit" ng-model="property.deposit" placeholder="Deposit Amount" required>
+                        <input type="number" name="deposit" id="deposit" ng-model="property.deposit" placeholder="Deposit Amount" required>
                         <div class="ui basic label">.00</div>
                     </div>
                 </div>
@@ -170,9 +170,10 @@
             </div>
             <div class="field">
                 <label for="photos">Photos</label>
-                <input type="file" name="photos" id="photos" multiple accept="image/*">
+                <input type="file" name="photos" id="photos" multiple accept="image/*" s3file files="property.photos">
             </div>
             <div class="field required">
+              <label>Availability Status</label>
                 <select class="ui fluid search dropdown" name="status" id="status" ng-model="property.status" required>
                   <option value="">Status</option>
                   <option value="available">Available</option>
