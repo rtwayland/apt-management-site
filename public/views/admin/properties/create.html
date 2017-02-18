@@ -1,6 +1,9 @@
 <div class="form-container">
     <div class="ui segment">
         <form name="appartmentCreationForm" class="ui equal width form" ng-submit="submitProperty()" semantic-form>
+          <div class="field">
+            <button type="button" ng-click="fillFields()">Fill Form</button>
+          </div>
             <div class="fields">
                 <div class="field required">
                     <label for="name">Property Title</label>
@@ -56,25 +59,25 @@
                 <div class="fields">
                     <div class="field">
                         <div class="ui checkbox">
-                            <input type="checkbox" name="ac" ng-model="property.amenities.ac">
+                            <input type="checkbox" name="ac" value="Central Air Conditioning" ng-model="property.amenities.ac">
                             <label>Central Air Conditioning</label>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui checkbox">
-                            <input type="checkbox" name="dishwasher" ng-model="property.amenities.dishwasher">
+                            <input type="checkbox" name="dishwasher" value="Dishwasher" ng-model="property.amenities.dishwasher">
                             <label>Dishwasher</label>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui checkbox">
-                            <input type="checkbox" name="washer-dryer" ng-model="property.amenities.washerDryer">
+                            <input type="checkbox" name="washer-dryer" value="Washer / Dryer Hookups" ng-model="property.amenities.washerDryer">
                             <label>Washer / Dryer Hookups</label>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui checkbox">
-                            <input type="checkbox" name="microwave" ng-model="property.amenities.microwave">
+                            <input type="checkbox" name="microwave" value="Microwave" ng-model="property.amenities.microwave">
                             <label>Microwave</label>
                         </div>
                     </div>
@@ -82,25 +85,25 @@
                 <div class="fields">
                     <div class="field">
                         <div class="ui checkbox">
-                            <input type="checkbox" name="park" ng-model="property.amenities.playground">
+                            <input type="checkbox" name="park" value="Playground / Park" ng-model="property.amenities.playground">
                             <label>Playground / Park</label>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui checkbox">
-                            <input type="checkbox" name="storage" ng-model="property.amenities.storage">
+                            <input type="checkbox" name="storage" value="Storage" ng-model="property.amenities.storage">
                             <label>Storage</label>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui checkbox">
-                            <input type="checkbox" name="covered-parking" ng-model="property.amenities.coveredParking">
+                            <input type="checkbox" name="covered-parking" value="Covered Parking" ng-model="property.amenities.coveredParking">
                             <label>Covered Parking</label>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui checkbox">
-                            <input type="checkbox" name="internet" ng-model="property.amenities.internet">
+                            <input type="checkbox" name="internet" value="Internet" ng-model="property.amenities.internet">
                             <label>Internet</label>
                         </div>
                     </div>
@@ -108,25 +111,25 @@
                 <div class="fields">
                     <div class="field">
                         <div class="ui checkbox">
-                            <input type="checkbox" name="cable" ng-model="property.amenities.cable">
+                            <input type="checkbox" name="cable" value="Cable" ng-model="property.amenities.cable">
                             <label>Cable</label>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui checkbox">
-                            <input type="checkbox" name="pool" ng-model="property.amenities.pool">
+                            <input type="checkbox" name="pool" value="Outdoor Pool" ng-model="property.amenities.pool">
                             <label>Outdoor Pool</label>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui checkbox">
-                            <input type="checkbox" name="landscaping" ng-model="property.amenities.landscaping">
+                            <input type="checkbox" name="landscaping" value="Landscaping Maintenance" ng-model="property.amenities.landscaping">
                             <label>Landscaping Maintenance</label>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui checkbox">
-                            <input type="checkbox" name="snow" ng-model="property.amenities.snow">
+                            <input type="checkbox" name="snow" value="Snow Removal" ng-model="property.amenities.snow">
                             <label>Snow Removal</label>
                         </div>
                     </div>
@@ -134,25 +137,25 @@
                 <div class="fields">
                     <div class="field">
                         <div class="ui checkbox">
-                            <input type="checkbox" name="fitness" ng-model="property.amenities.fitness">
+                            <input type="checkbox" name="fitness" value="Fitness Center" ng-model="property.amenities.fitness">
                             <label>Fitness Center</label>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui checkbox">
-                            <input type="checkbox" name="water" ng-model="property.amenities.water">
+                            <input type="checkbox" name="water" value="Water" ng-model="property.amenities.water">
                             <label>Water</label>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui checkbox">
-                            <input type="checkbox" name="sewage" ng-model="property.amenities.sewage">
+                            <input type="checkbox" name="sewage" value="Sewage" ng-model="property.amenities.sewage">
                             <label>Sewage</label>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui checkbox">
-                            <input type="checkbox" name="garbage" ng-model="property.amenities.garbage">
+                            <input type="checkbox" name="garbage" value="Garbage" ng-model="property.amenities.garbage">
                             <label>Garbage</label>
                         </div>
                     </div>
