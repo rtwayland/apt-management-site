@@ -4,3 +4,4 @@ config.js
 authConfig.js
 stripeConfig.js
 awsConfig.js
+awsJsonConfig.json
