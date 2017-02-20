@@ -24,6 +24,10 @@ angular.module('app')
             {
                 link: 'rentPay',
                 name: 'Pay Rent'
+            },
+            {
+                link: 'logout',
+                name: 'Log Out'
             }
         ];
         var adminNavLinks = [{

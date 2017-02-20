@@ -43,45 +43,59 @@ passport.use(new Auth0Strategy({
         // console.log('Profile', profile);
         //Find user in database
         const User = require('./models/userSchema');
-        var userSearchResult;
-        User.find({
-                email: profile.displayName
-            }).exec()
-            .then(function(user) {
-                userSearchResult = user;
-            });
-        console.log('userSearchResult:', userSearchResult);
-        // db.getUserByAuthId([profile.id], function(err, user) {
-        //     user = user[0];
-        //     if (!user) { //if there isn't one, we'll create one!
-        //         console.log('CREATING USER');
-        //         db.createUserByAuth([profile.displayName, profile.id], function(err, user) {
-        //             console.log('USER CREATED', userA);
-        //             return done(err, user[0]); // GOES TO SERIALIZE USER
-        //         })
-        //     } else { //when we find the user, return it
-        //         console.log('FOUND USER', user);
-        return done(null, profile);
-        //     }
-        // })
+        User.findOne({
+            email: profile.displayName
+        }).exec(function(err, user) {
+            if (err) return done(err);
+
+            if (user) {
+                // console.log('USER', user);
+                if (!user.loginid) {
+                    // console.log('NEED TO UPDATE ID', profile.identities[0].user_id);
+                    // Update the user in the database
+                    // Once updated, return with the user
+                    User.findByIdAndUpdate(user._id, {
+                        loginid: profile.identities[0].user_id
+                    }).exec(
+                        (err, result) => {
+                            if (err) {
+                                return done(err);
+                            }
+                            return done(null, user);
+                        });
+                } else {
+                    if (user.loginid === profile.identities[0].user_id) {
+                        // Good to go
+                        // console.log('Good to go');
+                        return done(null, user);
+                    } else {
+                        // Bad login
+                        // console.log('Bad ids dont match');
+                        return done(null, false);
+                    }
+                }
+            } else {
+              // No user found in the database.
+              // This sends user to error page.
+                // console.log('No user');
+                return done(null, false);
+            }
+        })
     }
 ));
 
 //THIS IS INVOKED ONE TIME TO SET THINGS UP
 passport.serializeUser(function(userA, done) {
-    console.log('serializing', userA);
-    var userB = userA;
     //Things you might do here :
     //Serialize just the id, get other information to add to session,
-    done(null, userB); //PUTS 'USER' ON THE SESSION
+    done(null, userA); //PUTS 'USER' ON THE SESSION
 });
 
 //USER COMES FROM SESSION - THIS IS INVOKED FOR EVERY ENDPOINT
 passport.deserializeUser(function(userB, done) {
-    var userC = userC;
     //Things you might do here :
     // Query the database with the user id, get other information to put on req.user
-    done(null, userC); //PUTS 'USER' ON REQ.USER
+    done(null, userB); //PUTS 'USER' ON REQ.USER
 });
 // ENDPOINTS
 // ============================================================
@@ -89,23 +103,24 @@ passport.deserializeUser(function(userB, done) {
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback',
     passport.authenticate('auth0', {
-        successRedirect: '/'
+        successRedirect: '/#!/resident',
+        failureRedirect: '/#!/register-error'
     }),
     function(req, res) {
         console.log('Here in callback');
         res.status(200).send(req.user);
-    })
+    });
 
-app.get('/auth/me', function(req, res) {
+app.get('/auth/user', function(req, res) {
     if (!req.user) return res.sendStatus(404);
-    //THIS IS WHATEVER VALUE WE GOT FROM userC variable above.
+    //THIS IS WHATEVER VALUE WE GOT FROM userB variable above.
     res.status(200).send(req.user);
-})
+});
 
 app.get('/auth/logout', function(req, res) {
     req.logout();
     res.redirect('/');
-})
+});
 // APPLICATION ENDPOINTS
 app.get('/api/application', applicationCtrl.read);
 app.post('/api/application', applicationCtrl.create);

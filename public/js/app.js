@@ -29,20 +29,41 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router'])
             .state('resident-login', {
                 url: '/resident-login',
                 templateUrl: './views/public/resident-login.html'
-                // controller: ''
             })
             .state('contact', {
                 url: '/contact',
                 templateUrl: './views/public/contact.html'
                 // controller: ''
             })
+            .state('register-error', {
+                url: '/register-error',
+                templateUrl: './views/public/no-user.html'
+                // controller: ''
+            })
             // RESIDENT PAGES
             .state('resident', {
                 url: '/resident',
-                template: '<h1>Resident Page</h1>',
-                controller: function($scope, $rootScope) {
+                template: '<h1>Welcome {{ username }}</h1>',
+                controller: function($scope, $rootScope, LoginService) {
                     sessionStorage.setItem("state", 2);
                     $rootScope.state = 2;
+
+                    function getUser() {
+                        LoginService.getUser()
+                            .then(function(res) {
+                                $scope.username = res.firstName + ' ' + res.lastName;
+                            }, function(err) {
+                                console.log(err);
+                            });
+                    }
+                    getUser();
+                }
+            })
+            .state('logout', {
+                url: '/logout',
+                template: '',
+                controller: function ($scope, $window) {
+                  $window.location.href = '/auth/logout';
                 }
             })
             // ADMIN PAGES
