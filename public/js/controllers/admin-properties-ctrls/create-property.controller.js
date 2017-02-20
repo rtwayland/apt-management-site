@@ -6,14 +6,14 @@ angular.module('app')
             AmazonS3Service.uploadPhotos($scope.property.photos)
                 .then(function(res) {
                     console.log(res);
-                    var photoLinksArray = angular.fromJson(res);
-                    $scope.property.photos = photoLinksArray;
-                    PropertyService.createProperty($scope.property)
-                        .then(function(res) {
-                            console.log(res);
-                        }, function(err) {
-                            console.log(err);
-                        })
+                    // var photoLinksArray = angular.fromJson(res);
+                    // $scope.property.photos = photoLinksArray;
+                    // PropertyService.createProperty($scope.property)
+                    //     .then(function(res) {
+                    //         console.log(res);
+                    //     }, function(err) {
+                    //         console.log(err);
+                    //     })
                 }, function(err) {
                     console.log(err);
                 });
