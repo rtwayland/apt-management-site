@@ -23,7 +23,7 @@ const app = express();
 // INITILIZE DEPENDENCIES
 // ============================================================
 // app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 app.use(session({
     resave: true,
     saveUninitialized: true,
@@ -107,7 +107,6 @@ app.get('/auth/callback',
         failureRedirect: '/#!/register-error'
     }),
     function(req, res) {
-        console.log('Here in callback');
         res.status(200).send(req.user);
     });
 
