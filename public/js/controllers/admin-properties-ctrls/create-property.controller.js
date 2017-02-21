@@ -73,7 +73,9 @@ angular.module('app')
         function prepareAmenities(amenities) {
             var newArray = [];
             for (var key in amenities) {
-                newArray.push(amenities[key]);
+                if (amenities[key]) {
+                    newArray.push(amenities[key]);
+                }
             }
             return newArray;
         }
