@@ -7,7 +7,7 @@ var addressSchema = mongoose.Schema({
     city: {type: String, require: true},
     state: {type: String, require: true},
     zip: {type: String, require: true},
-    unitnumber: String
+    unit: String
 });
 // DEFINE SCHEMA
 // ============================================================
@@ -18,9 +18,10 @@ const apartmentSchema = mongoose.Schema({
   year: String,
   sqfeet: String,
   acres: String,
-  bedrooms: {type: String, require: true},
+  beds: {type: String, require: true},
   baths: {type: String, require: true},
   rent: {type: String, require: true},
+  deposit: {type: String, require: true},
   amenities: Array,
   photos: Array,
   status: {type: String, require: true}
