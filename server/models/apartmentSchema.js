@@ -22,8 +22,9 @@ const apartmentSchema = mongoose.Schema({
   baths: {type: String, require: true},
   rent: {type: String, require: true},
   deposit: {type: String, require: true},
-  amenities: Array,
-  photos: Array,
+  amenities: [],
+  addedAmenities: [],
+  photos: [],
   status: {type: String, require: true}
 });
 // EXPORT SCHEMA

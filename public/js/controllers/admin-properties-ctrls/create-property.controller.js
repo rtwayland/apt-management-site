@@ -1,9 +1,86 @@
 angular.module('app')
     .controller('CreateProperty', function($scope, $state, PropertyService, AmazonS3Service) {
+        //Predefined amenities array
+        var amenitiesArray = [
+            [{
+                    label: 'Central Air Conditioning',
+                    value: false
+                },
+                {
+                    label: 'Dishwasher',
+                    value: false
+                },
+                {
+                    label: 'Washer / Dryer Hookups',
+                    value: false
+                },
+                {
+                    label: 'Microwave',
+                    value: false
+                }
+            ],
+            [{
+                    label: 'Playground / Park',
+                    value: false
+                },
+                {
+                    label: 'Storage',
+                    value: false
+                },
+                {
+                    label: 'Covered Parking',
+                    value: false
+                },
+                {
+                    label: 'Internet',
+                    value: false
+                }
+            ],
+            [{
+                    label: 'Cable',
+                    value: false
+                },
+                {
+                    label: 'Outdoor Pool',
+                    value: false
+                },
+                {
+                    label: 'Landscaping Maintenance',
+                    value: false
+                },
+                {
+                    label: 'Snow Removal',
+                    value: false
+                }
+            ],
+            [{
+                    label: 'Fitness Center',
+                    value: false
+                },
+                {
+                    label: 'Water',
+                    value: false
+                },
+                {
+                    label: 'Sewage',
+                    value: false
+                },
+                {
+                    label: 'Garbage',
+                    value: false
+                }
+            ]
+        ];
         /******************** SUBMIT PROPERTY ********************/
+        $scope.property = {
+            amenities: amenitiesArray,
+            addedAmenities: []
+        };
+        $scope.numAddAmenities = 0;
         $scope.submitProperty = function() {
             cleanseData($scope.property.name, $scope.property.photos, $scope.property.amenities);
             // If we have photos to upload, run AmazonS3Service
+            console.log('The Property\n', $scope.property);
             if ($scope.property.photos) {
                 AmazonS3Service.uploadPhotos($scope.property.photos)
                     .then(function(res) {
@@ -46,8 +123,24 @@ angular.module('app')
                     zip: '12345'
                 },
                 beds: 3,
-                baths: 2
+                baths: 2,
+                amenities: amenitiesArray,
+                addedAmenities: []
             };
+        }
+
+        /******************** ADD and DELETE AMENITIES ********************/
+        $scope.addAmenity = function() {
+            ++$scope.numAddAmenities;
+        }
+        $scope.deleteAmenity = function(item) {
+            for (var i = 0; i < $scope.property.addedAmenities.length; i++) {
+                if ($scope.property.addedAmenities[i] === item) {
+                    $scope.property.addedAmenities.splice(i, 1);
+                    break;
+                }
+            }
+            --$scope.numAddAmenities;
         }
 
         /******************** CLEANSE DATA ********************/
@@ -71,12 +164,17 @@ angular.module('app')
 
         /******************** PREPARE AMENITIES ********************/
         function prepareAmenities(amenities) {
-            var newArray = [];
+            let newArray = [];
             for (var key in amenities) {
+                let newObj = {
+                    name: key,
+                    value: amenities[key]
+                }
                 if (amenities[key]) {
-                    newArray.push(amenities[key]);
+                    newArray.push(newObj);
                 }
             }
             return newArray;
         }
+
     });
