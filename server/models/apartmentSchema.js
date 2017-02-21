@@ -22,7 +22,7 @@ const apartmentSchema = mongoose.Schema({
   baths: {type: String, require: true},
   rent: {type: String, require: true},
   deposit: {type: String, require: true},
-  amenities: [],
+  amenities: [[]],
   addedAmenities: [],
   photos: [],
   status: {type: String, require: true}
