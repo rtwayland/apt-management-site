@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('CreateProperty', function($scope, PropertyService, AmazonS3Service) {
+    .controller('CreateProperty', function($scope, $state, PropertyService, AmazonS3Service) {
         /******************** SUBMIT PROPERTY ********************/
         $scope.submitProperty = function() {
             cleanseData($scope.property.name, $scope.property.photos, $scope.property.amenities);
@@ -14,6 +14,7 @@ angular.module('app')
                         PropertyService.createProperty($scope.property)
                             .then(function(res) {
                                 console.log('Property Created\n', res);
+                                $state.go('properties');
                             }, function(err) {
                                 console.log(err);
                             });
