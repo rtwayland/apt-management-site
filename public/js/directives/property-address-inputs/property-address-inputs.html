@@ -66,10 +66,10 @@
     </div>
     <div class="field two wide required">
         <label for="{{modelKey}}-zip">Zip</label>
-        <input type="text" name="{{modelKey}}-zip" id="{{modelKey}}-zip" ng-model="model.zip" max="5" required>
+        <input type="text" name="{{modelKey}}-zip" id="{{modelKey}}-zip" ng-model="model.zip" maxlength="5" required>
     </div>
     <div class="field three wide">
         <label for="unit-num">Unit</label>
-        <input type="text" name="unit-num" id="unit-num" ng-model="property.address.unitNum">
+        <input type="text" name="unit-num" id="unit-num" ng-model="model.unit">
     </div>
 </div>
