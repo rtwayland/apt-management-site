@@ -71,14 +71,17 @@ angular.module('app')
                 }
             ]
         ];
-        /******************** SUBMIT PROPERTY ********************/
+
+        // Initialize Scope values
         $scope.property = {
             amenities: amenitiesArray,
             addedAmenities: []
         };
         $scope.numAddAmenities = 0;
+
+        /******************** SUBMIT PROPERTY ********************/
         $scope.submitProperty = function() {
-            cleanseData($scope.property.name, $scope.property.photos, $scope.property.amenities);
+            cleanseData($scope.property.name, $scope.property.photos);
             // If we have photos to upload, run AmazonS3Service
             console.log('The Property\n', $scope.property);
             if ($scope.property.photos) {
@@ -144,13 +147,13 @@ angular.module('app')
         }
 
         /******************** CLEANSE DATA ********************/
-        function cleanseData(name, photos, amenities) {
+        function cleanseData(name, photos) {
             if (photos) {
                 $scope.property.photos = preparePhotos(name, photos);
             }
-            if (amenities) {
-                $scope.property.amenities = prepareAmenities(amenities);
-            }
+            // if (amenities) {
+            //     $scope.property.amenities = prepareAmenities(amenities);
+            // }
         }
 
         /******************** PREPARE PHOTOS ********************/
