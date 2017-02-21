@@ -27,7 +27,10 @@ body {
     text-align: center;
 }
 
+.cursor-pointer {
+    cursor: pointer;
+}
+
 @import 'partials/main-nav';
 @import 'partials/application-form';
-// @import 'partials/applications-tables';
 @import 'partials/application-details-form';
