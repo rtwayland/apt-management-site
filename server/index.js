@@ -29,6 +29,8 @@ app.use(session({
     saveUninitialized: true,
     secret: config.secret
 }))
+// AUTH0 CONFIGURATION
+// ============================================================
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + './../dist'));
@@ -97,6 +99,7 @@ passport.deserializeUser(function(userB, done) {
     // Query the database with the user id, get other information to put on req.user
     done(null, userB); //PUTS 'USER' ON REQ.USER
 });
+
 // ENDPOINTS
 // ============================================================
 // AUTH ENDPOINTS
@@ -120,6 +123,7 @@ app.get('/auth/logout', function(req, res) {
     req.logout();
     res.redirect('/');
 });
+
 // APPLICATION ENDPOINTS
 app.get('/api/application', applicationCtrl.read);
 app.post('/api/application', applicationCtrl.create);
