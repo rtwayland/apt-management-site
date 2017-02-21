@@ -28,5 +28,9 @@ angular.module('app')
                     status: status
                 });
                 return $http.put('/api/apartment/' + id, statusObj);
+            },
+            this.updateProperty = function(id, property) {
+                property = angular.toJson(property);
+                return $http.put('/api/apartment/' + id, property);
             }
     });
