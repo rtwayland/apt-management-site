@@ -5,7 +5,8 @@ angular.module('app')
             templateUrl: './js/directives/additional-amenities/additional-amenity-fields.html',
             scope: {
                 num: '=',
-                model: '='
+                model: '=',
+                deleteItem: '&'
             },
             link: function(scope, elem, attrs) {
                 scope.getNumOccupants = function() {

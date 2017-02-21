@@ -1,6 +1,8 @@
 <div class="fields" ng-repeat="i in getNumOccupants() track by $index">
     <div class="field">
-        <!-- <label>Relation to Applicant</label> -->
-        <input type="text" ng-model="model[$index]" placeholder="Amenity">
+        <div class="ui right labeled input">
+            <input type="text" ng-model="model[$index]" placeholder="Amenity">
+            <div class="ui red label" ng-click="deleteItem({ item: model[$index] })">Remove</div>
+        </div>
     </div>
 </div>

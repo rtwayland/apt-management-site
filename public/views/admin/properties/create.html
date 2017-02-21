@@ -162,12 +162,11 @@
                 </div>
                 <div>
                     <h2>Additional Amenities</h2>
-                    <div class="inline field">
-                        <label for="additional-amenities">How many additional amenities would you like to add?</label>
-                        <input type="number" name="additional-amenities" id="additional-amenities" min="0" max="10" ng-model="numAddAmenities" placeholder="0">
+                    <div class="field">
+                      <button class="ui tiny green button" type="button" ng-click="addAmenity()">Add</button>
                     </div>
                     <div ng-show="numAddAmenities > 0">
-                        <additional-amenity-fields num="numAddAmenities" model="property.amenities"></additional-amenity-fields>
+                        <additional-amenity-fields num="numAddAmenities" model="property.addedAmenities" delete-item="deleteAmenity(item)"></additional-amenity-fields>
                     </div>
                 </div>
             </div>
