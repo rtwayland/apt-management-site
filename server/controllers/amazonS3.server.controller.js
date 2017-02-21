@@ -1,10 +1,16 @@
-const AWS = require('aws-sdk');
-AWS.config.loadFromPath('./awsJsonConfig.json');
-const s3 = new AWS.S3(),
+const AWS = require('aws-sdk'),
     awsConfig = require('./../../awsConfig'),
     myBucket = awsConfig.bucket;
 
-var bucketParams = {
+AWS.config.update({
+    accessKeyId: awsConfig.accessKey,
+    secretAccessKey: awsConfig.secretKey,
+    region: awsConfig.region
+})
+
+const s3 = new AWS.S3();
+
+let bucketParams = {
     Bucket: myBucket
 };
 s3.createBucket(bucketParams);

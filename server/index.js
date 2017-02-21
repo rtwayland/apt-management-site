@@ -13,7 +13,7 @@ const express = require('express'),
 // ============================================================
 const applicationCtrl = require('./controllers/application.server.controller'),
     userCtrl = require('./controllers/user.server.controller'),
-    apartmentCtrl = require('./controllers/apartment.server.controller');
+    apartmentCtrl = require('./controllers/apartment.server.controller'),
     stripeCtrl = require('./controllers/stripe.server.controller'),
     amazonS3 = require('./controllers/amazonS3.server.controller'),
     emailCtrl = require('./controllers/email.server.controller');
@@ -23,7 +23,13 @@ const app = express();
 // INITILIZE DEPENDENCIES
 // ============================================================
 // app.use(cors());
-app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.json({
+    limit: '50mb'
+}));
+app.use(bodyParser.urlencoded({
+    limit: '50mb',
+    extended: true
+}));
 app.use(session({
     resave: true,
     saveUninitialized: true,
@@ -77,8 +83,8 @@ passport.use(new Auth0Strategy({
                     }
                 }
             } else {
-              // No user found in the database.
-              // This sends user to error page.
+                // No user found in the database.
+                // This sends user to error page.
                 // console.log('No user');
                 return done(null, false);
             }
