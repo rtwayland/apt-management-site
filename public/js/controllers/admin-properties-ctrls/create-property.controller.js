@@ -134,6 +134,7 @@ angular.module('app')
 
         /******************** ADD and DELETE AMENITIES ********************/
         $scope.addAmenity = function() {
+            $scope.property.addedAmenities.push({ label: '', value: true });
             ++$scope.numAddAmenities;
         }
         $scope.deleteAmenity = function(item) {

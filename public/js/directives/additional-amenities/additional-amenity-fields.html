@@ -1,8 +1,9 @@
 <div class="fields" ng-repeat="i in getNumOccupants() track by $index">
     <div class="field">
         <div class="ui right labeled input">
-            <input type="text" ng-model="model[$index]" placeholder="Amenity">
+            <input type="text" ng-model="model[$index].label" placeholder="Amenity">
             <div class="ui red label" ng-click="deleteItem({ item: model[$index] })">Remove</div>
+            <!-- <input type="checkbox" checked ng-model="model[$index].value"> -->
         </div>
     </div>
 </div>
