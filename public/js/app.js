@@ -5,6 +5,7 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router'])
     .config(function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
         $urlRouterProvider.when('/applications', '/applications/pending');
+        $urlRouterProvider.when('/properties', '/properties/available');
 
         $stateProvider
             // PUBLIC PAGES
@@ -121,5 +122,10 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router'])
                 url: '/create',
                 templateUrl: './views/admin/properties/create.html',
                 controller: 'CreateProperty'
+            })
+            .state('property-details', {
+                url: '/property-details/:id',
+                templateUrl: './views/admin/property-details.html',
+                controller: 'PropertyDetails'
             })
     });

@@ -4,8 +4,9 @@
     <thead>
         <tr class="center aligned">
             <th>Name</th>
+            <th>Unit</th>
+            <th>Address</th>
             <th>Rent</th>
-            <th>Deposit</th>
             <th>Property Status</th>
             <th></th>
             <th></th>
@@ -14,8 +15,9 @@
     <tbody>
         <tr class="center aligned" ng-repeat="property in unavailableProperties">
             <td>{{property.name}}</td>
+            <td>{{property.address.unit}}</td>
+            <td>{{property.address.street}}</td>
             <td>{{property.rent}}</td>
-            <td>{{property.deposit}}</td>
             <td>{{property.status}}</td>
             <td><button type="button" class="ui grey basic button" ui-sref="property-details({ id: property._id })">Edit Details</button></td>
             <td><button type="button" class="ui positive basic button" ng-click="makeAvailable(property)">Make Available</button></td>
