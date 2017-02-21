@@ -1,1 +1,1 @@
-# apt-management-site
+A website to manage properties and tenants.
