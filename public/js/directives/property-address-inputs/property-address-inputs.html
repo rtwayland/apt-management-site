@@ -9,9 +9,9 @@
     </div>
     <div class="field three wide required">
         <label for="{{modelKey}}-state">State</label>
-        <select class="ui fluid search dropdown" ng-model="model.state" required>
-            <!-- <option value="">State</option>
-            <option value="AL">Alabama</option>
+        <select class="ui fluid search dropdown" name="{{modelKey}}-state" id="{{modelKey}}-state" ng-model="model.state" required>
+            <option value="">State</option>
+            <!-- <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
             <option value="AZ">Arizona</option>
             <option value="AR">Arkansas</option>

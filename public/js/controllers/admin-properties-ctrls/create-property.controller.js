@@ -1,23 +1,38 @@
 angular.module('app')
     .controller('CreateProperty', function($scope, PropertyService, AmazonS3Service) {
+        /******************** SUBMIT PROPERTY ********************/
         $scope.submitProperty = function() {
             cleanseData($scope.property.name, $scope.property.photos, $scope.property.amenities);
-            console.log('Property after cleanse\n', $scope.property);
-            AmazonS3Service.uploadPhotos($scope.property.photos)
-                .then(function(res) {
-                    console.log(res);
-                    // var photoLinksArray = angular.fromJson(res);
-                    // $scope.property.photos = photoLinksArray;
-                    // PropertyService.createProperty($scope.property)
-                    //     .then(function(res) {
-                    //         console.log(res);
-                    //     }, function(err) {
-                    //         console.log(err);
-                    //     })
-                }, function(err) {
-                    console.log(err);
-                });
+            // If we have photos to upload, run AmazonS3Service
+            if ($scope.property.photos) {
+                AmazonS3Service.uploadPhotos($scope.property.photos)
+                    .then(function(res) {
+                        // Replace the current photos with the response array
+                        var photoLinksArray = angular.fromJson(res);
+                        $scope.property.photos = photoLinksArray;
+                        // Upload the new property to the DB
+                        PropertyService.createProperty($scope.property)
+                            .then(function(res) {
+                                console.log('Property Created\n', res);
+                            }, function(err) {
+                                console.log(err);
+                            });
+                    }, function(err) {
+                        console.log(err);
+                    });
+            } else {
+                // No photos to upload.
+                // Simply upload the property to the DB
+                PropertyService.createProperty($scope.property)
+                    .then(function(res) {
+                        console.log('Property Created\n', res);
+                    }, function(err) {
+                        console.log(err);
+                    });
+            }
         }
+
+        /******************** DEV FUNC fill fields ********************/
         $scope.fillFields = function() {
             $scope.property = {
                 name: 'Belle Monet',
@@ -34,6 +49,7 @@ angular.module('app')
             };
         }
 
+        /******************** CLEANSE DATA ********************/
         function cleanseData(name, photos, amenities) {
             if (photos) {
                 $scope.property.photos = preparePhotos(name, photos);
@@ -43,6 +59,7 @@ angular.module('app')
             }
         }
 
+        /******************** PREPARE PHOTOS ********************/
         function preparePhotos(name, photos) {
             var propertyName = name.replace(' ', '');
             for (var i = 0; i < photos.length; i++) {
@@ -51,6 +68,7 @@ angular.module('app')
             return photos
         }
 
+        /******************** PREPARE AMENITIES ********************/
         function prepareAmenities(amenities) {
             var newArray = [];
             for (var key in amenities) {
