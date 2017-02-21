@@ -1,0 +1,25 @@
+<h2 class="text-center">Unavailable Properties</h2>
+
+<table class="ui table">
+    <thead>
+        <tr class="center aligned">
+            <th>Name</th>
+            <th>Rent</th>
+            <th>Deposit</th>
+            <th>Property Status</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="center aligned" ng-repeat="property in unavailableProperties">
+            <td>{{property.name}}</td>
+            <td>{{property.rent}}</td>
+            <td>{{property.deposit}}</td>
+            <td>{{property.status}}</td>
+            <td><button type="button" class="ui grey basic button" ui-sref="property-details({ id: property._id })">Edit Details</button></td>
+            <td><button type="button" class="ui positive basic button" ng-click="makeAvailable(property)">Make Available</button></td>
+            <!-- <td><button type="button" class="ui negative basic button" ng-click="makeUnavailable(property)">Make Unavailable</button></td> -->
+        </tr>
+    </tbody>
+</table>

@@ -107,10 +107,15 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router'])
                 templateUrl: './views/admin/properties.html',
                 controller: 'AdminProperties'
             })
-            .state('properties.view', {
-                url: '/view',
-                templateUrl: './views/admin/properties/view.html',
-                controller: 'AllProperties'
+            .state('properties.available', {
+                url: '/available',
+                templateUrl: './views/admin/properties/available.html',
+                controller: 'AvailableProperties'
+            })
+            .state('properties.unavailable', {
+                url: '/unavailable',
+                templateUrl: './views/admin/properties/unavailable.html',
+                controller: 'UnavailableProperties'
             })
             .state('properties.create', {
                 url: '/create',
