@@ -81,35 +81,24 @@ angular.module('app')
 
         /******************** SUBMIT PROPERTY ********************/
         $scope.submitProperty = function() {
-            cleanseData($scope.property.name, $scope.property.photos);
+            // cleanseData($scope.property.name, $scope.property.photos);
             // If we have photos to upload, run AmazonS3Service
             console.log('The Property\n', $scope.property);
             if ($scope.property.photos) {
-                AmazonS3Service.uploadPhotos($scope.property.photos)
+                AmazonS3Service.uploadPhotos($scope.property.name, $scope.property.photos)
                     .then(function(res) {
                         // Replace the current photos with the response array
-                        var photoLinksArray = angular.fromJson(res);
+                        var photoLinksArray = res;
                         $scope.property.photos = photoLinksArray;
                         // Upload the new property to the DB
-                        PropertyService.createProperty($scope.property)
-                            .then(function(res) {
-                                console.log('Property Created\n', res);
-                                $state.go('properties');
-                            }, function(err) {
-                                console.log(err);
-                            });
+                        createProperty($scope.property);
                     }, function(err) {
                         console.log(err);
                     });
             } else {
                 // No photos to upload.
                 // Simply upload the property to the DB
-                PropertyService.createProperty($scope.property)
-                    .then(function(res) {
-                        console.log('Property Created\n', res);
-                    }, function(err) {
-                        console.log(err);
-                    });
+                createProperty($scope.property);
             }
         }
 
@@ -134,7 +123,10 @@ angular.module('app')
 
         /******************** ADD and DELETE AMENITIES ********************/
         $scope.addAmenity = function() {
-            $scope.property.addedAmenities.push({ label: '', value: true });
+            $scope.property.addedAmenities.push({
+                label: '',
+                value: true
+            });
             ++$scope.numAddAmenities;
         }
         $scope.deleteAmenity = function(item) {
@@ -147,38 +139,47 @@ angular.module('app')
             --$scope.numAddAmenities;
         }
 
-        /******************** CLEANSE DATA ********************/
-        function cleanseData(name, photos) {
-            if (photos) {
-                $scope.property.photos = preparePhotos(name, photos);
-            }
-            // if (amenities) {
-            //     $scope.property.amenities = prepareAmenities(amenities);
-            // }
+        /******************** CREATE PROPERTY ********************/
+        function createProperty(property) {
+            PropertyService.createProperty(property)
+                .then(function(res) {
+                    console.log('Property Created\n', res);
+                }, function(err) {
+                    console.log(err);
+                });
         }
+        // /******************** CLEANSE DATA ********************/
+        // function cleanseData(name, photos) {
+        //     if (photos) {
+        //         $scope.property.photos = preparePhotos(name, photos);
+        //     }
+        //     // if (amenities) {
+        //     //     $scope.property.amenities = prepareAmenities(amenities);
+        //     // }
+        // }
 
-        /******************** PREPARE PHOTOS ********************/
-        function preparePhotos(name, photos) {
-            var propertyName = name.replace(' ', '');
-            for (var i = 0; i < photos.length; i++) {
-                photos[i].imageName = propertyName + i;
-            }
-            return photos
-        }
+        // /******************** PREPARE PHOTOS ********************/
+        // function preparePhotos(name, photos) {
+        //     var propertyName = name.replace(' ', '');
+        //     for (var i = 0; i < photos.length; i++) {
+        //         photos[i].imageName = propertyName + i;
+        //     }
+        //     return photos;
+        // }
 
-        /******************** PREPARE AMENITIES ********************/
-        function prepareAmenities(amenities) {
-            let newArray = [];
-            for (var key in amenities) {
-                let newObj = {
-                    name: key,
-                    value: amenities[key]
-                }
-                if (amenities[key]) {
-                    newArray.push(newObj);
-                }
-            }
-            return newArray;
-        }
+        // /******************** PREPARE AMENITIES ********************/
+        // function prepareAmenities(amenities) {
+        //     let newArray = [];
+        //     for (var key in amenities) {
+        //         let newObj = {
+        //             name: key,
+        //             value: amenities[key]
+        //         }
+        //         if (amenities[key]) {
+        //             newArray.push(newObj);
+        //         }
+        //     }
+        //     return newArray;
+        // }
 
     });

@@ -1,9 +1,9 @@
 angular.module('app')
-    .controller('PropertyDetails', function($scope, $state, PropertyService) {
+    .controller('PropertyDetails', function($scope, $state, PropertyService, AmazonS3Service) {
         $scope.numAddAmenities = 0;
 
         /******************** GET PROPERTY ********************/
-        function getProperty() {
+        function init() {
             PropertyService.getPropertyById($state.params.id)
                 .then(function(res) {
                     let tempProperty = res;
@@ -22,16 +22,22 @@ angular.module('app')
         }
 
         /******************** UPDATE PROPERTY ********************/
-        $scope.updateProperty = function() {
+        $scope.submit = function() {
             var combined = $scope.property.addedAmenities.concat($scope.property.evenMoreAmenities);
             $scope.property.addedAmenities = combined;
-            PropertyService.updateProperty($scope.property._id, $scope.property)
-                .then(function(res) {
-                    console.log('Response from Update\n', res);
-                    $state.go('properties');
-                }, function(err) {
-                    console.log(err);
-                });
+            if ($scope.addedPhotos) {
+                AmazonS3Service.uploadPhotos($scope.property.name, $scope.addedPhotos)
+                    .then(function(res) {
+                        let newlyAddedPhotos = res;
+                        var combined = $scope.property.photos.concat(newlyAddedPhotos);
+                        $scope.property.photos = combined;
+                        updateProperty($scope.property._id, $scope.property);
+                    }, function(err) {
+                        console.log(err);
+                    });
+            } else {
+                updateProperty($scope.property._id, $scope.property);
+            }
         }
 
         /******************** DELETE PROPERTY ********************/
@@ -45,7 +51,17 @@ angular.module('app')
                     });
             }
         }
-
+        /******************** DELETE IMAGE ********************/
+        $scope.deleteImage = function(photo) {
+            if (confirm('Are you sure you want to DELETE this photo?')) {
+                for (var i = 0; i < $scope.property.photos.length; i++) {
+                    if ($scope.property.photos[i] === photo) {
+                        $scope.property.photos.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+        }
         /******************** ADD and DELETE AMENITIES ********************/
         $scope.addAmenity = function() {
             $scope.property.evenMoreAmenities.push({
@@ -63,6 +79,16 @@ angular.module('app')
             }
             --$scope.numAddAmenities;
         }
+
+        function updateProperty(id, property) {
+            PropertyService.updateProperty(id, property)
+                .then(function(res) {
+                    console.log('Response from Update\n', res);
+                    $state.go('properties');
+                }, function(err) {
+                    console.log(err);
+                });
+        }
         // Init function
-        getProperty();
+        init();
     });

@@ -1,15 +1,24 @@
 angular.module('app')
     .service('AmazonS3Service', function($http, $q) {
-        this.uploadPhotos = function(photos) {
-            let defer = $q.defer();
+        this.uploadPhotos = function(propertyName, photos) {
+            photos = preparePhotos(propertyName, photos);
             photos = angular.toJson(photos);
-            $http.post('/api/upload-photos', photos)
+            return $http.post('/api/upload-photos', photos)
                 .then(function(res) {
                     console.log(res);
-                    defer.resolve(res.data);
+                    return res.data;
                 }, function(err) {
                     console.log(err);
+                    return err;
                 });
-            return defer.promise;
+
+            /******************** PREPARE PHOTOS ********************/
+            function preparePhotos(name, photos) {
+                var propertyName = name.replace(' ', '');
+                for (var i = 0; i < photos.length; i++) {
+                    photos[i].imageName = propertyName + i;
+                }
+                return photos;
+            }
         }
     });
