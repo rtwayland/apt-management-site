@@ -1,58 +1,69 @@
 <div class="form-container">
-    <div class="ui segment">
+    <div>
         <form name="propertyEditForm" class="ui equal width form" semantic-form>
-            <div class="fields">
-                <div class="field required">
-                    <label for="name">Property Title</label>
-                    <input type="text" name="name" id="name" ng-model="property.name" required>
-                </div>
-                <div class="field required">
-                    <label for="rent">Monthly Rent</label>
-                    <div class="ui right labeled input">
-                        <div class="ui label">$</div>
-                        <input type="number" name="rent" id="rent" ng-model="property.rent" placeholder="Rent Amount" required>
-                        <div class="ui basic label">.00</div>
+            <div class="ui verticle segment">
+                <h3>Property Information</h3>
+                <div class="fields">
+                    <div class="field required">
+                        <label for="name">Property Name</label>
+                        <input type="text" name="name" id="name" ng-model="property.name" required>
+                    </div>
+                    <div class="field required">
+                        <label for="rent">Monthly Rent</label>
+                        <div class="ui right labeled input">
+                            <div class="ui label">$</div>
+                            <input type="number" name="rent" id="rent" ng-model="property.rent" placeholder="Rent Amount" required>
+                            <div class="ui basic label">.00</div>
+                        </div>
+                    </div>
+                    <div class="field required">
+                        <label for="deposit">Deposit</label>
+                        <div class="ui right labeled input">
+                            <div class="ui label">$</div>
+                            <input type="number" name="deposit" id="deposit" ng-model="property.deposit" placeholder="Deposit Amount" required>
+                            <div class="ui basic label">.00</div>
+                        </div>
                     </div>
                 </div>
                 <div class="field required">
-                    <label for="deposit">Deposit</label>
-                    <div class="ui right labeled input">
-                        <div class="ui label">$</div>
-                        <input type="number" name="deposit" id="deposit" ng-model="property.deposit" placeholder="Deposit Amount" required>
-                        <div class="ui basic label">.00</div>
-                    </div>
+                    <label for="description">Description</label>
+                    <textarea id="description" ng-model="property.description" required></textarea>
                 </div>
-            </div>
-            <div class="field required">
-                <label for="description">Description</label>
-                <textarea id="description" ng-model="property.description" required></textarea>
-            </div>
-            <property-address-inputs model-key="new-property" model="property.address" semantic-form></property-address-inputs>
+                <property-address-inputs model-key="new-property" model="property.address" semantic-form></property-address-inputs>
 
-            <div class="fields">
-                <div class="field required">
-                    <label for="beds">Bedrooms</label>
-                    <input type="number" name="beds" id="beds" ng-model="property.beds" required>
+                <div class="fields">
+                    <div class="field required">
+                        <label for="beds">Bedrooms</label>
+                        <input type="number" name="beds" id="beds" ng-model="property.beds" required>
+                    </div>
+                    <div class="field required">
+                        <label for="baths">Bathrooms</label>
+                        <input type="number" name="baths" id="baths" ng-model="property.baths" required>
+                    </div>
+                    <div class="field">
+                        <label for="year">Year Built</label>
+                        <input type="number" name="year" id="year" ng-model="property.year">
+                    </div>
+                    <div class="field">
+                        <label for="sqfeet">Square Feet</label>
+                        <input type="number" name="sqfeet" id="sqfeet" ng-model="property.sqfeet">
+                    </div>
+                    <div class="field">
+                        <label for="acres">Acres</label>
+                        <input type="number" name="acres" id="acres" ng-model="property.acres">
+                    </div>
                 </div>
                 <div class="field required">
-                    <label for="baths">Bathrooms</label>
-                    <input type="number" name="baths" id="baths" ng-model="property.baths" required>
-                </div>
-                <div class="field">
-                    <label for="year">Year Built</label>
-                    <input type="number" name="year" id="year" ng-model="property.year">
-                </div>
-                <div class="field">
-                    <label for="sqfeet">Square Feet</label>
-                    <input type="number" name="sqfeet" id="sqfeet" ng-model="property.sqfeet">
-                </div>
-                <div class="field">
-                    <label for="acres">Acres</label>
-                    <input type="number" name="acres" id="acres" ng-model="property.acres">
+                    <label>Availability Status</label>
+                    <select class="ui fluid search dropdown" name="status" id="status" ng-model="property.status" required>
+                      <option value="">Status</option>
+                      <option value="available">Available</option>
+                      <option value="unavailable">Unavailable</option>
+                    </select>
                 </div>
             </div>
-            <div>
-                <h2>Amenities</h2>
+            <div class="ui verticle segment">
+                <h3>Amenities</h3>
                 <div class="fields" ng-repeat="section in property.amenities track by $index">
                     <div class="field" ng-repeat="amenity in section track by $index">
                         <div class="ui checkbox">
@@ -61,16 +72,18 @@
                         </div>
                     </div>
                 </div>
-                <h2>Added Amenities</h2>
-                <div>
-                    <div class="field" ng-repeat="addedAmenity in property.addedAmenities track by $index">
-                        <div class="ui checkbox">
-                            <input type="checkbox" ng-checked="addedAmenity.value" ng-model="addedAmenity.value">
-                            <label>{{addedAmenity.label}}</label>
+                <div ng-if="property.addedAmenities.length">
+                    <h3>Added Amenities</h3>
+                    <div>
+                        <div class="field" ng-repeat="addedAmenity in property.addedAmenities track by $index">
+                            <div class="ui checkbox">
+                                <input type="checkbox" ng-checked="addedAmenity.value" ng-model="addedAmenity.value">
+                                <label>{{addedAmenity.label}}</label>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <h2>Additional Amenities</h2>
+                <h3>Additional Amenities</h3>
                 <div>
                     <div class="field">
                         <button class="ui tiny green button" type="button" ng-click="addAmenity()">Add</button>
@@ -80,20 +93,32 @@
                     </div>
                 </div>
             </div>
-            <div class="field">
-                <label for="photos">Photos</label>
-                <input type="file" name="photos" id="photos" multiple accept="image/*" s3file files="property.photos">
+            <div class="ui verticle segment">
+                <h3>Property Photos</h3>
+                <div ng-if="property.photos.length">
+                    <h3 class="ui top attached header">Images
+                  <i ng-class="{right: !showPhotos, down: showPhotos}" class="caret icon cursor-pointer" ng-click="showPhotos = !showPhotos"></i>
+                </h3>
+                    <div class="ui attached segment" ng-show="showPhotos">
+                        <div class="ui fluid image" ng-repeat="photo in property.photos">
+                            <div class="ui massive red right corner label cursor-pointer" ng-click="deleteImage(photo)">
+                                <i class="trash outline icon cursor-pointer"></i>
+                            </div>
+                            <img src="{{photo}}">
+                        </div>
+                    </div>
+                </div>
+                <h3>Additional Photos</h3>
+                <div>
+                    <div class="field">
+                        <!-- <label for="photos">Add Additional Photos</label> -->
+                        <input type="file" name="photos" id="photos" multiple accept="image/*" s3file files="addedPhotos">
+                    </div>
+                </div>
             </div>
-            <div class="field required">
-                <label>Availability Status</label>
-                <select class="ui fluid search dropdown" name="status" id="status" ng-model="property.status" required>
-                  <option value="">Status</option>
-                  <option value="available">Available</option>
-                  <option value="unavailable">Unavailable</option>
-                </select>
-            </div>
+
             <div class="ui center aligned container">
-                <button type="button" class="huge ui positive basic button" ng-click="updateProperty()" ng-disabled="propertyEditForm.$invalid">Submit</button>
+                <button type="button" class="huge ui positive basic button" ng-click="submit()" ng-disabled="propertyEditForm.$invalid">Submit</button>
                 <button type="button" class="huge ui yellow basic button" go-back>Cancel</button>
                 <button type="button" class="huge ui negative basic button" ng-click="deleteProperty()">Delete</button>
             </div>
