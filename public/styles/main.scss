@@ -28,7 +28,7 @@ body {
 }
 
 .cursor-pointer {
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
 @import 'partials/main-nav';
