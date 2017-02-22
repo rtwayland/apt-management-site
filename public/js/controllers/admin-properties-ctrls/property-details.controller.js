@@ -33,7 +33,19 @@ angular.module('app')
                     console.log(err);
                 });
         }
-        
+
+        /******************** DELETE PROPERTY ********************/
+        $scope.deleteProperty = function() {
+            if (confirm('Are you sure you want to DELETE this property?')) {
+                PropertyService.deleteProperty($scope.property._id)
+                    .then(function(res) {
+                        $state.go('properties');
+                    }, function(err) {
+                        console.log(err);
+                    });
+            }
+        }
+
         /******************** ADD and DELETE AMENITIES ********************/
         $scope.addAmenity = function() {
             $scope.property.evenMoreAmenities.push({

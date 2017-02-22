@@ -32,5 +32,8 @@ angular.module('app')
             this.updateProperty = function(id, property) {
                 property = angular.toJson(property);
                 return $http.put('/api/apartment/' + id, property);
+            },
+            this.deleteProperty = function(id) {
+                return $http.delete('/api/apartment/' + id);
             }
     });
