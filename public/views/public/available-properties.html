@@ -12,7 +12,7 @@
             <img ng-src="{{property.photos[0]}}">
         </div>
         <div class="content">
-            <div class="header">{{property.name}} {{property.address.unit}}</div>
+            <div class="header">{{property.name}} <span ng-if="property.address.unit">#{{property.address.unit}}</span></div>
             <div class="meta">
                 <span>{{property.rent | currency:"$":0 }} per month</span>
             </div>

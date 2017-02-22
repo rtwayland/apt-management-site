@@ -4,12 +4,25 @@
         Profile Picture
     </div>
     <div class="image content">
-        <div class="ui medium image">
+        <div class="ui attached fluid image" ng-class="{large: !imageSizeLarge, massive: imageSizeLarge}">
             <img ng-src="{{property.photos[0]}}">
+            <!-- <div class="ui large bottom attached label" ng-click="imageSizeLarge = !imageSizeLarge">View {{!imageSizeLarge ? 'Larger' : 'Smaller'}}</div> -->
+            <div class="ui bottom attached button" ng-click="imageSizeLarge = !imageSizeLarge">View {{!imageSizeLarge ? 'Larger' : 'Smaller'}}</div>
         </div>
+
         <div class="description">
             <div class="ui header">{{property.name}}</div>
+            <div class="meta">
+                <span>Rent: {{property.rent | currency:"$":0 }} per month</span>
+                <br>
+                <span>Deposit: {{property.deposit | currency:"$":0 }}</span>
+            </div>
             <p>{{property.description}}</p>
+            <div class="ui header">Amenities</div>
+            <ul ng-repeat="section in property.amenities">
+                <li ng-repeat="amenity in section" ng-if="amenity.value">{{amenity.label}}</li>
+            </ul>
+            <!-- <li ng-repeat="amenity in property.addedAmenities">{{amenity}}</li> -->
         </div>
     </div>
     <div class="actions">

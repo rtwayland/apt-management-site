@@ -4,11 +4,12 @@ angular.module('app')
             PropertyService.getAvailableProperties()
                 .then(function(res) {
                     $scope.properties = res;
+                    console.log(res);
                 }, function(err) {
                     console.log(err);
                 });
         }
 
-        
+
         getAvailableProperties()
     });
