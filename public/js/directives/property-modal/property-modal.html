@@ -1,0 +1,24 @@
+<div class="ui fullscreen modal" id="{{property._id}}">
+    <i class="close icon"></i>
+    <div class="header">
+        Profile Picture
+    </div>
+    <div class="image content">
+        <div class="ui medium image">
+            <img ng-src="{{property.photos[0]}}">
+        </div>
+        <div class="description">
+            <div class="ui header">{{property.name}}</div>
+            <p>{{property.description}}</p>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui black deny button">
+            Close
+        </div>
+        <div class="ui positive right labeled icon button">
+            Apply Now
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
+</div>

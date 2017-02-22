@@ -1,1 +1,29 @@
 <h1>Properties</h1>
+<div class="ui special cards">
+    <div class="card" ng-repeat="property in properties" image-dimmer>
+        <div class="blurring dimmable image">
+            <div class="ui inverted dimmer">
+                <div class="content">
+                    <div class="center">
+                        <div class="ui primary button" property-modal-trigger="property._id">View Details</div>
+                    </div>
+                </div>
+            </div>
+            <img ng-src="{{property.photos[0]}}">
+        </div>
+        <div class="content">
+            <div class="header">{{property.name}} {{property.address.unit}}</div>
+            <div class="meta">
+                <span>{{property.rent | currency:"$":0 }} per month</span>
+            </div>
+            <div class="description">
+                {{property.description}}
+            </div>
+        </div>
+        <div class="extra content">
+            {{property.address.street}}, {{property.address.city}}, {{property.address.state}} {{property.address.zip}}
+        </div>
+    </div>
+</div>
+
+<property-modal ng-repeat="property in properties" property="property"></property-modal>

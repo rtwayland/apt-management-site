@@ -19,8 +19,8 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router'])
             })
             .state('available-properties', {
                 url: '/available-properties',
-                templateUrl: './views/public/available-properties.html'
-                // controller: ''
+                templateUrl: './views/public/available-properties.html',
+                controller: 'PropertyGallery'
             })
             .state('apply', {
                 url: '/apply',
