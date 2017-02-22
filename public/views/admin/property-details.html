@@ -1,6 +1,6 @@
 <div class="form-container">
     <div class="ui segment">
-        <form name="appartmentEditForm" class="ui equal width form" semantic-form>
+        <form name="propertyEditForm" class="ui equal width form" semantic-form>
             <div class="fields">
                 <div class="field required">
                     <label for="name">Property Title</label>
@@ -93,7 +93,8 @@
                 </select>
             </div>
             <div class="ui center aligned container">
-                <button type="button" class="huge ui positive basic button" ng-click="updateProperty()">Submit</button>
+                <button type="button" class="huge ui positive basic button" ng-click="updateProperty()" ng-disabled="propertyEditForm.$invalid">Submit</button>
+                <button type="button" class="huge ui yellow basic button" go-back>Cancel</button>
                 <button type="button" class="huge ui negative basic button" ng-click="deleteProperty()">Delete</button>
             </div>
         </form>
