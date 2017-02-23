@@ -11,9 +11,9 @@ angular.module('app')
                     tempProperty.deposit *= 1;
                     tempProperty.beds *= 1;
                     tempProperty.baths *= 1;
-                    tempProperty.year *= 1;
-                    tempProperty.sqfeet *= 1;
-                    tempProperty.acres *= 1;
+                    if (res.year) tempProperty.year *= 1;
+                    if (res.sqfeet) tempProperty.sqfeet *= 1;
+                    if (res.acres) tempProperty.acres *= 1;
                     $scope.property = tempProperty;
                     $scope.property.evenMoreAmenities = [];
                 }, function(err) {
