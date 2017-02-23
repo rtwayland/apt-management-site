@@ -1,13 +1,11 @@
 <div class="ui fullscreen modal" id="{{property._id}}">
     <i class="close icon"></i>
-    <div class="header">
-        Profile Picture
+    <div class="header serif-font">
+        Fox Briar Properties
     </div>
     <div class="image content">
-        <div class="ui attached fluid image" ng-class="{large: !imageSizeLarge, massive: imageSizeLarge}">
-            <!-- <img ng-src="{{property.photos[0]}}"> -->
-            <image-slider photos="property.photos"></image-slider>
-            <div class="ui bottom attached button" ng-click="imageSizeLarge = !imageSizeLarge">View {{!imageSizeLarge ? 'Larger' : 'Smaller'}}</div>
+        <div class="ui large attached fluid image slider-container">
+            <slider slides="property.photos"></slider>
         </div>
 
         <div class="description">
@@ -16,34 +14,34 @@
             <table class="ui table">
                 <thead>
                     <tr class="center aligned">
-                        <th>Rent</th>
-                        <th>Deposit</th>
                         <th>Beds</th>
                         <th>Baths</th>
+                        <th>Rent</th>
+                        <th>Deposit</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="center aligned">
-                        <td>{{property.rent | currency:"$":0 }}</td>
-                        <td>{{property.deposit | currency:"$":0 }}</td>
                         <td>{{property.beds}}</td>
                         <td>{{property.baths}}</td>
+                        <td>{{property.rent | currency:"$":0 }}</td>
+                        <td>{{property.deposit | currency:"$":0 }}</td>
                     </tr>
                 </tbody>
             </table>
-            <table class="ui table">
+            <table class="ui table" ng-if="property.year || property.sqfeet || property.acres">
                 <thead>
                     <tr class="center aligned">
-                        <th>Year</th>
-                        <th>Sq Feet</th>
-                        <th>Acres</th>
+                        <th ng-if="property.year">Year</th>
+                        <th ng-if="property.sqfeet">Sq Feet</th>
+                        <th ng-if="property.acres">Acres</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="center aligned">
-                        <td>{{property.year}}</td>
-                        <td>{{property.sqfeet}}</td>
-                        <td>{{property.acres}}</td>
+                        <td ng-if="property.year">{{property.year}}</td>
+                        <td ng-if="property.sqfeet">{{property.sqfeet}}</td>
+                        <td ng-if="property.acres">{{property.acres}}</td>
                     </tr>
                 </tbody>
             </table>
