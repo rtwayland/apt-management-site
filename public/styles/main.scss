@@ -31,7 +31,20 @@ body {
     cursor: pointer !important;
 }
 
+.slider-container {
+    @media screen and (min-width: 966px) {
+        min-width: 600px;
+    }
+    @media screen and (max-width: 965px) {
+        min-width: 500px;
+    }
+    @media screen and (max-width: 855px) {
+        min-width: 400px;
+    }
+    @media screen and (max-width: 768px) {
+        min-width: 100px;
+    }
+}
 @import 'partials/main-nav';
 @import 'partials/application-form';
-@import 'partials/application-details-form';
-// @import 'partials/image-slider';
+@import 'partials/application-details-form'; // @import 'partials/image-slider';
