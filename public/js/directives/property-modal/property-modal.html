@@ -11,7 +11,7 @@
         <div class="description">
             <div class="ui header">{{property.name}} <span ng-if="property.address.unit">#{{property.address.unit}}</span></div>
             <p>{{property.address.street}}, {{property.address.city}}, {{property.address.state}} {{property.address.zip}}</p>
-            <table class="ui table">
+            <table class="ui unstackable table">
                 <thead>
                     <tr class="center aligned">
                         <th>Beds</th>
@@ -29,7 +29,7 @@
                     </tr>
                 </tbody>
             </table>
-            <table class="ui table" ng-if="property.year || property.sqfeet || property.acres">
+            <table class="ui unstackable table" ng-if="property.year || property.sqfeet || property.acres">
                 <thead>
                     <tr class="center aligned">
                         <th ng-if="property.year">Year</th>
