@@ -3,7 +3,7 @@ angular.module('app')
         //Predefined amenities array
         var amenitiesArray = [
             [{
-                    label: 'Central Air Conditioning',
+                    label: 'Central Air',
                     value: false
                 },
                 {
