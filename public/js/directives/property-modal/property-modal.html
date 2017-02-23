@@ -5,24 +5,58 @@
     </div>
     <div class="image content">
         <div class="ui attached fluid image" ng-class="{large: !imageSizeLarge, massive: imageSizeLarge}">
-            <img ng-src="{{property.photos[0]}}">
-            <!-- <div class="ui large bottom attached label" ng-click="imageSizeLarge = !imageSizeLarge">View {{!imageSizeLarge ? 'Larger' : 'Smaller'}}</div> -->
+            <!-- <img ng-src="{{property.photos[0]}}"> -->
+            <image-slider photos="property.photos"></image-slider>
             <div class="ui bottom attached button" ng-click="imageSizeLarge = !imageSizeLarge">View {{!imageSizeLarge ? 'Larger' : 'Smaller'}}</div>
         </div>
 
         <div class="description">
-            <div class="ui header">{{property.name}}</div>
-            <div class="meta">
-                <span>Rent: {{property.rent | currency:"$":0 }} per month</span>
-                <br>
-                <span>Deposit: {{property.deposit | currency:"$":0 }}</span>
-            </div>
+            <div class="ui header">{{property.name}} <span ng-if="property.address.unit">#{{property.address.unit}}</span></div>
+            <p>{{property.address.street}}, {{property.address.city}}, {{property.address.state}} {{property.address.zip}}</p>
+            <table class="ui table">
+                <thead>
+                    <tr class="center aligned">
+                        <th>Rent</th>
+                        <th>Deposit</th>
+                        <th>Beds</th>
+                        <th>Baths</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="center aligned">
+                        <td>{{property.rent | currency:"$":0 }}</td>
+                        <td>{{property.deposit | currency:"$":0 }}</td>
+                        <td>{{property.beds}}</td>
+                        <td>{{property.baths}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="ui table">
+                <thead>
+                    <tr class="center aligned">
+                        <th>Year</th>
+                        <th>Sq Feet</th>
+                        <th>Acres</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="center aligned">
+                        <td>{{property.year}}</td>
+                        <td>{{property.sqfeet}}</td>
+                        <td>{{property.acres}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
             <p>{{property.description}}</p>
             <div class="ui header">Amenities</div>
-            <ul ng-repeat="section in property.amenities">
-                <li ng-repeat="amenity in section" ng-if="amenity.value">{{amenity.label}}</li>
-            </ul>
-            <!-- <li ng-repeat="amenity in property.addedAmenities">{{amenity}}</li> -->
+            <div class="ui list">
+                <div ng-repeat="section in property.amenities">
+                    <div ng-repeat="amenity in section" ng-if="amenity.value">{{amenity.label}}</div>
+                </div>
+                <div ng-repeat="amenity in property.addedAmenities" ng-if="amenity.value">{{amenity.label}}</div>
+            </div>
+
         </div>
     </div>
     <div class="actions">
