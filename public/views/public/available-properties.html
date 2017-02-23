@@ -14,6 +14,8 @@
         <div class="content">
             <div class="header">{{property.name}} <span ng-if="property.address.unit">#{{property.address.unit}}</span></div>
             <div class="meta">
+                <span>{{property.beds}} Bed {{property.baths}} Bath</span>
+                <br>
                 <span>{{property.rent | currency:"$":0 }} per month</span>
             </div>
             <div class="description">
@@ -25,5 +27,5 @@
         </div>
     </div>
 </div>
-
+<!-- <slider slides="slides"></slider> -->
 <property-modal ng-repeat="property in properties" property="property"></property-modal>
