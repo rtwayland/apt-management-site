@@ -801,6 +801,25 @@
 .glyphicon-menu-up:before {
   content: "\e260";
 }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+.sr-only-focusable:active,
+.sr-only-focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+}
 .img-responsive,
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
