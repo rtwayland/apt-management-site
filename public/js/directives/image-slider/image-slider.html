@@ -1,11 +1,10 @@
-<div class="slider-container slider">
+<div class="slider">
   <div class="ui fluid image">
     <img ng-repeat="photo in photos" class="slide slide-animation nonDraggableImage" ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()" ng-hide="!isCurrentSlideIndex($index)" ng-src="{{photo}}">
-
   </div>
 
-    <span class="arrow prev" ng-click="nextSlide()"><i class="ui angle left icon"></i></span>
-    <span class="arrow next" ng-click="prevSlide()"><i class="ui angle right icon"></i></span>
+    <span class="arrow prev" ng-click="nextSlide(); changeWidthHeight()"><i class="ui angle left icon"></i></span>
+    <span class="arrow next" ng-click="prevSlide(); changeWidthHeight()"><i class="ui angle right icon"></i></span>
     <nav class="nav">
         <div class="wrapper">
             <ul class="dots">
