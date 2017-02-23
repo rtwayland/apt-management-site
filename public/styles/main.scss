@@ -20,7 +20,7 @@ body {
 }
 
 .serif-font {
-    font-family: $font-serif;
+    font-family: $font-serif !important;
 }
 
 .text-center {
@@ -34,4 +34,4 @@ body {
 @import 'partials/main-nav';
 @import 'partials/application-form';
 @import 'partials/application-details-form';
-@import 'partials/image-slider';
+// @import 'partials/image-slider';
