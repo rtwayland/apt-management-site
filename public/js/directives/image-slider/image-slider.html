@@ -1,7 +1,17 @@
-<div class="slider slider1">
-    <div class="slides">
-        <div class="slide-item" ng-repeat="photo in photos track by $index">
-            <img ng-src="{{photo}}">
+<div class="slider-container slider">
+  <div class="ui fluid image">
+    <img ng-repeat="photo in photos" class="slide slide-animation nonDraggableImage" ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()" ng-hide="!isCurrentSlideIndex($index)" ng-src="{{photo}}">
+
+  </div>
+
+    <span class="arrow prev" ng-click="nextSlide()"><i class="ui angle left icon"></i></span>
+    <span class="arrow next" ng-click="prevSlide()"><i class="ui angle right icon"></i></span>
+    <nav class="nav">
+        <div class="wrapper">
+            <ul class="dots">
+                <li class="dot" ng-repeat="photo in photos">
+                    <span class="cursor-pointer" ng-class="{'active':isCurrentSlideIndex($index)}" ng-click="setCurrentSlideIndex($index);">{{$index}}</span>
+            </ul>
         </div>
-    </div>
+    </nav>
 </div>

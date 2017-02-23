@@ -1,4 +1,4 @@
-angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router'])
+angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ngTouch'])
     .run(function($rootScope) {
         $rootScope.state = 1;
     })
@@ -63,8 +63,8 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router'])
             .state('logout', {
                 url: '/logout',
                 template: '',
-                controller: function ($scope, $window) {
-                  $window.location.href = '/auth/logout';
+                controller: function($scope, $window) {
+                    $window.location.href = '/auth/logout';
                 }
             })
             // ADMIN PAGES
@@ -128,4 +128,45 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router'])
                 templateUrl: './views/admin/property-details.html',
                 controller: 'PropertyDetails'
             })
+    })
+    .animation('.slide-animation', function() {
+        return {
+            beforeAddClass: function(element, className, done) {
+                var scope = element.scope();
+
+                if (className == 'ng-hide') {
+                    var finishPoint = element.parent().width();
+                    if (scope.direction !== 'right') {
+                        finishPoint = -finishPoint;
+                    }
+                    TweenMax.to(element, 0.5, {
+                        left: finishPoint,
+                        onComplete: done
+                    });
+                } else {
+                    done();
+                }
+            },
+            removeClass: function(element, className, done) {
+                var scope = element.scope();
+
+                if (className == 'ng-hide') {
+                    element.removeClass('ng-hide');
+
+                    var startPoint = element.parent().width();
+                    if (scope.direction === 'right') {
+                        startPoint = -startPoint;
+                    }
+
+                    TweenMax.fromTo(element, 0.5, {
+                        left: startPoint
+                    }, {
+                        left: 0,
+                        onComplete: done
+                    });
+                } else {
+                    done();
+                }
+            }
+        };
     });

@@ -1,0 +1,110 @@
+$slider-width: 400px;
+$slider-height: $slider-width / 2;
+.slider {
+    width: $slider-width;
+    height: $slider-height;
+    overflow: hidden;
+    position: relative;
+    background: #e6e6e6;
+    margin-top: 20px;
+
+    .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .arrow {
+        position: absolute;
+        z-index: 1000;
+        display: block;
+        top: 50%;
+        cursor: pointer;
+        color: #fff;
+        font-size: 6vw;
+        opacity: 0.7;
+        transition: 0.2s linear all;
+        text-shadow: -1px 0 #666, 0 1px #666, 1px 0 #666, 0 -1px #666;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        &.prev {
+            left: 0;
+        }
+
+        &.next {
+            right: 0;
+        }
+    }
+
+    .nonDraggableImage {
+        -webkit-user-drag: none;
+    }
+    /*---------------------------------------------------------
+NAV
+---------------------------------------------------------*/
+    .nav {
+        text-align: center;
+        display: block;
+        position: absolute;
+        z-index: 1002;
+        left: 0;
+        bottom: -4px;
+        right: 0;
+        height: 48px;
+
+        .wrapper {
+            margin: 0 auto;
+            width: 100%;
+            padding: 1em 0 0.8em;
+        }
+
+        ul {
+            margin: 0;
+            width: 100%;
+        }
+
+        .dots {
+            .dot {
+                position: relative;
+                margin: 0 8px;
+                width: 12px;
+                height: 12px;
+                display: inline-block;
+                zoom: 2;
+
+                span {
+                    position: absolute;
+                    top: 2px;
+                    left: 2px;
+                    width: 6px;
+                    height: 6px;
+                    text-indent: 100%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    background: #FFF;
+                    border: 1px solid transparent;
+                    outline: none;
+                    -webkit-box-shadow: none;
+                    -moz-box-shadow: none;
+                    box-shadow: none;
+                    -webkit-border-radius: 50%;
+                    -moz-border-radius: 50%;
+                    border-radius: 50%;
+                    -webkit-transition: background-color 0.25s, border-color 0.25s;
+                    -moz-transition: background-color 0.25s, border-color 0.25s;
+                    transition: background-color 0.25s, border-color 0.25s;
+                    display: inline-block;
+                    zoom: 1;
+
+                    &.active {
+                        border-color: #FFF;
+                        background-color: transparent;
+                    }
+                }
+            }
+        }
+    }
+}
