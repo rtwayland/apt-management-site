@@ -1,6 +1,6 @@
 <div class="form-container">
     <div class="ui segment">
-        <form name="appartmentCreationForm" class="ui equal width form" ng-submit="submitProperty()" semantic-form>
+        <form name="appartmentCreationForm" class="ui equal width form" ng-submit="submitProperty()" >
             <div class="field">
                 <button class="ui button" type="button" ng-click="fillFields()">Fill Form</button>
             </div>
@@ -30,7 +30,7 @@
                 <label for="description">Description</label>
                 <textarea id="description" ng-model="property.description" required></textarea>
             </div>
-            <property-address-inputs model-key="new-property" model="property.address" semantic-form></property-address-inputs>
+            <property-address-inputs model-key="new-property" model="property.address" ></property-address-inputs>
 
             <div class="fields">
                 <div class="field required">
