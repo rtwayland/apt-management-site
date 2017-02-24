@@ -1,6 +1,6 @@
 <div class="form-container">
     <div>
-        <form name="propertyEditForm" class="ui equal width form" semantic-form>
+        <form name="propertyEditForm" class="ui equal width form" >
             <div class="ui verticle segment">
                 <h3>Property Information</h3>
                 <div class="fields">
@@ -29,7 +29,7 @@
                     <label for="description">Description</label>
                     <textarea id="description" ng-model="property.description" required></textarea>
                 </div>
-                <property-address-inputs model-key="new-property" model="property.address" semantic-form></property-address-inputs>
+                <property-address-inputs model-key="new-property" model="property.address" ></property-address-inputs>
 
                 <div class="fields">
                     <div class="field required">
@@ -54,13 +54,11 @@
                     </div>
                 </div>
                 <div class="field required">
-                    <label>Availability Status {{property.status}}</label>
-                    <!-- <select class="ui fluid search dropdown" name="status" id="status" ng-options="option.name for option in avalailabilityOptions track by option.id" ng-model="availalabilityOption" required> -->
+                    <label>Availability Status</label>
                     <select class="ui fluid search dropdown" name="status" id="status" ng-model="property.status" required>
-                      <option value="">Status</option>
                       <option value="available">Available</option>
                       <option value="unavailable">Unavailable</option>
-                    </select> {{availalabilityOption}}
+                    </select>
                 </div>
             </div>
             <div class="ui verticle segment">
@@ -101,9 +99,7 @@
                     <img ng-src="{{property.mainPhoto}}">
                 </div>
                 <div style="margin-top: 10px; margin-bottom: 20px;">
-                  <button type="button" class="ui basic button"
-                  ng-class="{grey: changeMainImg, yellow:!changeMainImg}"
-                  ng-click="changeMainImg = !changeMainImg">{{!changeMainImg ? 'Change' : 'Keep'}} Main Image</button>
+                    <button type="button" class="ui basic button" ng-class="{grey: changeMainImg, yellow:!changeMainImg}" ng-click="changeMainImg = !changeMainImg">{{!changeMainImg ? 'Change' : 'Keep'}} Main Image</button>
                     <div class="field" ng-show="changeMainImg" style="margin-top: 10px;">
                         <label for="photos">New Main Image</label>
                         <input type="file" name="main-photo" id="main-photo" accept="image/*" s3file files="newMainPhoto">

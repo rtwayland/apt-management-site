@@ -1,51 +1,7 @@
 angular.module('app')
-    .controller('PropertyDetails', function($scope, $state, PropertyService, AmazonS3Service) {
+    .controller('PropertyDetails', function($scope, $state, PropertyService, AmazonS3Service, property) {
         $scope.numAddAmenities = 0;
-
-        function setAvailabilityOptions() {
-            $scope.avalailabilityOptions = [{
-                    id: '1',
-                    name: 'Available'
-                },
-                {
-                    id: '2',
-                    name: 'Unavailable'
-                }
-            ]
-            var available = {
-                id: '1',
-                name: 'Available'
-            };
-            var unavailable = {
-                id: '2',
-                name: 'Unavailable'
-            }
-            console.log('In the options function');
-            if ($scope.property.status === 'available') {
-                $scope.availalabilityOption = available;
-            } else {
-                $scope.availalabilityOption = unavailable;
-            }
-        }
-        /******************** GET PROPERTY ********************/
-        function init() {
-            PropertyService.getPropertyById($state.params.id)
-                .then(function(res) {
-                    let tempProperty = res;
-                    tempProperty.rent *= 1;
-                    tempProperty.deposit *= 1;
-                    tempProperty.beds *= 1;
-                    tempProperty.baths *= 1;
-                    if (res.year) tempProperty.year *= 1;
-                    if (res.sqfeet) tempProperty.sqfeet *= 1;
-                    if (res.acres) tempProperty.acres *= 1;
-                    $scope.property = tempProperty;
-                    $scope.property.evenMoreAmenities = [];
-                    setAvailabilityOptions();
-                }, function(err) {
-                    console.log(err);
-                });
-        }
+        $scope.property = property;
 
         /******************** UPDATE PROPERTY ********************/
         $scope.submit = function() {
@@ -145,6 +101,4 @@ angular.module('app')
                     console.log(err);
                 });
         }
-        // Init function
-        init();
     });
