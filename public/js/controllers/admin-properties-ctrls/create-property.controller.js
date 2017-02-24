@@ -161,38 +161,5 @@ angular.module('app')
                     console.log(err);
                 });
         }
-        // /******************** CLEANSE DATA ********************/
-        // function cleanseData(name, photos) {
-        //     if (photos) {
-        //         $scope.property.photos = preparePhotos(name, photos);
-        //     }
-        //     // if (amenities) {
-        //     //     $scope.property.amenities = prepareAmenities(amenities);
-        //     // }
-        // }
-
-        // /******************** PREPARE PHOTOS ********************/
-        // function preparePhotos(name, photos) {
-        //     var propertyName = name.replace(' ', '');
-        //     for (var i = 0; i < photos.length; i++) {
-        //         photos[i].imageName = propertyName + i;
-        //     }
-        //     return photos;
-        // }
-
-        // /******************** PREPARE AMENITIES ********************/
-        // function prepareAmenities(amenities) {
-        //     let newArray = [];
-        //     for (var key in amenities) {
-        //         let newObj = {
-        //             name: key,
-        //             value: amenities[key]
-        //         }
-        //         if (amenities[key]) {
-        //             newArray.push(newObj);
-        //         }
-        //     }
-        //     return newArray;
-        // }
 
     });
