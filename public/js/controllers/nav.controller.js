@@ -39,8 +39,8 @@ angular.module('app')
                 name: 'Maintenance Requests'
             },
             {
-                link: 'tenents',
-                name: 'Tenents'
+                link: 'tenants',
+                name: 'Tenants'
             },
             {
                 link: 'properties',
