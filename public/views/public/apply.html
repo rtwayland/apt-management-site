@@ -5,8 +5,7 @@
     <form name="applicationForm" class="ui equal width form" ng-submit="submitApplication()" >
         <div class="ui segment">
             <h2>Selected Property</h2>
-            <property-dropdown model="application.propertyName" ></property-dropdown>
-            <div class="ui red message" ng-show="applicationForm.property-name.$invalid">Please enter a value for this field.</div>
+            <property-dropdown model="application.propertyName" options="propertyOptions"></property-dropdown>
         </div>
         <div class="ui segment">
             <h2>Applicant Information</h2>
