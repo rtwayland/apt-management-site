@@ -5,7 +5,6 @@ angular.module('app')
             photos = angular.toJson(photos);
             return $http.post('/api/upload-photos', photos)
                 .then(function(res) {
-                    console.log(res);
                     return res.data;
                 }, function(err) {
                     console.log(err);
@@ -14,7 +13,7 @@ angular.module('app')
 
             /******************** PREPARE PHOTOS ********************/
             function preparePhotos(name, photos) {
-                var propertyName = name.replace(' ', '');
+                var propertyName = name.replace(/ /g, '');
                 for (var i = 0; i < photos.length; i++) {
                     photos[i].imageName = propertyName + i;
                 }

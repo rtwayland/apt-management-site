@@ -1,11 +1,11 @@
 <h1>Properties</h1>
-<div class="ui special cards">
-    <div class="card" ng-repeat="property in properties" image-dimmer>
+<div class="ui centered special cards">
+    <div class="card" ng-repeat="property in properties" image-dimmer property-modal-trigger="property._id">
         <div class="blurring dimmable image">
             <div class="ui inverted dimmer">
                 <div class="content">
                     <div class="center">
-                        <div class="ui primary button" property-modal-trigger="property._id">View Details</div>
+                        <div class="ui primary button" >View Details</div>
                     </div>
                 </div>
             </div>

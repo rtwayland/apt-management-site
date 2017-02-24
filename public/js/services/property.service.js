@@ -8,7 +8,6 @@ angular.module('app')
             },
             this.createProperty = function(property) {
                 property = angular.toJson(property);
-                console.log(property);
                 return $http.post('/api/apartment', property);
             },
             this.getAvailableProperties = function() {
