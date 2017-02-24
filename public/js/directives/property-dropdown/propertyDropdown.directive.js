@@ -4,7 +4,8 @@ angular.module('app')
             restrict: 'E',
             templateUrl: './js/directives/property-dropdown/property-dropdown.html',
             scope: {
-                model: '='
+                model: '=',
+                options: '='
             },
             link: function(scope, elem, attrs) {
 

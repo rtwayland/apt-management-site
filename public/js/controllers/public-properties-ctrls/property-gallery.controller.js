@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('PropertyGallery', function($scope, PropertyService) {
+    .controller('PropertyGallery', function($scope, $state, PropertyService) {
         function getAvailableProperties() {
             PropertyService.getAvailableProperties()
                 .then(function(res) {

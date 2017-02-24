@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('ApplicationCtrl', function($scope, $state, $window, ApplicationService, StripeService) {
+    .controller('ApplicationCtrl', function($scope, $state, $window, ApplicationService, StripeService, PropertyService) {
         $scope.payApplicationFee = function() {
             var handler = StripeCheckout.configure({
                 key: 'pk_test_GfjALqHyZhwYmd38SfJANoe4',
@@ -213,6 +213,35 @@ angular.module('app')
                 signDate: new Date(),
                 applicationStatus: 'pending'
             }
+
+            PropertyService.getAvailableProperties()
+                .then(function(res) {
+                    var properies = res;
+                    $scope.propertyOptions = [];
+                    for (var i = 0; i < properies.length; i++) {
+                        if (properies[i].address.unit) {
+                            let name = properies[i].name + ' #' + properies[i].address.unit;
+                            let propVal = properies[i].name + ' ' + properies[i].address.unit;
+                            var option = {
+                                value: propVal,
+                                name: name
+                            }
+                        } else {
+                            var option = {
+                                value: properies[i].name,
+                                name: properies[i].name
+                            }
+                        }
+                        $scope.propertyOptions.push(option);
+                    }
+
+                    if ($state.params.propertyName) {
+                        console.log($state.params);
+                        $scope.application.propertyName = $state.params.propertyName;
+                    }
+                }, function(err) {
+                    console.log(err);
+                });
         }
 
         init();

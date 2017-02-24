@@ -23,7 +23,7 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
                 controller: 'PropertyGallery'
             })
             .state('apply', {
-                url: '/apply',
+                url: '/apply?propertyName',
                 templateUrl: './views/public/apply.html',
                 controller: 'ApplicationCtrl'
             })
@@ -126,6 +126,26 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
             .state('property-details', {
                 url: '/property-details/:id',
                 templateUrl: './views/admin/property-details.html',
-                controller: 'PropertyDetails'
+                controller: 'PropertyDetails',
+                resolve: {
+                  property: function(PropertyService, $stateParams) {
+                    return PropertyService.getPropertyById($stateParams.id)
+                        .then(function(res) {
+                            let tempProperty = res;
+                            tempProperty.rent *= 1;
+                            tempProperty.deposit *= 1;
+                            tempProperty.beds *= 1;
+                            tempProperty.baths *= 1;
+                            if (res.year) tempProperty.year *= 1;
+                            if (res.sqfeet) tempProperty.sqfeet *= 1;
+                            if (res.acres) tempProperty.acres *= 1;
+                            var property = tempProperty;
+                            property.evenMoreAmenities = [];
+                            return property
+                        }, function(err) {
+                            console.log(err);
+                        });
+                  }
+                }
             })
     });
