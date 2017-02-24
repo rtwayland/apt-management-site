@@ -5,7 +5,12 @@
     <form name="applicationForm" class="ui equal width form" ng-submit="submitApplication()" >
         <div class="ui segment">
             <h2>Selected Property</h2>
-            <property-dropdown model="application.propertyName" options="propertyOptions"></property-dropdown>
+            <!-- <property-dropdown model="application.propertyName" options="propertyOptions"></property-dropdown> -->
+            <div class="field">
+                <select class="ui fluid search dropdown" name="property-name" id="property-name" ng-model="application.propertyName" ng-options="option.value as option.name for option in propertyOptions" ng-required="propertySelected">
+                    <option value="">Property</option>
+                </select>
+            </div>
         </div>
         <div class="ui segment">
             <h2>Applicant Information</h2>

@@ -238,7 +238,11 @@ angular.module('app')
                     if ($state.params.propertyName) {
                         console.log($state.params);
                         $scope.application.propertyName = $state.params.propertyName;
+                        $scope.propertySelected = true;
+                    } else {
+                        $scope.propertySelected = false;
                     }
+                    console.log($scope.propertySelected);
                 }, function(err) {
                     console.log(err);
                 });
