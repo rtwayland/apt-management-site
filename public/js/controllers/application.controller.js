@@ -46,6 +46,12 @@ angular.module('app')
                     driversLicence: '1234567890',
                     relations: []
                 },
+                emergency: {
+                    firstName: 'John',
+                    lastName: 'Doe',
+                    email: 'myemail@email.com',
+                    phone: '9384980912'
+                },
                 currentResidence: {
                     address: {
                         street: '123 N 123 E',
@@ -139,6 +145,12 @@ angular.module('app')
                     ssn: '',
                     driversLicence: '',
                     relations: []
+                },
+                emergency: {
+                    firstName: '',
+                    lastName: '',
+                    email: '',
+                    phone: ''
                 },
                 currentResidence: {
                     address: {

@@ -2,10 +2,10 @@
 <h1 class="ui center aligned block header">Application Form</h1>
 <button class="ui grey basic button" type="button" ng-click="fillForm()">Fill Form</button>
 <div class="form-container">
-    <form name="applicationForm" class="ui equal width form" ng-submit="submitApplication()" semantic-form>
+    <form name="applicationForm" class="ui equal width form" ng-submit="submitApplication()" >
         <div class="ui segment">
             <h2>Selected Property</h2>
-            <property-dropdown model="application.propertyName" semantic-form></property-dropdown>
+            <property-dropdown model="application.propertyName" ></property-dropdown>
             <div class="ui red message" ng-show="applicationForm.property-name.$invalid">Please enter a value for this field.</div>
         </div>
         <div class="ui segment">
@@ -49,7 +49,7 @@
                 <div class="field">
                     <!-- SSN -->
                     <label for="ssn">Social Security Number</label>
-                    <input type="text" name="ssn" id="ssn" ng-model="application.user.ssn" required>
+                    <input type="text" name="ssn" id="ssn" ng-model="application.user.ssn" maxlength="9" required>
                 </div>
                 <div class="field">
                     <!-- Driver's Licence -->
@@ -69,11 +69,39 @@
                 <additional-occupant-fields num="numAddOccupants" model="application.user.relations"></additional-occupant-fields>
             </div>
         </div>
+        <!-- Emergency Contact -->
+        <div class="ui segment">
+            <h2>Emergency Contact Information</h2>
+            <!-- Names -->
+            <div class="fields">
+                <div class="field">
+                    <label for="contact-first-name">First Name</label>
+                    <input type="text" name="contact-first-name" id="contact-first-name" ng-model="application.emergency.firstName" required>
+                </div>
+                <div class="field">
+                    <label for="contact-last-name">Last Name</label>
+                    <input type="text" name="contact-last-name" id="contact-last-name" ng-model="application.emergency.lastName" required>
+                </div>
+            </div>
+            <div class="fields">
+                <div class="field">
+                    <!-- Email -->
+                    <label for="contact-email">Email Address</label>
+                    <input type="email" name="contact-email" id="contact-email" ng-model="application.emergency.email" required>
+                </div>
+                <div class="field">
+                    <!-- Phone -->
+                    <label for="contact-phone">Phone Number</label>
+                    <input type="text" name="contact-phone" id="contact-phone" ng-model="application.emergency.phone" required>
+                </div>
+            </div>
+        </div>
+        <!-- Rental History -->
         <div class="ui segment">
             <h2>Rental History</h2>
             <h3>Current Residence</h3>
             <!-- Address -->
-            <address-inputs model-key="current" model="application.currentResidence.address" semantic-form></address-inputs>
+            <address-inputs model-key="current" model="application.currentResidence.address"></address-inputs>
 
             <!-- Details -->
             <div class="fields">
@@ -131,7 +159,7 @@
                 </div>
             </div>
 
-            <address-inputs model-key="current-employer" model="application.currentEmployment.address" semantic-form></address-inputs>
+            <address-inputs model-key="current-employer" model="application.currentEmployment.address"></address-inputs>
 
             <div class="fields">
                 <div class="field six wide">

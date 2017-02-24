@@ -9,6 +9,7 @@ angular.module('app')
                 email: application.user.email,
                 phone: application.user.phone,
                 relations: application.user.relations,
+                emergency: application.emergency,
                 propertyid: '1',
                 applicationid: application._id,
                 userStatus: 'new',

@@ -71,6 +71,12 @@ const applicationSchema = mongoose.Schema({
         hasNegativeCredit: {type: String, require: true},
         creditExplaination: String
     },
+    emergency: {
+        firstName: {type: String, require: true},
+        lastName: {type: String, require: true},
+        email: {type: String, require: true},
+        phone: {type: String, require: true}
+    },
     additionalQuestions: String,
     signature: {type: String, require: true},
     signDate: {type: Date, require: true},
