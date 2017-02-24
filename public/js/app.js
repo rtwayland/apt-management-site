@@ -148,4 +148,9 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
                   }
                 }
             })
+            .state('tenants', {
+                url: '/tenants',
+                templateUrl: './views/admin/tenants.html',
+                controller: 'AdminUsers'
+            })
     });

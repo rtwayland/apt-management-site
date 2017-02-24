@@ -1,0 +1,23 @@
+<h2 class="text-center">All Tenants</h2>
+<table class="ui table">
+    <thead>
+        <tr class="center aligned">
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Property</th>
+            <th></th>
+            <!-- <th></th> -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="center aligned" ng-repeat="tenant in tenants">
+            <td>{{tenant.firstName}} {{tenant.lastName}}</td>
+            <td>{{tenant.email}}</td>
+            <td>{{tenant.phone}}</td>
+            <td>{{tenant.propertyName}}</td>
+            <td><button type="button" class="ui grey basic button" ui-sref="user-details({ id: tenant._id })">View Details</button></td>
+            <!-- <td><button type="button" class="ui negative basic button" ng-click="makeUnavailable(property)">Make Unavailable</button></td> -->
+        </tr>
+    </tbody>
+</table>
