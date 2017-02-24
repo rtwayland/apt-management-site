@@ -100,16 +100,19 @@
                 <div class="ui fluid image">
                     <img ng-src="{{property.mainPhoto}}">
                 </div>
-                <div>
-                    <div class="field">
-                        <label for="photos">Change Main Image</label>
+                <div style="margin-top: 10px; margin-bottom: 20px;">
+                  <button type="button" class="ui basic button"
+                  ng-class="{grey: changeMainImg, yellow:!changeMainImg}"
+                  ng-click="changeMainImg = !changeMainImg">{{!changeMainImg ? 'Change' : 'Keep'}} Main Image</button>
+                    <div class="field" ng-show="changeMainImg" style="margin-top: 10px;">
+                        <label for="photos">New Main Image</label>
                         <input type="file" name="main-photo" id="main-photo" accept="image/*" s3file files="newMainPhoto">
                     </div>
                 </div>
                 <div ng-if="property.photos.length">
-                    <h3 class="ui top attached header">Images
-                  <i ng-class="{right: !showPhotos, down: showPhotos}" class="caret icon cursor-pointer" ng-click="showPhotos = !showPhotos"></i>
-                </h3>
+                    <h3 class="ui top attached header">All Images
+                      <i ng-class="{right: !showPhotos, down: showPhotos}" class="caret icon cursor-pointer" ng-click="showPhotos = !showPhotos"></i>
+                    </h3>
                     <div class="ui attached segment" ng-show="showPhotos">
                         <div class="ui fluid image" ng-repeat="photo in property.photos">
                             <div class="ui massive red right corner label cursor-pointer" ng-click="deleteImage(photo)">
@@ -119,10 +122,10 @@
                         </div>
                     </div>
                 </div>
-                <h3>Additional Photos</h3>
-                <div>
+                <!-- <h3>Additional Photos</h3> -->
+                <div style="margin-top: 10px;">
                     <div class="field">
-                        <!-- <label for="photos">Add Additional Photos</label> -->
+                        <label for="photos">Additional Photos</label>
                         <input type="file" name="photos" id="photos" multiple accept="image/*" s3file files="addedPhotos">
                     </div>
                 </div>
