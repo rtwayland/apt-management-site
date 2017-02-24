@@ -55,7 +55,7 @@
                 </div>
             </div>
             <div>
-                <h2>Amenities</h2>
+                <h3>Amenities</h3>
                 <div class="fields" ng-repeat="section in property.amenities track by $index">
                     <div class="field" ng-repeat="amenity in section track by $index">
                         <div class="ui checkbox">
@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div>
-                    <h2>Additional Amenities</h2>
+                    <h3>Additional Amenities</h3>
                     <div class="field">
                         <button class="ui tiny green button" type="button" ng-click="addAmenity()">Add</button>
                     </div>
@@ -74,8 +74,12 @@
                     </div>
                 </div>
             </div>
+            <div class="field required">
+                <label for="main-photo">Main Property Photo</label>
+                <input type="file" name="main-photo" id="main-photo" accept="image/*" s3file files="property.mainPhoto" required>
+            </div>
             <div class="field">
-                <label for="photos">Photos</label>
+                <label for="photos">Additional Photos</label>
                 <input type="file" name="photos" id="photos" multiple accept="image/*" s3file files="property.photos">
             </div>
             <div class="field required">

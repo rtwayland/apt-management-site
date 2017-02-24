@@ -24,6 +24,8 @@ const apartmentSchema = mongoose.Schema({
   deposit: {type: String, require: true},
   amenities: [[]],
   addedAmenities: [],
+  mainPhoto: {type: String, require: true},
+  allPhotos: [],
   photos: [],
   status: {type: String, require: true}
 });

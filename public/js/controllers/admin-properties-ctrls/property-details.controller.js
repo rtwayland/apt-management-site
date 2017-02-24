@@ -2,6 +2,31 @@ angular.module('app')
     .controller('PropertyDetails', function($scope, $state, PropertyService, AmazonS3Service) {
         $scope.numAddAmenities = 0;
 
+        function setAvailabilityOptions() {
+            $scope.avalailabilityOptions = [{
+                    id: '1',
+                    name: 'Available'
+                },
+                {
+                    id: '2',
+                    name: 'Unavailable'
+                }
+            ]
+            var available = {
+                id: '1',
+                name: 'Available'
+            };
+            var unavailable = {
+                id: '2',
+                name: 'Unavailable'
+            }
+            console.log('In the options function');
+            if ($scope.property.status === 'available') {
+                $scope.availalabilityOption = available;
+            } else {
+                $scope.availalabilityOption = unavailable;
+            }
+        }
         /******************** GET PROPERTY ********************/
         function init() {
             PropertyService.getPropertyById($state.params.id)
@@ -16,6 +41,7 @@ angular.module('app')
                     if (res.acres) tempProperty.acres *= 1;
                     $scope.property = tempProperty;
                     $scope.property.evenMoreAmenities = [];
+                    setAvailabilityOptions();
                 }, function(err) {
                     console.log(err);
                 });
@@ -23,20 +49,50 @@ angular.module('app')
 
         /******************** UPDATE PROPERTY ********************/
         $scope.submit = function() {
-            var combined = $scope.property.addedAmenities.concat($scope.property.evenMoreAmenities);
+            let combined = $scope.property.addedAmenities.concat($scope.property.evenMoreAmenities);
             $scope.property.addedAmenities = combined;
-            if ($scope.addedPhotos) {
-                AmazonS3Service.uploadPhotos($scope.property.name, $scope.addedPhotos)
+            if ($scope.newMainPhoto) {
+                AmazonS3Service.uploadPhotos($scope.property.name, $scope.newMainPhoto)
                     .then(function(res) {
-                        let newlyAddedPhotos = res;
-                        var combined = $scope.property.photos.concat(newlyAddedPhotos);
-                        $scope.property.photos = combined;
-                        updateProperty($scope.property._id, $scope.property);
+                        $scope.property.mainPhoto = res[0];
+                        if ($scope.addedPhotos) {
+                            AmazonS3Service.uploadPhotos($scope.property.name, $scope.addedPhotos)
+                                .then(function(res) {
+                                    let newlyAddedPhotos = res;
+                                    let combined = $scope.property.photos.concat(newlyAddedPhotos);
+                                    $scope.property.photos = combined;
+                                    var temp = [];
+                                    temp.push($scope.property.mainPhoto);
+                                    temp = temp.concat($scope.property.photos);
+                                    $scope.property.allPhotos = temp;
+                                    updateProperty($scope.property._id, $scope.property);
+                                }, function(err) {
+                                    console.log(err);
+                                });
+                        } else {
+                            updateProperty($scope.property._id, $scope.property);
+                        }
                     }, function(err) {
                         console.log(err);
-                    });
+                    })
             } else {
-                updateProperty($scope.property._id, $scope.property);
+                if ($scope.addedPhotos) {
+                    AmazonS3Service.uploadPhotos($scope.property.name, $scope.addedPhotos)
+                        .then(function(res) {
+                            let newlyAddedPhotos = res;
+                            let combined = $scope.property.photos.concat(newlyAddedPhotos);
+                            $scope.property.photos = combined;
+                            var temp = [];
+                            temp.push($scope.property.mainPhoto);
+                            temp = temp.concat($scope.property.photos);
+                            $scope.property.allPhotos = temp;
+                            updateProperty($scope.property._id, $scope.property);
+                        }, function(err) {
+                            console.log(err);
+                        });
+                } else {
+                    updateProperty($scope.property._id, $scope.property);
+                }
             }
         }
 
