@@ -11,6 +11,12 @@ const userSchema = mongoose.Schema({
   email: {type: String, require: true},
   phone: {type: String, require: true},
   relations: Array,
+  emergency: {
+      firstName: {type: String, require: true},
+      lastName: {type: String, require: true},
+      email: {type: String, require: true},
+      phone: {type: String, require: true}
+  },
   propertyid: String,
   applicationid: String,
   userStatus: String,
