@@ -17,6 +17,7 @@ const userSchema = mongoose.Schema({
       email: {type: String, require: true},
       phone: {type: String, require: true}
   },
+  propertyName: String,
   propertyid: String,
   applicationid: String,
   userStatus: String,

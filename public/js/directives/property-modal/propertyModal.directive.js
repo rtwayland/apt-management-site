@@ -10,13 +10,10 @@ angular.module('app')
 
             },
             controller: function($scope, $state) {
-                $scope.goToApplication = function(name, unit) {
-                    if (unit) {
-                        let propertyName = name + ' ' + unit;
-                        $state.go('apply', {propertyName: propertyName});
-                    } else {
-                        $state.go('apply', {propertyName: name});
-                    }
+                $scope.goToApplication = function(id) {
+                    $state.go('apply', {
+                        propertyId: id
+                    });
                 }
             }
         };

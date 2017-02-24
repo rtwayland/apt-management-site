@@ -24,6 +24,7 @@ var addressSchema = mongoose.Schema({
 // ============================================================
 const applicationSchema = mongoose.Schema({
     propertyName: {type: String, require: true},
+    propertyId: {type: String, require: true},
     user: applicationUserSchema,
     currentResidence: {
         address: addressSchema,

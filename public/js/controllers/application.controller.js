@@ -35,6 +35,7 @@ angular.module('app')
         $scope.fillForm = function() {
             $scope.numAddOccupants = 0;
             $scope.application = {
+                propertyId: '58af6bbbd7f98eba360e310f',
                 user: {
                     firstName: 'MyName',
                     middleName: '',
@@ -42,7 +43,7 @@ angular.module('app')
                     birthdate: new Date(),
                     email: 'email@email.com',
                     phone: '1234567890',
-                    ssn: '1234567890',
+                    ssn: '123456789',
                     driversLicence: '1234567890',
                     relations: []
                 },
@@ -56,7 +57,7 @@ angular.module('app')
                     address: {
                         street: '123 N 123 E',
                         city: 'Somewhere',
-                        state: '',
+                        state: 'ID',
                         zip: '12345'
                     },
                     monthlyRent: '1045',
@@ -72,7 +73,7 @@ angular.module('app')
                     address: {
                         street: '123 N 123 E',
                         city: 'Somewhere',
-                        state: '',
+                        state: 'ID',
                         zip: '12345'
                     },
                     supervisorName: 'Wes',
@@ -117,15 +118,26 @@ angular.module('app')
         }
 
         $scope.submitApplication = function() {
-            if ($scope.application.propertyName !== '' &&
+            if ($scope.application.propertyId !== '' &&
                 $scope.application.currentResidence.address.state !== '' &&
                 $scope.application.currentEmployment.address.state !== '') {
-
-                // console.log($scope.application);
-                ApplicationService.submitApplication($scope.application)
+                PropertyService.getPropertyById($scope.application.propertyId)
                     .then(function(res) {
-                        $state.go('home');
+                        if (res.address.unit) {
+                            $scope.application.propertyName = res.name + ' ' + res.address.unit;
+                        } else {
+                            $scope.application.propertyName = res.name;
+                        }
+
+                        // console.log($scope.application);
+                        ApplicationService.submitApplication($scope.application)
+                            .then(function(res) {
+                                $state.go('home');
+                            })
+                    }, function(err) {
+                        console.log(err);
                     })
+
             } else {
                 // Trigger error message
                 console.log('Please fill out all the fields.');
@@ -134,7 +146,7 @@ angular.module('app')
 
         function init() {
             $scope.application = {
-                propertyName: '',
+                propertyId: '',
                 user: {
                     firstName: '',
                     middleName: '',
@@ -221,28 +233,27 @@ angular.module('app')
                     for (var i = 0; i < properies.length; i++) {
                         if (properies[i].address.unit) {
                             let name = properies[i].name + ' #' + properies[i].address.unit;
-                            let propVal = properies[i].name + ' ' + properies[i].address.unit;
                             var option = {
-                                value: propVal,
+                                value: properies[i]._id,
                                 name: name
                             }
                         } else {
                             var option = {
-                                value: properies[i].name,
+                                value: properies[i]._id,
                                 name: properies[i].name
                             }
                         }
                         $scope.propertyOptions.push(option);
                     }
 
-                    if ($state.params.propertyName) {
-                        console.log($state.params);
-                        $scope.application.propertyName = $state.params.propertyName;
+                    if ($state.params.propertyId) {
+                        // console.log($state.params);
+                        $scope.application.propertyId = $state.params.propertyId;
                         $scope.propertySelected = true;
                     } else {
                         $scope.propertySelected = false;
                     }
-                    console.log($scope.propertySelected);
+                    // console.log($scope.propertySelected);
                 }, function(err) {
                     console.log(err);
                 });

@@ -23,7 +23,7 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
                 controller: 'PropertyGallery'
             })
             .state('apply', {
-                url: '/apply?propertyName',
+                url: '/apply?propertyId',
                 templateUrl: './views/public/apply.html',
                 controller: 'ApplicationCtrl'
             })

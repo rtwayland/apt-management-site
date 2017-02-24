@@ -10,7 +10,8 @@ angular.module('app')
                 phone: application.user.phone,
                 relations: application.user.relations,
                 emergency: application.emergency,
-                propertyid: '1',
+                propertyName: application.propertyName,
+                propertyid: application.propertyId,
                 applicationid: application._id,
                 userStatus: 'new',
                 loginid: ''

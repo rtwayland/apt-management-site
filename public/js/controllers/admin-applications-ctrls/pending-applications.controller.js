@@ -21,12 +21,12 @@ angular.module('app')
                         .then(function(res) {
                             console.log('User from Ctrl', res);
                             // Send out the approval email
-                            EmailService.sendApprovedEmail(application.user.email)
-                                .then(function(res) {
-                                    console.log(res);
-                                }, function(err) {
-                                    console.log(err);
-                                });
+                            // EmailService.sendApprovedEmail(application.user.email)
+                            //     .then(function(res) {
+                            //         console.log(res);
+                            //     }, function(err) {
+                            //         console.log(err);
+                            //     });
 
                         }, function(err) {
                             console.log(err);
