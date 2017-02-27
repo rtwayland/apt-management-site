@@ -14,7 +14,7 @@
                 <label>First Name</label>
                 <input type="text" value="{{application.user.firstName}}" disabled>
             </div>
-            <div class="field four wide">
+            <div class="field four wide" ng-if="application.user.middleName">
                 <label>Middle Name</label>
                 <input type="text" value="{{application.user.middleName}}" disabled>
             </div>
@@ -70,6 +70,33 @@
             <div class="field">
                 <label>Relation to Applicant</label>
                 <input type="text" value="{{relation.relationship}}" disabled>
+            </div>
+        </div>
+    </div>
+    <!-- Emergency Contact -->
+    <div class="ui segment">
+        <h2>Emergency Contact Information</h2>
+        <!-- Names -->
+        <div class="fields">
+            <div class="field">
+                <label>First Name</label>
+                <input type="text" ng-model="application.emergency.firstName" disabled>
+            </div>
+            <div class="field">
+                <label>Last Name</label>
+                <input type="text" ng-model="application.emergency.lastName" disabled>
+            </div>
+        </div>
+        <div class="fields">
+            <div class="field">
+                <!-- Email -->
+                <label>Email Address</label>
+                <input type="text" ng-model="application.emergency.email" disabled>
+            </div>
+            <div class="field">
+                <!-- Phone -->
+                <label>Phone Number</label>
+                <input type="text" ng-model="application.emergency.phone" disabled>
             </div>
         </div>
     </div>
