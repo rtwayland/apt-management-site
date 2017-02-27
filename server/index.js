@@ -14,6 +14,7 @@ const express = require('express'),
 const applicationCtrl = require('./controllers/application.server.controller'),
     userCtrl = require('./controllers/user.server.controller'),
     apartmentCtrl = require('./controllers/apartment.server.controller'),
+    maintenanceRequestCtrl = require('./controllers/maintenance-request.server.controller'),
     stripeCtrl = require('./controllers/stripe.server.controller'),
     amazonS3 = require('./controllers/amazonS3.server.controller'),
     emailCtrl = require('./controllers/email.server.controller');
@@ -147,6 +148,11 @@ app.get('/api/apartment', apartmentCtrl.read);
 app.post('/api/apartment', apartmentCtrl.create);
 app.put('/api/apartment/:id', apartmentCtrl.update);
 app.delete('/api/apartment/:id', apartmentCtrl.delete);
+
+// MAINTENANCE REQUEST ENDPOINTS
+app.get('/api/maintenance', maintenanceRequestCtrl.read);
+app.post('/api/maintenance', maintenanceRequestCtrl.create);
+app.delete('/api/maintenance/:id', maintenanceRequestCtrl.delete);
 
 // EMAIL ENDPOINTS
 app.post('/api/email-approval', emailCtrl.sendApprovedEmail);
