@@ -5,6 +5,6 @@
         "userTMP"
     ],
     "watch": [
-        "server/*.js"
+        "server/*"
     ]
 }
