@@ -32,7 +32,8 @@ body {
 }
 
 .full-opacity-disabled-form {
-    input {
+    input,
+    textarea {
         opacity: 1 !important;
     }
 }
