@@ -62,11 +62,11 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
             // RESIDENT PAGES
             .state('resident', {
                 url: '/resident',
-                template: '<h1>Welcome {{ username }}</h1>',
-                controller: function($scope, $rootScope, LoginService, user) {
+                templateUrl: './views/resident/resident.html',
+                controller: function($scope, $rootScope, user) {
                     sessionStorage.setItem("state", 2);
                     $rootScope.state = 2;
-                    console.log('Logged in Resident\n', user);
+                    $scope.user = user;
                     $scope.username = user.firstName + ' ' + user.lastName;
                 },
                 resolve: {

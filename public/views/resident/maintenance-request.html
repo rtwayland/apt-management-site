@@ -1,0 +1,26 @@
+<div class="form-container">
+    <form class="ui equal width form" ng-submit="submit()">
+        <div class="ui segment">
+            <h2>Maintenance Request</h2>
+            <form class="ui equal width form">
+                <div class="fields">
+                    <div class="field">
+                        <label>Tenant Name</label>
+                        <input type="text" value="{{request.contact.name}}" disabled>
+                    </div>
+                    <div class="field">
+                        <label>Property Name</label>
+                        <input type="text" value="{{request.propertyName}}" disabled>
+                    </div>
+                </div>
+            </form>
+            <div class="field">
+                <label for="issue">Please describe the issue</label>
+                <textarea name="issue" ng-model="request.issue" placeholder="Issue description"></textarea>
+            </div>
+            <div class="ui center aligned container">
+                <button type="submit" class="ui large positive basic button">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
