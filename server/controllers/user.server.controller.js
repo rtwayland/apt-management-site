@@ -7,12 +7,21 @@ module.exports = {
     // CRUD METHODS
     // ============================================================
     read(req, res) {
-        User.find(req.query, function(err, result) {
-            if (err) {
-                res.status(500).send(err);
-            }
-            res.status(200).send(result);
-        });
+        if (req.query.id) {
+            User.findById(req.query.id, function(err, result) {
+                if (err) {
+                    return res.status(500).send(err);
+                }
+                res.status(200).send(result);
+            });
+        } else {
+            User.find(req.query, function(err, result) {
+                if (err) {
+                    res.status(500).send(err);
+                }
+                res.status(200).send(result);
+            });
+        }
     },
     create(req, res) {
         User.create(req.body, function(err, result) {

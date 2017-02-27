@@ -1,6 +1,12 @@
 angular.module('app')
     .service('UserService', function($http) {
-        this.createUser = function(application) {
+        this.getUserById = function(id) {
+                return $http.get('/api/user?id=' + id)
+                    .then(function(res) {
+                        return res.data;
+                    });
+            },
+            this.createUser = function(application) {
                 let userObj = angular.toJson({
                     firstName: application.user.firstName,
                     middleName: application.user.middleName,
@@ -32,5 +38,9 @@ angular.module('app')
                         console.log(err);
                         return err;
                     })
+            },
+            this.updateUser = function(id, user) {
+                // user = angular.toJson(user);
+                return $http.put('/api/user/' + id, user);
             }
     });

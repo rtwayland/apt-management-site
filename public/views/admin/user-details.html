@@ -1,0 +1,110 @@
+<h2 class="ui center aligned block header">Tenant info at {{user.propertyName}}</h2>
+<div class="ui styled fluid accordion" semantic-accordion>
+    <div class="active title">
+        <i class="dropdown icon"></i> Tenant Info
+    </div>
+    <div class="active content">
+        <div class="ui right aligned container">
+            <button type="button" class="ui grey basic button" ng-cloak ng-show="!editing" ng-click="edit()">Edit</button>
+            <button type="button" class="ui yellow basic button" ng-show="editing" ng-click="cancelEdit()">Cancel</button>
+            <button type="button" class="ui positive basic button" ng-show="editing" ng-click="saveEdit()">Save</button>
+        </div>
+        <form class="ui equal width form full-opacity-disabled-form">
+            <!-- <div class="ui segment"> -->
+            <div class="fields">
+                <div class="field">
+                    <label>First Name</label>
+                    <input type="text" value="{{user.firstName}}" ng-class="{'opacity-disabled': editing}" disabled>
+                </div>
+                <div class="field" ng-if="user.middleName">
+                    <label>Middle Name</label>
+                    <input type="text" value="{{user.middleName}}" ng-class="{'opacity-disabled': editing}" disabled>
+                </div>
+                <div class="field">
+                    <label>Last Name</label>
+                    <input type="text" value="{{user.lastName}}" ng-class="{'opacity-disabled': editing}" disabled>
+                </div>
+            </div>
+            <div class="fields">
+                <div class="field four wide">
+                    <!-- Bday -->
+                    <label for="birth-date">Birth Date</label>
+                    <div class="ui input right icon">
+                        <input type="text" value="{{user.birthdate | date:'mediumDate'}}" ng-class="{'opacity-disabled': editing}" disabled>
+                        <i class="calendar icon"></i>
+                    </div>
+                </div>
+                <div class="field six wide">
+                    <!-- Email -->
+                    <label>Email Address</label>
+                    <input type="text" ng-model="user.email" value="{{user.email}}" ng-disabled="!editing">
+                </div>
+                <div class="field six wide">
+                    <!-- Phone -->
+                    <label>Phone Number</label>
+                    <input type="text" ng-model="user.phone" value="{{user.phone}}" ng-disabled="!editing">
+                </div>
+            </div>
+            <!-- </div> -->
+        </form>
+        <div class="ui center aligned container">
+            <a href="tel:{{user.phone}}" type="button" class="ui positive basic button">Call</a>
+            <a href="mailto:{{user.email}}" type="button" class="ui primary basic button">Email</a>
+            <button type="button" class="ui grey basic button" ui-sref="application-details({ id: user.applicationid })">View Application</button>
+        </div>
+    </div>
+    <div class="title">
+        <i class="dropdown icon"></i> Emergency Contact
+    </div>
+    <div class="content">
+        <form class="ui equal width form full-opacity-disabled-form">
+            <div class="fields">
+                <div class="field">
+                    <label>First Name</label>
+                    <input type="text" ng-model="user.emergency.firstName" disabled>
+                </div>
+                <div class="field">
+                    <label>Last Name</label>
+                    <input type="text" ng-model="user.emergency.lastName" disabled>
+                </div>
+            </div>
+            <div class="fields">
+                <div class="field">
+                    <!-- Email -->
+                    <label>Email Address</label>
+                    <input type="text" ng-model="user.emergency.email" disabled>
+                </div>
+                <div class="field">
+                    <!-- Phone -->
+                    <label>Phone Number</label>
+                    <input type="text" ng-model="user.emergency.phone" disabled>
+                </div>
+            </div>
+        </form>
+        <div class="ui center aligned container">
+            <a href="tel:{{user.emergency.phone}}" type="button" class="ui positive basic button">Call</a>
+            <a href="mailto:{{user.emergency.email}}" type="button" class="ui primary basic button">Email</a>
+        </div>
+    </div>
+    <div class="title">
+        <i class="dropdown icon"></i> Payments
+    </div>
+    <div class="content">
+        <table class="ui table">
+            <thead>
+                <tr class="center aligned">
+                    <th>Due Date</th>
+                    <th>Date Paid</th>
+                    <th>Amount Paid</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="center aligned">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

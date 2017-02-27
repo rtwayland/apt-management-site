@@ -153,4 +153,10 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
                 templateUrl: './views/admin/tenants.html',
                 controller: 'AdminUsers'
             })
+            .state('user-details', {
+                url: '/user-details/:id',
+                templateUrl: './views/admin/user-details.html',
+                controller: 'UserDetails'
+            })
+
     });
