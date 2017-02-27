@@ -40,6 +40,14 @@ module.exports = {
             res.status(200).send(result);
         });
     },
+    update(req, res) {
+        MaintenanceRequest.findByIdAndUpdate(req.params.id, req.body, function(err, result) {
+            if (err) {
+                res.status(500).send(err);
+            }
+            res.status(200).send(result);
+        });
+    },
     delete(req, res) {
         MaintenanceRequest.findByIdAndRemove(req.params.id, function(err, result) {
             if (err) {
