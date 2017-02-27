@@ -18,7 +18,7 @@ angular.module('app')
             }
         ];
         var residentNavLinks = [{
-                link: 'maintenance',
+                link: 'resident-maintenance',
                 name: 'Maintenance Request'
             },
             {
@@ -35,7 +35,7 @@ angular.module('app')
                 name: 'Applications'
             },
             {
-                link: 'maintenanceRequests',
+                link: 'admin-maintenance',
                 name: 'Maintenance Requests'
             },
             {

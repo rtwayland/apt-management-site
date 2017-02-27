@@ -7,6 +7,20 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
         $urlRouterProvider.when('/applications', '/applications/pending');
         $urlRouterProvider.when('/properties', '/properties/available');
 
+        function resolveLogin(LoginService, $state) {
+            return LoginService.getUser()
+                .then(function(res) {
+                    if (res.status === 200) {
+                        return res.data;
+                    } else {
+                        $state.go('resident-login');
+                    }
+                }, function(err) {
+                    console.log(err);
+                    $state.go('resident-login');
+                });
+        }
+
         $stateProvider
             // PUBLIC PAGES
             .state('home', {
@@ -29,7 +43,11 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
             })
             .state('resident-login', {
                 url: '/resident-login',
-                templateUrl: './views/public/resident-login.html'
+                templateUrl: './views/public/resident-login.html',
+                controller: function($scope, $rootScope) {
+                    sessionStorage.setItem("state", 1);
+                    $rootScope.state = 1;
+                }
             })
             .state('contact', {
                 url: '/contact',
@@ -45,19 +63,22 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
             .state('resident', {
                 url: '/resident',
                 template: '<h1>Welcome {{ username }}</h1>',
-                controller: function($scope, $rootScope, LoginService) {
+                controller: function($scope, $rootScope, LoginService, user) {
                     sessionStorage.setItem("state", 2);
                     $rootScope.state = 2;
-
-                    function getUser() {
-                        LoginService.getUser()
-                            .then(function(res) {
-                                $scope.username = res.firstName + ' ' + res.lastName;
-                            }, function(err) {
-                                console.log(err);
-                            });
-                    }
-                    getUser();
+                    console.log('Logged in Resident\n', user);
+                    $scope.username = user.firstName + ' ' + user.lastName;
+                },
+                resolve: {
+                    user: resolveLogin
+                }
+            })
+            .state('resident-maintenance', {
+                url: '/resident-maintenance',
+                templateUrl: './views/resident/maintenance-request.html',
+                controller: 'MaintenanceRequest',
+                resolve: {
+                    user: resolveLogin
                 }
             })
             .state('logout', {
@@ -128,24 +149,24 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
                 templateUrl: './views/admin/property-details.html',
                 controller: 'PropertyDetails',
                 resolve: {
-                  property: function(PropertyService, $stateParams) {
-                    return PropertyService.getPropertyById($stateParams.id)
-                        .then(function(res) {
-                            let tempProperty = res;
-                            tempProperty.rent *= 1;
-                            tempProperty.deposit *= 1;
-                            tempProperty.beds *= 1;
-                            tempProperty.baths *= 1;
-                            if (res.year) tempProperty.year *= 1;
-                            if (res.sqfeet) tempProperty.sqfeet *= 1;
-                            if (res.acres) tempProperty.acres *= 1;
-                            var property = tempProperty;
-                            property.evenMoreAmenities = [];
-                            return property
-                        }, function(err) {
-                            console.log(err);
-                        });
-                  }
+                    property: function(PropertyService, $stateParams) {
+                        return PropertyService.getPropertyById($stateParams.id)
+                            .then(function(res) {
+                                let tempProperty = res;
+                                tempProperty.rent *= 1;
+                                tempProperty.deposit *= 1;
+                                tempProperty.beds *= 1;
+                                tempProperty.baths *= 1;
+                                if (res.year) tempProperty.year *= 1;
+                                if (res.sqfeet) tempProperty.sqfeet *= 1;
+                                if (res.acres) tempProperty.acres *= 1;
+                                var property = tempProperty;
+                                property.evenMoreAmenities = [];
+                                return property
+                            }, function(err) {
+                                console.log(err);
+                            });
+                    }
                 }
             })
             .state('tenants', {
