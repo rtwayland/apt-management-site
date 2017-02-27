@@ -152,6 +152,7 @@ app.delete('/api/apartment/:id', apartmentCtrl.delete);
 // MAINTENANCE REQUEST ENDPOINTS
 app.get('/api/maintenance', maintenanceRequestCtrl.read);
 app.post('/api/maintenance', maintenanceRequestCtrl.create);
+app.put('/api/maintenance/:id', maintenanceRequestCtrl.update);
 app.delete('/api/maintenance/:id', maintenanceRequestCtrl.delete);
 
 // EMAIL ENDPOINTS
