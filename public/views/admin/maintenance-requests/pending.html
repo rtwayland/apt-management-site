@@ -1,0 +1,24 @@
+<h2 class="text-center">Pending Requests</h2>
+
+<table class="ui table">
+    <thead>
+        <tr class="center aligned">
+            <th>Tenant Name</th>
+            <th>Property Name</th>
+            <th>Submission Date</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="center aligned" ng-repeat="request in pendingRequests">
+            <td>{{request.contact.name}}</td>
+            <td>{{request.propertyName}}</td>
+            <td>{{request.date | date:'medium'}}</td>
+            <td><button type="button" class="ui grey basic button" ui-sref="request-details({ id: request._id })">View Request</button></td>
+            <td><button type="button" class="ui grey basic button" ui-sref="user-details({ id: request.contact.userid })">View Tenant</button></td>
+            <td><button type="button" class="ui positive basic button" ng-click="completeRequest(request)">Complete</button></td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,38 @@
+<div class="form-container">
+    <form class="ui equal width form full-opacity-disabled-form">
+        <div class="ui segment">
+            <h2>Maintenance Request</h2>
+            <form class="ui equal width form">
+                <div class="fields">
+                    <div class="field">
+                        <label>Tenant Name</label>
+                        <input type="text" value="{{request.contact.name}}" disabled>
+                    </div>
+                    <div class="field">
+                        <label>Property Name</label>
+                        <input type="text" value="{{request.propertyName}}" disabled>
+                    </div>
+                </div>
+                <div class="fields">
+                    <div class="field">
+                        <label>Tenant Email</label>
+                        <input type="text" value="{{request.contact.email}}" disabled>
+                    </div>
+                    <div class="field">
+                        <label>Property Phone</label>
+                        <input type="text" value="{{request.contact.phone}}" disabled>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Issue Description</label>
+                    <textarea disabled>{{request.issue}}</textarea>
+                </div>
+            </form>
+            <div class="ui center aligned container">
+                <button type="button" class="ui large positive basic button" ng-click="completeRequest()">Complete</button>
+                <a href="tel:{{request.contact.phone}}" class="ui large yellow basic button">Call Tenant</a>
+                <a href="mailto:{{request.contact.email}}" class="ui large primary basic button">Email Tenant</a>
+            </div>
+        </div>
+    </form>
+</div>

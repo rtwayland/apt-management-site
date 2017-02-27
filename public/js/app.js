@@ -6,6 +6,7 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
         $urlRouterProvider.otherwise('/');
         $urlRouterProvider.when('/applications', '/applications/pending');
         $urlRouterProvider.when('/properties', '/properties/available');
+        $urlRouterProvider.when('/admin-maintenance', '/admin-maintenance/pending');
 
         function resolveLogin(LoginService, $state) {
             return LoginService.getUser()
@@ -178,6 +179,27 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
                 url: '/user-details/:id',
                 templateUrl: './views/admin/user-details.html',
                 controller: 'UserDetails'
+            })
+            // Maintenance Requests
+            .state('admin-maintenance', {
+                url: '/admin-maintenance',
+                templateUrl: './views/admin/admin-maintenance-requests.html',
+                controller: 'AdminMaintenanceRequests'
+            })
+            .state('admin-maintenance.pending', {
+                url: '/pending',
+                templateUrl: './views/admin/maintenance-requests/pending.html',
+                controller: 'PendingMaintenance'
+            })
+            .state('admin-maintenance.complete', {
+                url: '/complete',
+                templateUrl: './views/admin/maintenance-requests/complete.html',
+                controller: 'CompleteMaintenance'
+            })
+            .state('request-details', {
+                url: '/request-details/:id',
+                templateUrl: './views/admin/maintenance-request-details.html',
+                controller: 'MaintenanceDetails'
             })
 
     });
