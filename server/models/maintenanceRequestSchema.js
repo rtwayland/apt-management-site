@@ -14,6 +14,7 @@ const maintenanceRequestSchema = mongoose.Schema({
   propertyName: {type: String, require: true},
   propertyid: {type: String, require: true},
   date: {type: Date, require: true},
+  completionDate: Date,
   status: {type: String, require: true}
 });
 // EXPORT SCHEMA

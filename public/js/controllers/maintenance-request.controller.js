@@ -12,6 +12,7 @@ angular.module('app')
             propertyName: $scope.user.propertyName,
             propertyid: $scope.user.propertyid,
             date: new Date(),
+            completionDate: '',
             status: 'pending'
         }
         sessionStorage.setItem("state", 2);
