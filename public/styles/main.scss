@@ -31,6 +31,20 @@ body {
     cursor: pointer !important;
 }
 
+.full-opacity-disabled-form {
+    input {
+        opacity: 1 !important;
+    }
+}
+
+.full-opacity-disabled-form input.opacity-disabled {
+    opacity: 0.45 !important;
+}
+
+.ng-hide.ng-hide-animate {
+    display: none !important;
+}
+
 .slider-container {
     @media screen and (min-width: 966px) {
         min-width: 600px;
