@@ -1,7 +1,4 @@
 angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ngTouch', 'ui.bootstrap'])
-    .run(function($rootScope) {
-        $rootScope.state = 1;
-    })
     .config(function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
         $urlRouterProvider.when('/applications', '/applications/pending');
@@ -26,11 +23,7 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
             // PUBLIC PAGES
             .state('home', {
                 url: '/',
-                templateUrl: './views/public/home.html',
-                controller: function($scope, $rootScope) {
-                    sessionStorage.setItem("state", 1);
-                    $rootScope.state = 1;
-                }
+                templateUrl: './views/public/home.html'
             })
             .state('available-properties', {
                 url: '/available-properties',
@@ -44,11 +37,7 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
             })
             .state('resident-login', {
                 url: '/resident-login',
-                templateUrl: './views/public/resident-login.html',
-                controller: function($scope, $rootScope) {
-                    sessionStorage.setItem("state", 1);
-                    $rootScope.state = 1;
-                }
+                templateUrl: './views/public/resident-login.html'
             })
             .state('contact', {
                 url: '/contact',
@@ -64,9 +53,7 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
             .state('resident', {
                 url: '/resident',
                 templateUrl: './views/resident/resident.html',
-                controller: function($scope, $rootScope, user) {
-                    sessionStorage.setItem("state", 2);
-                    $rootScope.state = 2;
+                controller: function($scope, user) {
                     $scope.user = user;
                     $scope.username = user.firstName + ' ' + user.lastName;
                 },
@@ -92,10 +79,9 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
             // ADMIN PAGES
             .state('admin', {
                 url: '/admin',
-                template: '<h1>Admin Page</h1>',
-                controller: function($scope, $rootScope) {
-                    sessionStorage.setItem("state", 3);
-                    $rootScope.state = 3;
+                templateUrl: './views/admin/admin.html',
+                controller: function($scope) {
+
                 }
             })
             // Applications

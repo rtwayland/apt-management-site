@@ -31,15 +31,11 @@
 
 <body>
     <div class="pusher">
-        <div ng-controller="NavCtrl">
-            <main-nav links="links"></main-nav>
-        </div>
-
         <main id="main-wrapper" class="ui container">
+            <ui-view></ui-view>
             <a ui-sref="home">Public</a>
             <a ui-sref="resident">Resident</a>
             <a ui-sref="admin">Admin</a>
-            <ui-view></ui-view>
         </main>
     </div>
 </body>

@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('MaintenanceRequest', function($scope, $rootScope, $state, MaintenanceRequestService, user) {
+    .controller('MaintenanceRequest', function($scope, $state, MaintenanceRequestService, user) {
         $scope.user = user;
         $scope.request = {
             issue: '',
@@ -15,8 +15,6 @@ angular.module('app')
             completionDate: '',
             status: 'pending'
         }
-        sessionStorage.setItem("state", 2);
-        $rootScope.state = 2;
 
         $scope.submit = function() {
             MaintenanceRequestService.createRequest($scope.request)

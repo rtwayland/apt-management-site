@@ -4,7 +4,7 @@ angular.module('app')
             restrict: 'E',
             templateUrl: './js/directives/mainNav/main-nav.html',
             scope: {
-                links: '='
+                state: '='
             },
             link: function(scope, elem, attrs) {
                 scope.toggleMenu = function() {
@@ -12,19 +12,76 @@ angular.module('app')
                 }
             },
             controller: function($scope) {
-                function getListItemWidth() {
-                    var numLinks = $scope.links.length;
-                    var width = 100 / numLinks;
-                    $scope.listItemWidth = `${width}%`;
-                }
+              var publicNavLinks = [{
+                      link: 'available-properties',
+                      name: 'Availabilities'
+                  },
+                  {
+                      link: 'apply',
+                      name: 'Apply Now'
+                  },
+                  {
+                      link: 'contact',
+                      name: 'Contact Us'
+                  },
+                  {
+                      link: 'resident-login',
+                      name: 'Resident Login'
+                  }
+              ];
+              var residentNavLinks = [{
+                      link: 'resident-maintenance',
+                      name: 'Maintenance Request'
+                  },
+                  {
+                      link: 'rentPay',
+                      name: 'Pay Rent'
+                  },
+                  {
+                      link: 'logout',
+                      name: 'Log Out'
+                  }
+              ];
+              var adminNavLinks = [{
+                      link: 'applications',
+                      name: 'Applications'
+                  },
+                  {
+                      link: 'admin-maintenance',
+                      name: 'Maintenance Requests'
+                  },
+                  {
+                      link: 'tenants',
+                      name: 'Tenants'
+                  },
+                  {
+                      link: 'properties',
+                      name: 'Properties'
+                  }
+              ];
 
-                $scope.$watch('links', (newVal, oldVal) => {
-                    if (newVal != oldVal) {
-                        getListItemWidth();
-                    }
-                })
+              function updateNav() {
+                  switch ($scope.state) {
+                      case 1:
+                          $scope.links = publicNavLinks;
+                          break;
+                      case 2:
+                          $scope.links = residentNavLinks;
+                          break;
+                      case 3:
+                          $scope.links = adminNavLinks;
+                          break;
+                      default:
+                          $scope.links = publicNavLinks;
+                          break;
+                  }
+              }
 
-                getListItemWidth();
+              $scope.$watch('state', () => {
+                  updateNav();
+              });
+
+              updateNav();
             }
         };
     });
