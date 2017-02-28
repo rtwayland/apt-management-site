@@ -8,7 +8,11 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
         function resolveLogin(LoginService, $state) {
             return LoginService.getUser()
                 .then(function(res) {
-                    if (res.status === 200) {
+                    console.log('User', res);
+                    if (res.data) {
+                        if (res.data.isAdmin) {
+                            return $state.go('admin');
+                        }
                         return res.data;
                     } else {
                         $state.go('resident-login');
@@ -16,6 +20,23 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
                 }, function(err) {
                     console.log(err);
                     $state.go('resident-login');
+                });
+        }
+
+        function resolveAdmin(LoginService, $state) {
+            return LoginService.getUser()
+                .then(function(res) {
+                    if (res.data) {
+                        if (!res.data.isAdmin) {
+                            return $state.go('resident');
+                        }
+                        return res.data;
+                    } else {
+                        $state.go('admin-login');
+                    }
+                }, function(err) {
+                    console.log(err);
+                    $state.go('admin-login');
                 });
         }
 
@@ -38,6 +59,10 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
             .state('resident-login', {
                 url: '/resident-login',
                 templateUrl: './views/public/resident-login.html'
+            })
+            .state('admin-login', {
+                url: '/admin-login',
+                templateUrl: './views/admin/admin-login.html'
             })
             .state('contact', {
                 url: '/contact',
@@ -79,16 +104,19 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
             // ADMIN PAGES
             .state('admin', {
                 url: '/admin',
-                templateUrl: './views/admin/admin.html',
-                controller: function($scope) {
-
-                }
+                templateUrl: './views/admin/admin.html'
+                // resolve: {
+                //     user: resolveAdmin
+                // }
             })
             // Applications
             .state('applications', {
                 url: '/applications',
                 templateUrl: './views/admin/applications.html',
-                controller: 'AdminApplications'
+                controller: 'AdminApplications',
+                resolve: {
+                    user: resolveAdmin
+                }
             })
             .state('applications.pending', {
                 url: '/pending',
@@ -108,13 +136,19 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
             .state('application-details', {
                 url: '/application-details/:id',
                 templateUrl: './views/admin/application-details.html',
-                controller: 'ApplicationDetails'
+                controller: 'ApplicationDetails',
+                resolve: {
+                    user: resolveAdmin
+                }
             })
             // Properties
             .state('properties', {
                 url: '/properties',
                 templateUrl: './views/admin/properties.html',
-                controller: 'AdminProperties'
+                controller: 'AdminProperties',
+                resolve: {
+                    user: resolveAdmin
+                }
             })
             .state('properties.available', {
                 url: '/available',
@@ -153,24 +187,34 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
                             }, function(err) {
                                 console.log(err);
                             });
-                    }
+                    },
+                    user: resolveAdmin
                 }
             })
             .state('tenants', {
                 url: '/tenants',
                 templateUrl: './views/admin/tenants.html',
-                controller: 'AdminUsers'
+                controller: 'AdminUsers',
+                resolve: {
+                    user: resolveAdmin
+                }
             })
             .state('user-details', {
                 url: '/user-details/:id',
                 templateUrl: './views/admin/user-details.html',
-                controller: 'UserDetails'
+                controller: 'UserDetails',
+                resolve: {
+                    user: resolveAdmin
+                }
             })
             // Maintenance Requests
             .state('admin-maintenance', {
                 url: '/admin-maintenance',
                 templateUrl: './views/admin/admin-maintenance-requests.html',
-                controller: 'AdminMaintenanceRequests'
+                controller: 'AdminMaintenanceRequests',
+                resolve: {
+                    user: resolveAdmin
+                }
             })
             .state('admin-maintenance.pending', {
                 url: '/pending',
@@ -185,7 +229,10 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
             .state('request-details', {
                 url: '/request-details/:id',
                 templateUrl: './views/admin/maintenance-request-details.html',
-                controller: 'MaintenanceDetails'
+                controller: 'MaintenanceDetails',
+                resolve: {
+                    user: resolveAdmin
+                }
             })
 
     });

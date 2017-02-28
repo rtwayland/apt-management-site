@@ -4,23 +4,24 @@ const mongoose = require('mongoose');
 // DEFINE SCHEMA
 // ============================================================
 const userSchema = mongoose.Schema({
-  firstName: {type: String, require: true},
+  firstName: String,
   middleName: String,
-  lastName: {type: String, require: true},
-  birthdate: {type: Date, require: true},
-  email: {type: String, require: true},
-  phone: {type: String, require: true},
+  lastName: String,
+  birthdate: Date,
+  email: String,
+  phone: String,
   relations: Array,
   emergency: {
-      firstName: {type: String, require: true},
-      lastName: {type: String, require: true},
-      email: {type: String, require: true},
-      phone: {type: String, require: true}
+      firstName: String,
+      lastName: String,
+      email: String,
+      phone: String
   },
   propertyName: String,
   propertyid: String,
   applicationid: String,
   userStatus: String,
+  isAdmin: Boolean,
   loginid: String
 });
 // EXPORT SCHEMA
