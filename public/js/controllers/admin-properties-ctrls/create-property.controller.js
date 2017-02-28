@@ -156,7 +156,7 @@ angular.module('app')
             PropertyService.createProperty(property)
                 .then(function(res) {
                     console.log('Property Created\n', res);
-                    state.go('properties');
+                    $state.go('properties');
                 }, function(err) {
                     console.log(err);
                 });
