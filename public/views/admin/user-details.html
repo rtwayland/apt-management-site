@@ -94,16 +94,16 @@
         <table class="ui table">
             <thead>
                 <tr class="center aligned">
-                    <th>Due Date</th>
+                    <!-- <th>Due Date</th> -->
                     <th>Date Paid</th>
                     <th>Amount Paid</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="center aligned">
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                <tr class="center aligned" ng-repeat="payment in user.payments">
+                    <!-- <td>{{payment.}}</td> -->
+                    <td>{{payment.date | date:'mediumDate'}}</td>
+                    <td>{{payment.amount | currency:"$":0 }}</td>
                 </tr>
             </tbody>
         </table>
