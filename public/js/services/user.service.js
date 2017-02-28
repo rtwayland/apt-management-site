@@ -30,6 +30,14 @@ angular.module('app')
                         console.log(err);
                     });
             },
+            this.createAdmin = function(admin) {
+                return $http.post('/api/user', admin)
+                    .then(function(res) {
+                        return res.data;
+                    }, function(err) {
+                        console.log(err);
+                    });
+            },
             this.getUsers = function() {
                 return $http.get('/api/user')
                     .then(function(res) {

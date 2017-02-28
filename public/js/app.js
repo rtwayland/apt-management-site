@@ -104,10 +104,11 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
             // ADMIN PAGES
             .state('admin', {
                 url: '/admin',
-                templateUrl: './views/admin/admin.html'
-                // resolve: {
-                //     user: resolveAdmin
-                // }
+                templateUrl: './views/admin/admin.html',
+                controller: 'AdminCreate',
+                resolve: {
+                    user: resolveAdmin
+                }
             })
             // Applications
             .state('applications', {

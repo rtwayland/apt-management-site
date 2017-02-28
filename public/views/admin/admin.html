@@ -1,3 +1,29 @@
 <main-nav state="3"></main-nav>
-<div class="ui center aligned padded text container segment">
+<div class="ui padded text container segment">
+    <h2 class="text-center serif-font">Create New Admin</h2>
+    <form name="adminCreationForm" class="ui equal width form" ng-submit="createAdmin()">
+        <div class="fields">
+            <div class="field required">
+                <label for="first">First Name</label>
+                <input type="text" name="first" id="first" ng-model="newAdmin.firstName" placeholder="Firstname" required>
+            </div>
+            <div class="field required">
+                <label for="last">Last Name</label>
+                <input type="text" name="last" id="last" ng-model="newAdmin.lastName" placeholder="Lastname" required>
+            </div>
+        </div>
+        <div class="fields">
+            <div class="field required">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" ng-model="newAdmin.email" placeholder="email@email.com" required>
+            </div>
+            <div class="field required">
+                <label for="phone">Phone</label>
+                <input type="text" name="phone" id="phone" ng-model="newAdmin.phone" placeholder="123-456-7890" required>
+            </div>
+        </div>
+        <div class="ui center aligned container">
+          <button type="submit" class="ui large basic positive button" ng-disabled="adminCreationForm.$invalid">Submit</button>
+        </div>
+    </form>
 </div>
