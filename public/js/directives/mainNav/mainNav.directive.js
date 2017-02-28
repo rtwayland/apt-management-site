@@ -57,6 +57,10 @@ angular.module('app')
                   {
                       link: 'properties',
                       name: 'Properties'
+                  },
+                  {
+                      link: 'logout',
+                      name: 'Log Out'
                   }
               ];
 
