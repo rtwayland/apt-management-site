@@ -34,7 +34,7 @@ angular.module('app')
                       name: 'Maintenance Request'
                   },
                   {
-                      link: 'rentPay',
+                      link: 'resident-rent',
                       name: 'Pay Rent'
                   },
                   {
