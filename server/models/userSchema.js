@@ -20,6 +20,8 @@ const userSchema = mongoose.Schema({
   propertyName: String,
   propertyid: String,
   applicationid: String,
+  rentPaid: Boolean,
+  payments: [],
   userStatus: String,
   isAdmin: Boolean,
   loginid: String

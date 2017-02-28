@@ -141,6 +141,7 @@ app.delete('/api/application/:id', applicationCtrl.delete);
 app.get('/api/user', userCtrl.read);
 app.post('/api/user', userCtrl.create);
 app.put('/api/user/:id', userCtrl.update);
+app.put('/api/user/payment/:id', userCtrl.addPayment);
 app.delete('/api/user/:id', userCtrl.delete);
 
 // APARTMENT ENDPOINTS

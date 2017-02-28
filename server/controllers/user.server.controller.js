@@ -55,8 +55,24 @@ module.exports = {
             }
             res.status(200).send(result);
         });
-    }
+    },
     // OTHER METHODS
     // ============================================================
-
+    addPayment(req, res) {
+        User.findByIdAndUpdate(req.params.id, {
+                $push: {
+                    "payments": req.body
+                }
+            }, {
+                safe: true,
+                upsert: true,
+                new: true
+            },
+            function(err, result) {
+                if (err) {
+                    res.status(500).send(err);
+                }
+                res.status(200).send(result);
+            });
+    }
 };
