@@ -14,6 +14,15 @@ module.exports = {
                 }
                 res.status(200).send(result);
             });
+        } else if (req.query.status) {
+            User.find({
+                userStatus: req.query.status
+            }, function(err, result) {
+                if (err) {
+                    return res.status(500).send(err);
+                }
+                res.status(200).send(result);
+            });
         } else {
             User.find(req.query, function(err, result) {
                 if (err) {

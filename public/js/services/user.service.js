@@ -39,7 +39,7 @@ angular.module('app')
                     });
             },
             this.getUsers = function() {
-                return $http.get('/api/user')
+                return $http.get('/api/user?status=active')
                     .then(function(res) {
                         return res.data;
                     }, function(err) {
