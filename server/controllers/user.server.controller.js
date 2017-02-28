@@ -72,6 +72,8 @@ module.exports = {
                 if (err) {
                     res.status(500).send(err);
                 }
+
+                req.user = result;
                 res.status(200).send(result);
             });
     }
