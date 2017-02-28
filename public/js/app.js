@@ -5,7 +5,7 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
         $urlRouterProvider.when('/properties', '/properties/available');
         $urlRouterProvider.when('/admin-maintenance', '/admin-maintenance/pending');
 
-        function resolveLogin(LoginService, $state) {
+        function resolveResident(LoginService, $state) {
             return LoginService.getUser()
                 .then(function(res) {
                     console.log('User', res);
@@ -83,7 +83,7 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
                     $scope.username = user.firstName + ' ' + user.lastName;
                 },
                 resolve: {
-                    user: resolveLogin
+                    user: resolveResident
                 }
             })
             .state('resident-maintenance', {
@@ -91,7 +91,7 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
                 templateUrl: './views/resident/maintenance-request.html',
                 controller: 'MaintenanceRequest',
                 resolve: {
-                    user: resolveLogin
+                    user: resolveResident
                 }
             })
             .state('logout', {
