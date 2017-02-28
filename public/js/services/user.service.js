@@ -50,5 +50,18 @@ angular.module('app')
             this.updateUser = function(id, user) {
                 // user = angular.toJson(user);
                 return $http.put('/api/user/' + id, user);
+            },
+            this.payRent = function(id, payment) {
+                return $http.put('/api/user/' + id, { rentPaid: true })
+                    .then(function(res) {
+                        return $http.put('/api/user/payment/' + id, payment)
+                            .then(function(res) {
+                                return res;
+                            }, function(err) {
+                                console.log(err);
+                            })
+                    }, function(err) {
+                        console.log(err);
+                    })
             }
     });
