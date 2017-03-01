@@ -165,6 +165,7 @@ app.post('/api/upload-photos', amazonS3.upload);
 
 // STIPE PAYMENT ENDPOINTS
 app.post('/application-fee-charge', stripeCtrl.chargeApplicationFee);
+app.post('/rent-charge', stripeCtrl.chargeRent);
 
 // VARIABLES
 // ============================================================

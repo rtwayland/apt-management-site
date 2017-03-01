@@ -1,18 +1,23 @@
 <main-nav state="2"></main-nav>
+
 <h2 class="text-center serif-font">{{needToPayRent ? '' : 'No'}} Rent Due</h2>
 <table class="ui table applications-table" ng-if="needToPayRent">
     <thead>
         <tr class="center aligned">
             <th>Due Date</th>
-            <th>Amount</th>
+            <th ng-if="lateFees">Late Fees</th>
+            <th>Total Amount Due</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         <tr class="center aligned">
             <td>{{user.rentDueDate | date:'mediumDate'}}</td>
-            <td>{{user.rentAmount | currency:"$":0 }}</td>
-            <td><button type="button" class="ui positive basic button" ng-click="payRent()">Pay Rent</button></td>
+            <td ng-if="lateFees">{{ lateFees | currency:"$":0 }}</td>
+            <td>{{ user.rentAmount | currency:"$":0 }}</td>
+            <td><button type="button" class="ui positive basic button" bank-modal-trigger="bank-account-modal">Pay Rent</button></td>
         </tr>
     </tbody>
 </table>
+
+<bank-modal model="accountInfo" pay-rent="payRentBank()"></bank-modal>

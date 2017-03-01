@@ -1,19 +1,53 @@
 angular.module('app')
-    .controller('RentPay', function($scope, user, UserService) {
+    .controller('RentPay', function($scope, user, moment, UserService, StripeService) {
         UserService.getUserById(user._id)
             .then(function(res) {
-                console.log(res);
                 $scope.user = res;
-                if (!$scope.user.rentPaid) {
+
+                if (!$scope.user.rentPaid && todayIsInTimeFrame($scope.user.rentDueDate)) {
                     $scope.needToPayRent = true;
+                    $scope.lateFees = calculateFees($scope.user.rentDueDate);
+                    $scope.user.rentAmount += $scope.lateFees;
                 } else {
                     $scope.needToPayRent = false;
                 }
             }, function(err) {
                 console.log(err);
             })
+
         /*********************** PAY RENT ***********************/
-        $scope.payRent = function() {
+        $scope.payRentBank = function() {
+            // linkHandler.open();
+            Stripe.setPublishableKey('pk_test_GfjALqHyZhwYmd38SfJANoe4');
+            Stripe.bankAccount.createToken({
+                country: 'US',
+                currency: 'USD',
+                routing_number: $scope.accountInfo.routingNumber,
+                account_number: $scope.accountInfo.accountNumber,
+                account_holder_name: $scope.accountInfo.name,
+                account_holder_type: 'individual'
+            }, function(status, response) {
+                if (response.error) {
+                    console.log('ERROR', response.error);
+                } else {
+                    var token = response.id;
+                    StripeService.chargeBank(token, $scope.user.rentAmount)
+                        .then(function(res) {
+                            console.log(res);
+                            if (res.status === 200) {
+                                addPaymentToUser();
+                            } else {
+                                console.log('Payment did not go through');
+                            }
+                        }, function(err) {
+                            console.log(err);
+                        })
+                }
+            });
+        };
+
+        /*********************** ADD PAYMENT TO USER ***********************/
+        function addPaymentToUser() {
             var payment = {
                 amount: $scope.user.rentAmount,
                 date: new Date(),
@@ -28,7 +62,6 @@ angular.module('app')
                 .then(function(res) {
                     UserService.payRent($scope.user._id, payment)
                         .then(function(res) {
-                            console.log(res);
                             $scope.user = res;
                             $scope.needToPayRent = false;
                         }, function(err) {
@@ -37,10 +70,34 @@ angular.module('app')
                 }, function(err) {
                     console.log(err);
                 })
-
-
         }
 
+        /*********************** TODAY IS IN TIME FRAME ***********************/
+        function todayIsInTimeFrame(date) {
+            let dueDate = moment(date);
+            // let dueDate = moment().add(7, 'days');
+            let today = moment();
+            let difference = today.diff(dueDate, 'days');
+
+            if (difference > -7) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        /*********************** CALCULATE FEES ***********************/
+        function calculateFees(date) {
+            let dueDate = moment(date);
+            // let dueDate = moment().subtract(5, 'days');
+            let today = moment();
+            let difference = today.diff(dueDate, 'days');
+
+            if (difference > 0) {
+                return 50 + ((difference - 1) * 10);
+            } else {
+                return 0;
+            }
+        }
         /*********************** INCREMENT DUE DATE ***********************/
         function incrementDueDate(date) {
             let now = new Date(date);

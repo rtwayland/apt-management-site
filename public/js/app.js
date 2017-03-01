@@ -1,4 +1,4 @@
-angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ngTouch', 'ui.bootstrap'])
+angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ngTouch', 'ui.bootstrap', 'angularMoment'])
     .config(function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
         $urlRouterProvider.when('/applications', '/applications/pending');

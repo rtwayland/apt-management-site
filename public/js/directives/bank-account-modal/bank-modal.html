@@ -1,0 +1,45 @@
+<div class="ui small modal" id="bank-account-modal">
+    <div class="header">Bank Account Info</div>
+    <div class="content">
+        <form name="bankInfoForm" class="ui equal width form">
+            <div class="field required">
+                <label for="name">Account Holder Name</label>
+                <input type="text" name="name" id="name" required placeholder="Account Holder Name" ng-model="model.name" pattern="[a-zA-Z '`\-]+">
+            </div>
+            <div class="ui negative message" ng-show="bankInfoForm.name.$dirty && bankInfoForm.name.$invalid">
+                Invalid character in this field
+            </div>
+            <div class="fields">
+                <div class="field required">
+                    <label for="routing">Routing Number</label>
+                    <div class="ui input left icon">
+                        <i class="ui lock icon"></i>
+                        <input type="text" name="routing" id="routing" required placeholder="Routing Number" ng-model="model.routingNumber" ng-blur="validateRouting(model.routingNumber)" pattern="[0-9]+">
+                    </div>
+                </div>
+                <div class="field required">
+                    <label for="account">Account Number</label>
+                    <div class="ui input left icon">
+                        <i class="ui lock icon"></i>
+                        <input type="text" name="account" id="account" required placeholder="Account Number" ng-model="model.accountNumber" ng-blur="validateAccount(model.accountNumber)" pattern="[0-9]+">
+                    </div>
+                </div>
+            </div>
+            <div class="ui negative message" ng-show="routingError">
+                The routing number is invalid
+            </div>
+            <div class="ui negative message" ng-show="accountError">
+                The account number is invalid
+            </div>
+        </form>
+    </div>
+    <div class="actions">
+        <div class="ui black deny button">
+            Cancel
+        </div>
+        <button type="button" class="ui positive right labeled icon button" ng-disabled="bankInfoForm.$invalid" ng-click="payRent()">
+            Submit Payment
+            <i class="checkmark icon"></i>
+        </button>
+    </div>
+</div>
