@@ -91,6 +91,31 @@
         <i class="dropdown icon"></i> Payments
     </div>
     <div class="content">
+        <div class="ui right aligned container">
+            <button type="button" class="ui grey basic button" ng-cloak ng-show="!rentEdit" ng-click="editRent()">Edit</button>
+            <button type="button" class="ui yellow basic button" ng-show="rentEdit" ng-click="cancelEditRent()">Cancel</button>
+            <button type="button" class="ui positive basic button" ng-show="rentEdit" ng-click="saveEditRent()">Save</button>
+        </div>
+        <form class="ui equal width form">
+            <div class="fields">
+                <div class="field">
+                    <label for="dueDate">Due Date</label>
+                    <div class="ui input right icon">
+                        <input type="date" name="dueDate" id="dueDate" value="{{user.rentDueDate | date:'MM-dd-yyyy'}}" ng-model="user.rentDueDate" ng-disabled="!rentEdit">
+                        <i class="calendar icon"></i>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="rentAmount">Rent Amount</label>
+                    <div class="ui right labeled input">
+                        <div class="ui label">$</div>
+                        <input type="number" name="rentAmount" id="rentAmount" value="{{user.rentAmount}}" ng-model="user.rentAmount" ng-disabled="!rentEdit">
+                        <div class="ui basic label">.00</div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
         <table class="ui table">
             <thead>
                 <tr class="center aligned">
