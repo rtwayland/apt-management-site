@@ -21,6 +21,8 @@ const userSchema = mongoose.Schema({
   propertyid: String,
   applicationid: String,
   rentPaid: Boolean,
+  rentDueDate: Date,
+  rentAmount: Number,
   payments: [],
   userStatus: String,
   isAdmin: Boolean,
