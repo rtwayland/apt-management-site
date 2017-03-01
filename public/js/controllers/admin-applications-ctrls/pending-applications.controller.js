@@ -13,9 +13,6 @@ angular.module('app')
             // Add approved status to database
             ApplicationService.updateStatus(application._id, 'approved')
                 .then(function(res) {
-                    // Remove from pending section
-                    removeById(application._id);
-
                     // Create the user
                     UserService.createUser(application)
                         .then(function(res) {
@@ -28,10 +25,11 @@ angular.module('app')
                             //         console.log(err);
                             //     });
 
+                            // Remove from pending section
+                            removeById(application._id);
                         }, function(err) {
                             console.log(err);
                         });
-
 
                 }, function(err) {
                     console.log(err);
