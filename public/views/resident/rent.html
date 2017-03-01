@@ -10,8 +10,8 @@
     </thead>
     <tbody>
         <tr class="center aligned">
-            <td>12/12/1212</td>
-            <td>$1100</td>
+            <td>{{user.rentDueDate | date:'mediumDate'}}</td>
+            <td>{{user.rentAmount | currency:"$":0 }}</td>
             <td><button type="button" class="ui positive basic button" ng-click="payRent()">Pay Rent</button></td>
         </tr>
     </tbody>
