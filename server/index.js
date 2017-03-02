@@ -57,7 +57,7 @@ passport.use(new Auth0Strategy({
         }).exec(function(err, user) {
             if (err) return done(err);
 
-            if (user) {
+            if (user && profile._json.email_verified) {
                 // console.log('USER', user);
                 if (!user.loginid) {
                     // console.log('NEED TO UPDATE ID', profile.identities[0].user_id);
