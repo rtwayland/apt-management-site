@@ -3,7 +3,7 @@
 <h1 class="ui center aligned block header serif-font">Application Form</h1>
 <button class="ui grey basic button" type="button" ng-click="fillForm()">Fill Form</button>
 <div class="form-container">
-    <form name="applicationForm" class="ui equal width form" ng-submit="submitApplication()" >
+    <form name="applicationForm" class="ui equal width form">
         <div class="ui segment">
             <h2>Selected Property</h2>
             <div class="field">
@@ -342,7 +342,11 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="huge ui positive basic button" ng-disabled="applicationForm.$invalid">Submit Application</button>
-        <!-- <button type="button" class="huge ui positive basic button" ng-click="payApplicationFee()">Pay Application Fee</button> -->
+        <div class="ui center aligned container">
+            <button type="button" class="huge ui positive basic button" ng-disabled="applicationForm.$invalid" bank-modal-trigger="bank-account-modal">Submit Application</button>
+        </div>
+        <!-- <button type="submit" class="huge ui positive basic button" ng-disabled="applicationForm.$invalid">Submit Application</button> -->
     </form>
 </div>
+<bank-modal model="accountInfo" pay-rent="payRentBank()" charge-amount="20"></bank-modal>
+<credit-card-modal model="cardInfo" pay-rent="payRentCard()" charge-amount="20"></credit-card-modal>
