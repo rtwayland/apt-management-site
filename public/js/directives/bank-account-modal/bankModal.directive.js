@@ -5,7 +5,8 @@ angular.module('app')
             templateUrl: './js/directives/bank-account-modal/bank-modal.html',
             scope: {
                 model: '=',
-                payRent: '&'
+                payRent: '&',
+                chargeAmount: '='
             },
             link: function(scope, elem, attrs) {
 
