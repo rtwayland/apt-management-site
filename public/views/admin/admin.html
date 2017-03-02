@@ -1,4 +1,43 @@
 <main-nav state="3"></main-nav>
+<h1 class="ui center aligned block header serif-font">Welcome to the Admin Portal</h1>
+<div class="ui padded text container segment">
+    <h3>Use the top navigation bar for:</h3>
+    <div class="ui list">
+        <div class="item">
+            <div>Applications:</div>
+            <div class="list">
+                <div class="item">View</div>
+                <div class="item">Approve</div>
+                <div class="item">Decline</div>
+            </div>
+        </div>
+        <div class="item">
+            <div>Maintenance Requests:</div>
+            <div class="list">
+                <div class="item">View</div>
+                <div class="item">Complete</div>
+            </div>
+        </div>
+        <div class="item">
+            <div>Tenants:</div>
+            <div class="list">
+                <div class="item">View Info</div>
+                <div class="item">Edit basic contact info</div>
+                <div class="item">Edit rent due date and amount</div>
+            </div>
+        </div>
+        <div class="item">
+            <div>Properies:</div>
+            <div class="list">
+                <div class="item">View Info</div>
+                <div class="item">Edit All Property Info</div>
+                <div class="item">Make Available or Unavailable</div>
+                <div class="item">Create New Properties</div>
+            </div>
+        </div>
+    </div>
+    <h3>Below, you can use the form to create a new Admin user.</h3>
+</div>
 <div class="ui padded text container segment">
     <h2 class="text-center serif-font">Create New Admin</h2>
     <form name="adminCreationForm" class="ui equal width form" ng-submit="createAdmin()">
@@ -23,7 +62,7 @@
             </div>
         </div>
         <div class="ui center aligned container">
-          <button type="submit" class="ui large basic positive button" ng-disabled="adminCreationForm.$invalid">Submit</button>
+            <button type="submit" class="ui large basic positive button" ng-disabled="adminCreationForm.$invalid">Submit</button>
         </div>
     </form>
 </div>
