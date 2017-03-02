@@ -1,37 +1,75 @@
 angular.module('app')
     .controller('ApplicationCtrl', function($scope, $state, $window, ApplicationService, StripeService, PropertyService) {
-        $scope.payApplicationFee = function() {
-            var handler = StripeCheckout.configure({
-                key: 'pk_test_GfjALqHyZhwYmd38SfJANoe4',
-                image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
-                locale: 'auto',
-                token: function(token) {
-                    console.log('Token ID from Ctrl\n', token.id);
-                    StripeService.payApplicationFee(token.id)
+        $scope.applicationFee = 20;
+        /*********************** PAY RENT ***********************/
+        $scope.payRentBank = function() {
+            Stripe.setPublishableKey('pk_test_GfjALqHyZhwYmd38SfJANoe4');
+            Stripe.bankAccount.createToken({
+                country: 'US',
+                currency: 'USD',
+                routing_number: $scope.accountInfo.routingNumber,
+                account_number: $scope.accountInfo.accountNumber,
+                account_holder_name: $scope.accountInfo.name,
+                account_holder_type: 'individual'
+            }, function(status, response) {
+                if (response.error) {
+                    console.log('ERROR', response.error);
+                } else {
+                    var token = response.id;
+                    StripeService.chargeBank(token, $scope.applicationFee, $scope.application.user.email)
                         .then(function(res) {
-                            if (res.status == 200) {
-                                state.go('applications');
+                            console.log(res);
+                            if (res.status === 200) {
+                                console.log('Bank Charge went through');
+                                // submitApplication();
                             } else {
-                                state.go('home');
+                                console.log('Payment did not go through');
                             }
                         }, function(err) {
                             console.log(err);
-                        });
-                    // You can access the token ID with `token.id`.
-                    // Get the token ID to your server-side code for use.
+                        })
                 }
             });
+        };
 
-            handler.open({
-                name: 'Fox Briar Properties',
-                description: 'Application Fee',
-                amount: 2000
+        /*********************** PAY RENT ***********************/
+        $scope.payRentCard = function() {
+            let feeAmount = $scope.applicationFee + (($scope.applicationFee * 0.029) + 0.3);
+            Stripe.setPublishableKey('pk_test_GfjALqHyZhwYmd38SfJANoe4');
+            Stripe.source.create({
+                type: 'card',
+                card: {
+                    number: $scope.cardInfo.number,
+                    cvc: $scope.cardInfo.cvc,
+                    exp_month: $scope.cardInfo.month,
+                    exp_year: $scope.cardInfo.year,
+                },
+                owner: {
+                    address: {
+                        postal_code: $scope.cardInfo.zip
+                    }
+                }
+            }, function(status, response) {
+                if (response.error) {
+                    console.log('ERROR', response.error);
+                } else {
+                    var source = response.id;
+                    StripeService.chargeCard(source, feeAmount, $scope.application.user.email)
+                        .then(function(res) {
+                            console.log(res);
+                            if (res.status === 200) {
+                                console.log('Card charge went through');
+                                // submitApplication();
+                            } else {
+                                console.log('Payment did not go through');
+                            }
+                        }, function(err) {
+                            console.log(err);
+                        })
+                }
             });
+        };
 
-            $window.addEventListener('popstate', function() {
-                handler.close();
-            });
-        }
         $scope.fillForm = function() {
             $scope.numAddOccupants = 0;
             $scope.application = {
@@ -117,7 +155,7 @@ angular.module('app')
 
         }
 
-        $scope.submitApplication = function() {
+        function submitApplication() {
             if ($scope.application.propertyId !== '' &&
                 $scope.application.currentResidence.address.state !== '' &&
                 $scope.application.currentEmployment.address.state !== '') {
