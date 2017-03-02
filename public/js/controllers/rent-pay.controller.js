@@ -48,7 +48,7 @@ angular.module('app')
 
         /*********************** PAY RENT ***********************/
         $scope.payRentCard = function() {
-            $scope.user.rentAmount += (($scope.user.rentAmount * 0.029) + 0.3);
+            let rentAmount = $scope.user.rentAmount + (($scope.user.rentAmount * 0.029) + 0.3);
             Stripe.setPublishableKey('pk_test_GfjALqHyZhwYmd38SfJANoe4');
             Stripe.source.create({
                 type: 'card',
@@ -68,7 +68,7 @@ angular.module('app')
                     console.log('ERROR', response.error);
                 } else {
                     var source = response.id;
-                    StripeService.chargeCard(source, $scope.user.rentAmount, $scope.user.email)
+                    StripeService.chargeCard(source, rentAmount, $scope.user.email)
                         .then(function(res) {
                             console.log(res);
                             if (res.status === 200) {
