@@ -38,7 +38,7 @@ module.exports = {
     },
     chargeBank(req, res) {
         var tokenID = req.body.stripeToken;
-        var amount = req.body.amount * 100;
+        var amount = Math.floor(req.body.amount * 100);
 
         // Create a Customer
         stripe.customers.create({
