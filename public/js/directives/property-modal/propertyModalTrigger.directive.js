@@ -1,5 +1,5 @@
 angular.module('app')
-    .directive('propertyModalTrigger', function() {
+    .directive('propertyModalTrigger', function($rootScope) {
         return {
             restrict: 'A',
             scope: {
@@ -10,6 +10,8 @@ angular.module('app')
                     event.preventDefault();
                     let id = '#' + scope.htmlID;
                     $(id).modal('show');
+                    $rootScope.showModal = id;
+                    scope.$apply();
                 });
             }
         };
