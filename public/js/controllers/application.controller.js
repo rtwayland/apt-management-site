@@ -21,7 +21,7 @@ angular.module('app')
                             console.log(res);
                             if (res.status === 200) {
                                 console.log('Bank Charge went through');
-                                // submitApplication();
+                                submitApplication();
                             } else {
                                 console.log('Payment did not go through');
                             }
@@ -73,7 +73,7 @@ angular.module('app')
         $scope.fillForm = function() {
             $scope.numAddOccupants = 0;
             $scope.application = {
-                propertyId: '58af6bbbd7f98eba360e310f',
+                propertyId: '58adb6ecb31fa177afb422f0',
                 user: {
                     firstName: 'MyName',
                     middleName: '',
@@ -95,7 +95,7 @@ angular.module('app')
                     address: {
                         street: '123 N 123 E',
                         city: 'Somewhere',
-                        state: 'ID',
+                        state: '',
                         zip: '12345'
                     },
                     monthlyRent: '1045',
@@ -111,7 +111,7 @@ angular.module('app')
                     address: {
                         street: '123 N 123 E',
                         city: 'Somewhere',
-                        state: 'ID',
+                        state: '',
                         zip: '12345'
                     },
                     supervisorName: 'Wes',
@@ -156,29 +156,33 @@ angular.module('app')
         }
 
         function submitApplication() {
-            if ($scope.application.propertyId !== '' &&
-                $scope.application.currentResidence.address.state !== '' &&
-                $scope.application.currentEmployment.address.state !== '') {
-                PropertyService.getPropertyById($scope.application.propertyId)
-                    .then(function(res) {
-                        if (res.address.unit) {
-                            $scope.application.propertyName = res.name + ' ' + res.address.unit;
-                        } else {
-                            $scope.application.propertyName = res.name;
-                        }
+            checkGeneralInfo();
+            PropertyService.getPropertyById($scope.application.propertyId)
+                .then(function(res) {
+                    if (res.address.unit) {
+                        $scope.application.propertyName = res.name + ' ' + res.address.unit;
+                    } else {
+                        $scope.application.propertyName = res.name;
+                    }
 
-                        // console.log($scope.application);
-                        ApplicationService.submitApplication($scope.application)
-                            .then(function(res) {
-                                $state.go('home');
-                            })
-                    }, function(err) {
-                        console.log(err);
-                    })
+                    ApplicationService.submitApplication($scope.application)
+                        .then(function(res) {
+                            $state.go('home');
+                        })
+                }, function(err) {
+                    console.log(err);
+                })
+        }
 
-            } else {
-                // Trigger error message
-                console.log('Please fill out all the fields.');
+        function checkGeneralInfo() {
+            if ($scope.application.generalInfo.hasBeenLate == 'false') {
+                $scope.application.generalInfo.lateExplaination = '';
+            }
+            if ($scope.application.generalInfo.hasHadLawsuit == 'false') {
+                $scope.application.generalInfo.lawsuitExplaination = '';
+            }
+            if ($scope.application.generalInfo.hasNegativeCredit == 'false') {
+                $scope.application.generalInfo.creditExplaination = '';
             }
         }
 
@@ -285,13 +289,11 @@ angular.module('app')
                     }
 
                     if ($state.params.propertyId) {
-                        // console.log($state.params);
                         $scope.application.propertyId = $state.params.propertyId;
-                        $scope.propertySelected = true;
+                        $scope.propertyRequired = false;
                     } else {
-                        $scope.propertySelected = false;
+                        $scope.propertyRequired = true;
                     }
-                    // console.log($scope.propertySelected);
                 }, function(err) {
                     console.log(err);
                 });
