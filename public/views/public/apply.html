@@ -7,7 +7,7 @@
         <div class="ui segment">
             <h2>Selected Property</h2>
             <div class="field">
-                <select class="ui fluid search dropdown" name="property-name" id="property-name" ng-model="application.propertyId" ng-options="option.value as option.name for option in propertyOptions" ng-required="propertySelected">
+                <select class="ui fluid search dropdown" name="property-name" id="property-name" ng-model="application.propertyId" ng-options="option.value as option.name for option in propertyOptions" ng-required="propertyRequired">
                     <option value="">Property</option>
                 </select>
             </div>
@@ -304,19 +304,19 @@
             <h2>Stipulations</h2>
             <div class="field">
                 <div class="ui checkbox">
-                    <input type="checkbox" name="noPets" required>
+                    <input type="checkbox" name="noPets" ng-model="stipulation1" required>
                     <label>I understand that pets are not allowed</label>
                 </div>
             </div>
             <div class="field">
                 <div class="ui checkbox">
-                    <input type="checkbox" name="noSmoking" required>
+                    <input type="checkbox" name="noSmoking" ng-model="stipulation2" required>
                     <label>I understand that smoking is not allowed</label>
                 </div>
             </div>
             <div class="field">
                 <div class="ui checkbox">
-                    <input type="checkbox" name="appFee" required>
+                    <input type="checkbox" name="appFee" ng-model="stipulation3" required>
                     <label>I understand that there will be a $20 application fee in order to submit this application</label>
                 </div>
             </div>
