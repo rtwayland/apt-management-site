@@ -164,8 +164,8 @@ app.post('/api/email-denial', emailCtrl.sendDeclinedEmail);
 app.post('/api/upload-photos', amazonS3.upload);
 
 // STIPE PAYMENT ENDPOINTS
-app.post('/application-fee-charge', stripeCtrl.chargeApplicationFee);
-app.post('/rent-charge', stripeCtrl.chargeRent);
+app.post('/rent-charge-card', stripeCtrl.chargeCard);
+app.post('/rent-charge-bank', stripeCtrl.chargeBank);
 
 // VARIABLES
 // ============================================================

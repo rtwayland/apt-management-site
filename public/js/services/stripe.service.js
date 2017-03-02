@@ -1,25 +1,19 @@
 angular.module('app')
     .service('StripeService', function($http) {
-        this.payApplicationFee = function(tokenId) {
-                console.log('Token ID from Service\n', tokenId);
-                var tokenObj = angular.toJson({
-                    stripeToken: tokenId
-                });
-                return $http.post('/application-fee-charge', tokenObj);
-            },
-            this.payRent = function(public_token, account_id, rentAmount) {
-                let plaidObj = {
-                    public_token: public_token,
-                    account_id: account_id,
-                    amount: rentAmount
+        this.chargeCard = function(source, amount, email) {
+                let obj = {
+                    stripeSource: source,
+                    amount: amount,
+                    email: email
                 }
-                return $http.post('/rent-charge', plaidObj);
+                return $http.post('/rent-charge-card', obj);
             },
-            this.chargeBank = function(token, amount) {
+            this.chargeBank = function(token, amount, email) {
                 let obj = {
                     stripeToken: token,
-                    amount: amount
+                    amount: amount,
+                    email: email
                 }
-                return $http.post('/rent-charge', obj);
+                return $http.post('/rent-charge-bank', obj);
             }
     });

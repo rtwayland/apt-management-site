@@ -9,34 +9,41 @@ const stripeConfig = require('./../../stripeConfig'),
 // );
 
 module.exports = {
-    chargeApplicationFee(req, res) {
-        var token = req.body.stripeToken;
-        console.log('The TOKEN', token);
-
-        var charge = stripe.charges.create({
-            amount: 2000,
-            currency: "usd",
-            description: "Application fee",
-            source: token,
-        }, function(err, charge) {
+    chargeCard(req, res) {
+        var source = req.body.stripeSource;
+        var amount = Math.floor(req.body.amount * 100);
+        stripe.customers.create({
+            source: source,
+            description: req.body.email
+        }, function(err, customer) {
             if (err) {
-                console.log('Stripe Error', err);
-                return res.status(500).send('Charge was not completed');
+                console.log(err);
+                return res.status(500).send('Charge failed');
+            } else {
+                stripe.charges.create({
+                    amount: amount,
+                    currency: "usd",
+                    customer: customer.id
+                }, function(err, charge) {
+                    if (err) {
+                        console.log('Stripe Error', err);
+                        return res.status(500).send('Charge was not completed');
+                    } else {
+                        return res.status(200).send('Charge Successful');
+                    }
+                });
             }
-            console.log('Stripe Charge', charge);
-            // return res.status(200).send('Charge Successful');
-        });
-
-        return res.status(200).send('Charge Successful');
+        })
+        // return res.status(200).send('Charge Successful');
     },
-    chargeRent(req, res) {
+    chargeBank(req, res) {
         var tokenID = req.body.stripeToken;
         var amount = req.body.amount * 100;
 
         // Create a Customer
         stripe.customers.create({
             source: tokenID,
-            description: "Example customer"
+            description: req.body.email
         }, function(err, customer) {
             if (err) {
                 console.log(err);

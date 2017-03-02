@@ -17,7 +17,6 @@ angular.module('app')
 
         /*********************** PAY RENT ***********************/
         $scope.payRentBank = function() {
-            // linkHandler.open();
             Stripe.setPublishableKey('pk_test_GfjALqHyZhwYmd38SfJANoe4');
             Stripe.bankAccount.createToken({
                 country: 'US',
@@ -31,11 +30,50 @@ angular.module('app')
                     console.log('ERROR', response.error);
                 } else {
                     var token = response.id;
-                    StripeService.chargeBank(token, $scope.user.rentAmount)
+                    StripeService.chargeBank(token, $scope.user.rentAmount, $scope.user.email)
                         .then(function(res) {
                             console.log(res);
                             if (res.status === 200) {
-                                addPaymentToUser();
+                                console.log('Bank Charge went through');
+                                // addPaymentToUser();
+                            } else {
+                                console.log('Payment did not go through');
+                            }
+                        }, function(err) {
+                            console.log(err);
+                        })
+                }
+            });
+        };
+
+        /*********************** PAY RENT ***********************/
+        $scope.payRentCard = function() {
+            $scope.user.rentAmount += (($scope.user.rentAmount * 0.029) + 0.3);
+            Stripe.setPublishableKey('pk_test_GfjALqHyZhwYmd38SfJANoe4');
+            Stripe.source.create({
+                type: 'card',
+                card: {
+                    number: $scope.cardInfo.number,
+                    cvc: $scope.cardInfo.cvc,
+                    exp_month: $scope.cardInfo.month,
+                    exp_year: $scope.cardInfo.year,
+                },
+                owner: {
+                    address: {
+                        postal_code: $scope.cardInfo.zip
+                    }
+                }
+            }, function(status, response) {
+                if (response.error) {
+                    console.log('ERROR', response.error);
+                } else {
+                    var source = response.id;
+                    StripeService.chargeCard(source, $scope.user.rentAmount, $scope.user.email)
+                        .then(function(res) {
+                            console.log(res);
+                            if (res.status === 200) {
+                                console.log('Card charge went through');
+                                // addPaymentToUser();
                             } else {
                                 console.log('Payment did not go through');
                             }
