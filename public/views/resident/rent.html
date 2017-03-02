@@ -20,4 +20,5 @@
     </tbody>
 </table>
 
-<bank-modal model="accountInfo" pay-rent="payRentBank()"></bank-modal>
+<bank-modal model="accountInfo" pay-rent="payRentBank()" charge-amount="user.rentAmount"></bank-modal>
+<credit-card-modal model="cardInfo" pay-rent="payRentCard()" charge-amount="user.rentAmount"></credit-card-modal>
