@@ -10,7 +10,7 @@
                 <div class="ui right labeled input">
                     <div class="ui input left icon">
                         <i class="credit card alternative icon"></i>
-                        <input type="text" name="number" id="number" required placeholder="Card Number" ng-model="model.number" pattern="[0-9]" ng-blur="validateNumber(model.number)">
+                        <input type="text" name="number" id="number" required placeholder="Card Number" ng-model="model.number" pattern="[0-9]+" ng-blur="validateNumber(model.number)">
                     </div>
                     <div class="ui label" ng-if="cardType">
                         {{cardType}}
@@ -63,12 +63,12 @@
                     <label for="cvc">CVC Code</label>
                     <div class="ui input left icon">
                         <i class="ui lock icon"></i>
-                        <input type="text" name="cvc" id="cvc" required placeholder="cvc" ng-model="model.cvc" ng-blur="validateCVC(model.cvc)" pattern="[0-9]">
+                        <input type="text" name="cvc" id="cvc" required placeholder="cvc" ng-model="model.cvc" ng-blur="validateCVC(model.cvc)" pattern="[0-9]+">
                     </div>
                 </div>
                 <div class="field five wide required">
                     <label for="zip">Zip Code</label>
-                    <input type="text" name="zip" id="zip" required placeholder="Zip Code" ng-model="model.accountNumber" pattern="[0-9]"maxlength="5">
+                    <input type="text" name="zip" id="zip" required placeholder="Zip Code" ng-model="model.accountNumber" pattern="[0-9]+" minlength="5" maxlength="5">
                 </div>
             </div>
             <div class="ui negative message" ng-show="cvcError && cardInfoForm.cvc.$dirty">
