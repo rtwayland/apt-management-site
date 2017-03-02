@@ -37,8 +37,11 @@
         <div class="ui black deny button">
             Cancel
         </div>
+        <div class="ui blue button" card-modal-trigger="credit-card-modal">
+            Pay With Card
+        </div>
         <button type="button" class="ui positive right labeled icon button" ng-disabled="bankInfoForm.$invalid" ng-click="payRent()">
-            Submit Payment
+            Pay {{chargeAmount | currency}}
             <i class="checkmark icon"></i>
         </button>
     </div>
