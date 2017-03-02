@@ -11,7 +11,7 @@
         <div class="description">
             <div class="ui header">{{property.name}} <span ng-if="property.address.unit">#{{property.address.unit}}</span></div>
             <p>{{property.address.street}}, {{property.address.city}}, {{property.address.state}} {{property.address.zip}}</p>
-            <google-map name="property.name" zoom="14" street="property.address.street" city="property.address.city" state="property.address.state" zip="property.address.zip"></google-map>
+            <google-map prop-id="property._id" name="property.name" zoom="14" street="property.address.street" city="property.address.city" state="property.address.state" zip="property.address.zip"></google-map>
             <table class="ui unstackable table">
                 <thead>
                     <tr class="center aligned">

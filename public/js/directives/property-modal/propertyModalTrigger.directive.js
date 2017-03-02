@@ -10,7 +10,7 @@ angular.module('app')
                     event.preventDefault();
                     let id = '#' + scope.htmlID;
                     $(id).modal('show');
-                    $rootScope.showModal = id;
+                    $rootScope.showModal = scope.htmlID;
                     scope.$apply();
                 });
             }

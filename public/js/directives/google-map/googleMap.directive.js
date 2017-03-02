@@ -4,6 +4,7 @@ angular.module('app')
             restrict: 'E',
             templateUrl: './js/directives/google-map/google-map.html',
             scope: {
+                propId: '=',
                 name: '=',
                 zoom: '=',
                 street: '=',
@@ -29,8 +30,11 @@ angular.module('app')
                         gestureHandling: 'cooperative',
                         fullscreenControl: true
                     });
-                    var geocoder = new google.maps.Geocoder();
-                    geocodeAddress(geocoder, map);
+
+                    if ($rootScope.showModal === scope.propId) {
+                        var geocoder = new google.maps.Geocoder();
+                        geocodeAddress(geocoder, map);
+                    }
                 }
 
                 function geocodeAddress(geocoder, resultsMap) {
@@ -45,6 +49,10 @@ angular.module('app')
                                 map: resultsMap,
                                 position: results[0].geometry.location
                             });
+                        } else if (status === google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
+                            setTimeout(function() {
+                                Geocode(address);
+                            }, 200);
                         } else {
                             alert('Geocode was not successful for the following reason: ' + status);
                         }
