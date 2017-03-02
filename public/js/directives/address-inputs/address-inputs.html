@@ -9,7 +9,7 @@
     </div>
     <div class="field three wide">
         <label for="{{modelKey}}-state">State</label>
-        <select class="ui fluid search dropdown" ng-model="model.state" required>
+        <select class="ui fluid search dropdown" name="{{modelKey}}-state" id="{{modelKey}}-state" ng-model="model.state" required>
             <option value="">State</option>
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
