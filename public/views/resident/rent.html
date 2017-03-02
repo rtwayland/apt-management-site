@@ -14,7 +14,7 @@
         <tr class="center aligned">
             <td>{{user.rentDueDate | date:'mediumDate'}}</td>
             <td ng-if="lateFees">{{ lateFees | currency:"$":0 }}</td>
-            <td>{{ user.rentAmount | currency:"$":0 }}</td>
+            <td>{{ user.rentAmount | currency }}</td>
             <td><button type="button" class="ui positive basic button" bank-modal-trigger="bank-account-modal">Pay Rent</button></td>
         </tr>
     </tbody>
