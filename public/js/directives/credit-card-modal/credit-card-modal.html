@@ -16,9 +16,9 @@
                         {{cardType}}
                     </div>
                 </div>
-            </div>
-            <div class="ui negative message" ng-show="numberError && cardInfoForm.number.$dirty">
-                Invalid card number
+                <div class="ui pointing red basic label" ng-show="numberError && cardInfoForm.number.$dirty">
+                    Invalid card number
+                </div>
             </div>
             <div class="fields">
                 <div class="field four wide required">
@@ -38,6 +38,9 @@
                         <option value="11">11</option>
                         <option value="12">12</option>
                       </select>
+                      <div class="ui pointing red basic label" ng-show="expiryError">
+                          Invalid expiration date
+                      </div>
                 </div>
                 <div class="field four wide required">
                     <label for="year">Year</label>
@@ -65,17 +68,14 @@
                         <i class="ui lock icon"></i>
                         <input type="text" name="cvc" id="cvc" required placeholder="cvc" ng-model="model.cvc" ng-blur="validateCVC(model.cvc)" pattern="[0-9]+">
                     </div>
+                    <div class="ui pointing red basic label" ng-show="cvcError && cardInfoForm.cvc.$dirty">
+                        Invalid CVC code
+                    </div>
                 </div>
                 <div class="field five wide required">
                     <label for="zip">Zip Code</label>
                     <input type="text" name="zip" id="zip" required placeholder="Zip Code" ng-model="model.accountNumber" pattern="[0-9]+" minlength="5" maxlength="5">
                 </div>
-            </div>
-            <div class="ui negative message" ng-show="cvcError && cardInfoForm.cvc.$dirty">
-                Invalid CVC code
-            </div>
-            <div class="ui negative message" ng-show="expiryError">
-                Invalid expiration date
             </div>
         </form>
     </div>

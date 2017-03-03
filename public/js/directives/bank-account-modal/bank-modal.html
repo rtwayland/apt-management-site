@@ -5,9 +5,9 @@
             <div class="field required">
                 <label for="name">Account Holder Name</label>
                 <input type="text" name="name" id="name" required placeholder="Account Holder Name" ng-model="model.name" pattern="[a-zA-Z '`\-]+">
-            </div>
-            <div class="ui negative message" ng-show="bankInfoForm.name.$dirty && bankInfoForm.name.$invalid">
-                Invalid character in this field
+                <div class="ui pointing red basic label" ng-show="bankInfoForm.name.$dirty && bankInfoForm.name.$invalid">
+                    Invalid character in field
+                </div>
             </div>
             <div class="fields">
                 <div class="field required">
@@ -16,6 +16,9 @@
                         <i class="ui lock icon"></i>
                         <input type="text" name="routing" id="routing" required placeholder="Routing Number" ng-model="model.routingNumber" ng-blur="validateRouting(model.routingNumber)" pattern="[0-9]+">
                     </div>
+                    <div class="ui pointing red basic label" ng-show="routingError">
+                        Invalid routing number
+                    </div>
                 </div>
                 <div class="field required">
                     <label for="account">Account Number</label>
@@ -23,13 +26,10 @@
                         <i class="ui lock icon"></i>
                         <input type="text" name="account" id="account" required placeholder="Account Number" ng-model="model.accountNumber" ng-blur="validateAccount(model.accountNumber)" pattern="[0-9]+">
                     </div>
+                    <div class="ui pointing red basic label" ng-show="accountError">
+                        Invalid account number
+                    </div>
                 </div>
-            </div>
-            <div class="ui negative message" ng-show="routingError">
-                The routing number is invalid
-            </div>
-            <div class="ui negative message" ng-show="accountError">
-                The account number is invalid
             </div>
         </form>
     </div>
