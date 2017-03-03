@@ -109,6 +109,14 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
                     user: resolveResident
                 }
             })
+            .state('resident-info', {
+                url: '/my-info',
+                templateUrl: './views/resident/resident-info-edit.html',
+                controller: 'ResidentInfoEdit',
+                resolve: {
+                    user: resolveResident
+                }
+            })
             .state('logout', {
                 url: '/logout',
                 template: '',

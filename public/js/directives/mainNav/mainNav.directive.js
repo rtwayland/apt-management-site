@@ -38,6 +38,10 @@ angular.module('app')
                         name: 'Pay Rent'
                     },
                     {
+                        link: 'resident-info',
+                        name: 'My Info'
+                    },
+                    {
                         link: 'logout',
                         name: 'Log Out'
                     }

@@ -1,0 +1,39 @@
+<main-nav state="2"></main-nav>
+<h1 class="ui center aligned block header serif-font">My Info</h1>
+<div class="ui segment">
+    <div class="ui right aligned container">
+        <button type="button" class="ui grey basic button" ng-cloak ng-show="!editing" ng-click="edit()">Edit</button>
+        <button type="button" class="ui yellow basic button" ng-show="editing" ng-click="cancelEdit()">Cancel</button>
+        <button type="button" class="ui positive basic button" ng-show="editing" ng-click="saveEdit()" ng-disabled="userEditForm.$invalid">Save</button>
+    </div>
+    <form name="userEditForm" class="ui equal width form full-opacity-disabled-form">
+        <div class="field">
+            <!-- Phone -->
+            <label>My Phone Number</label>
+            <input type="text" name="phone" id="phone" ng-model="user.phone" value="{{user.phone}}" ng-disabled="!editing" required>
+        </div>
+        <h2>Emergency Contact Info</h2>
+        <div class="fields">
+            <div class="field">
+                <label>First Name</label>
+                <input type="text" name="emergencyFirstName" id="emergencyFirstName" ng-model="user.emergency.firstName" ng-disabled="!editing" required>
+            </div>
+            <div class="field">
+                <label>Last Name</label>
+                <input type="text" name="emergencyLastName" id="emergencyLastName" ng-model="user.emergency.lastName" ng-disabled="!editing" required>
+            </div>
+        </div>
+        <div class="fields">
+            <div class="field">
+                <!-- Email -->
+                <label>Email Address</label>
+                <input type="text" name="emergencyEmail" id="emergencyEmail" ng-model="user.emergency.email" ng-disabled="!editing" required>
+            </div>
+            <div class="field">
+                <!-- Phone -->
+                <label>Phone Number</label>
+                <input type="text" name="emergencyPhone" id="emergencyPhone" ng-model="user.emergency.phone" ng-disabled="!editing" required>
+            </div>
+        </div>
+    </form>
+</div>
