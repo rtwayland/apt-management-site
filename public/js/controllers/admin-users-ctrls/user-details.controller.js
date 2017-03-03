@@ -17,13 +17,11 @@ angular.module('app')
         $scope.edit = function() {
             $scope.editing = true;
             $scope.tempVars = {
-                email: $scope.user.email,
                 phone: $scope.user.phone
             }
         }
         $scope.cancelEdit = function() {
             $scope.editing = false;
-            $scope.user.email = $scope.tempVars.email;
             $scope.user.phone = $scope.tempVars.phone;
         }
         $scope.saveEdit = function() {

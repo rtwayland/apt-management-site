@@ -11,7 +11,6 @@
             <button type="button" class="ui positive basic button" ng-show="editing" ng-click="saveEdit()">Save</button>
         </div>
         <form class="ui equal width form full-opacity-disabled-form">
-            <!-- <div class="ui segment"> -->
             <div class="fields">
                 <div class="field">
                     <label>First Name</label>
@@ -38,15 +37,14 @@
                 <div class="field six wide">
                     <!-- Email -->
                     <label>Email Address</label>
-                    <input type="text" ng-model="user.email" value="{{user.email}}" ng-disabled="!editing">
+                    <input type="text" value="{{user.email}}" ng-class="{'opacity-disabled': editing}" disabled>
                 </div>
                 <div class="field six wide">
                     <!-- Phone -->
                     <label>Phone Number</label>
-                    <input type="text" ng-model="user.phone" value="{{user.phone}}" ng-disabled="!editing">
+                    <input type="text" name="userPhone" id="userPhone" ng-model="user.phone" value="{{user.phone}}" ng-disabled="!editing">
                 </div>
             </div>
-            <!-- </div> -->
         </form>
         <div class="ui center aligned container">
             <a href="tel:{{user.phone}}" type="button" class="ui positive basic button">Call</a>
@@ -94,14 +92,14 @@
         <div class="ui right aligned container">
             <button type="button" class="ui grey basic button" ng-cloak ng-show="!rentEdit" ng-click="editRent()">Edit</button>
             <button type="button" class="ui yellow basic button" ng-show="rentEdit" ng-click="cancelEditRent()">Cancel</button>
-            <button type="button" class="ui positive basic button" ng-show="rentEdit" ng-click="saveEditRent()">Save</button>
+            <button type="button" class="ui positive basic button" ng-show="rentEdit" ng-click="saveEditRent()" ng-disabled="rentInfoForm.$invalid">Save</button>
         </div>
-        <form class="ui equal width form">
+        <form name="rentInfoForm" class="ui equal width form">
             <div class="fields">
                 <div class="field">
                     <label for="dueDate">Due Date</label>
                     <div class="ui input right icon">
-                        <input type="date" name="dueDate" id="dueDate" value="{{user.rentDueDate | date:'MM-dd-yyyy'}}" ng-model="user.rentDueDate" ng-disabled="!rentEdit">
+                        <input type="date" name="dueDate" id="dueDate" value="{{user.rentDueDate | date:'MM-dd-yyyy'}}" ng-model="user.rentDueDate" ng-disabled="!rentEdit" required>
                         <i class="calendar icon"></i>
                     </div>
                 </div>
@@ -109,7 +107,7 @@
                     <label for="rentAmount">Rent Amount</label>
                     <div class="ui right labeled input">
                         <div class="ui label">$</div>
-                        <input type="number" name="rentAmount" id="rentAmount" value="{{user.rentAmount}}" ng-model="user.rentAmount" ng-disabled="!rentEdit">
+                        <input type="number" name="rentAmount" id="rentAmount" value="{{user.rentAmount}}" ng-model="user.rentAmount" ng-disabled="!rentEdit" required>
                         <div class="ui basic label">.00</div>
                     </div>
 
