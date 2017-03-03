@@ -35,18 +35,23 @@
 </head>
 
 <body>
-    <div class="pusher">
+    <div class="pusher" id="master-container">
         <main id="main-wrapper" class="ui container">
             <ui-view></ui-view>
-            <a ui-sref="home">Public</a>
-            <a ui-sref="resident">Resident</a>
-            <a ui-sref="admin">Admin</a>
         </main>
+        <footer id="footer">
+            <div class="ui inverted segment">
+                <div class="ui inverted secondary menu">
+                    <a class="item" ui-sref="home">Public</a>
+                    <a class="item" ui-sref="resident">Resident</a>
+                    <a class="item" ui-sref="admin">Admin</a>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <!-- Google Maps -->
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChxpCzvw162iYam-KBkRY2-RxT3WPn2-E">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChxpCzvw162iYam-KBkRY2-RxT3WPn2-E">
     </script>
 </body>
 
