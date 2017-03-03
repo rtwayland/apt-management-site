@@ -45,12 +45,31 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
             .state('home', {
                 url: '/',
                 templateUrl: './views/public/home.html',
-                controller: function ($scope) {
-                  $scope.slides = [
-                    "https://s3-us-west-2.amazonaws.com/fox-briar-properties/Corellia0CkVm7z6F.jpeg",
-                    "https://s3-us-west-2.amazonaws.com/fox-briar-properties/BelleMonet0XF7NYPkE.png",
-                    "https://s3-us-west-2.amazonaws.com/fox-briar-properties/BelleMonet09MsYcWUN.jpeg"
-                  ]
+                controller: function($scope, addresses) {
+                    $scope.addresses = addresses;
+                    console.log($scope.addresses);
+                    $scope.slides = [
+                        "https://s3-us-west-2.amazonaws.com/fox-briar-properties/Corellia0CkVm7z6F.jpeg",
+                        "https://s3-us-west-2.amazonaws.com/fox-briar-properties/BelleMonet0XF7NYPkE.png",
+                        "https://s3-us-west-2.amazonaws.com/fox-briar-properties/BelleMonet09MsYcWUN.jpeg"
+                    ]
+                },
+                resolve: {
+                    addresses: function(PropertyService) {
+                        return PropertyService.getAvailableProperties()
+                            .then(function(res) {
+                                var properties = res;
+                                var addresses = [];
+                                for (var i = 0; i < properties.length; i++) {
+                                    var address = properties[i].address.street + ', ' + properties[i].address.city + ', ' + properties[i].address.state + ' ' + properties[i].address.zip;
+                                    addresses.push(address);
+                                }
+
+                                return addresses;
+                            }, function(err) {
+                                console.log(err);
+                            });
+                    }
                 }
             })
             .state('available-properties', {
