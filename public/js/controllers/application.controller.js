@@ -20,7 +20,7 @@ angular.module('app')
                         .then(function(res) {
                             console.log(res);
                             if (res.status === 200) {
-                                console.log('Bank Charge went through');
+                                // console.log('Bank Charge went through');
                                 submitApplication();
                             } else {
                                 console.log('Payment did not go through');
@@ -58,8 +58,8 @@ angular.module('app')
                         .then(function(res) {
                             console.log(res);
                             if (res.status === 200) {
-                                console.log('Card charge went through');
-                                // submitApplication();
+                                // console.log('Card charge went through');
+                                submitApplication();
                             } else {
                                 console.log('Payment did not go through');
                             }
@@ -167,7 +167,7 @@ angular.module('app')
 
                     ApplicationService.submitApplication($scope.application)
                         .then(function(res) {
-                            $state.go('home');
+                            $state.go('application-success');
                         })
                 }, function(err) {
                     console.log(err);

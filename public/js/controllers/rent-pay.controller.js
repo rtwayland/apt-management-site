@@ -34,8 +34,8 @@ angular.module('app')
                         .then(function(res) {
                             console.log(res);
                             if (res.status === 200) {
-                                console.log('Bank Charge went through');
-                                // addPaymentToUser();
+                                // console.log('Bank Charge went through');
+                                addPaymentToUser();
                             } else {
                                 console.log('Payment did not go through');
                             }
@@ -72,8 +72,8 @@ angular.module('app')
                         .then(function(res) {
                             console.log(res);
                             if (res.status === 200) {
-                                console.log('Card charge went through');
-                                // addPaymentToUser();
+                                // console.log('Card charge went through');
+                                addPaymentToUser();
                             } else {
                                 console.log('Payment did not go through');
                             }
@@ -102,6 +102,7 @@ angular.module('app')
                         .then(function(res) {
                             $scope.user = res;
                             $scope.needToPayRent = false;
+                            $state.go('payment-success');
                         }, function(err) {
                             console.log(err);
                         })

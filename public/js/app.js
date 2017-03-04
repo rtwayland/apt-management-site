@@ -93,12 +93,18 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
             .state('contact', {
                 url: '/contact',
                 templateUrl: './views/public/contact.html'
-                // controller: ''
             })
             .state('register-error', {
                 url: '/register-error',
                 templateUrl: './views/public/no-user.html'
-                // controller: ''
+            })
+            .state('application-success', {
+                url: '/application-success',
+                templateUrl: './views/public/application-confirm.html'
+            })
+            .state('payment-failure', {
+                url: '/payment-failure',
+                templateUrl: './views/public/payment-failure.html'
             })
             // RESIDENT PAGES
             .state('resident', {
@@ -135,6 +141,10 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
                 resolve: {
                     user: resolveResident
                 }
+            })
+            .state('payment-success', {
+                url: '/payment-success',
+                templateUrl: './views/resident/rent-confirm.html'
             })
             .state('logout', {
                 url: '/logout',
