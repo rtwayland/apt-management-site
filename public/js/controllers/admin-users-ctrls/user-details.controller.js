@@ -39,13 +39,15 @@ angular.module('app')
             $scope.rentEdit = true;
             $scope.rentTempVars = {
                 due: $scope.user.rentDueDate,
-                amount: $scope.user.rentAmount
+                amount: $scope.user.rentAmount,
+                rentStatus: $scope.user.rentPaid
             }
         }
         $scope.cancelEditRent = function() {
             $scope.rentEdit = false;
             $scope.user.rentDueDate = $scope.rentTempVars.due;
             $scope.user.rentAmount = $scope.rentTempVars.amount;
+            $scope.user.rentPaid = $scope.rentTempVars.rentStatus;
         }
         $scope.saveEditRent = function() {
             $scope.rentEdit = false;
