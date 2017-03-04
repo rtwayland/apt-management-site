@@ -87,6 +87,14 @@ body {
         min-width: 100px;
     }
 }
+
+.mock-segment {
+    border: 1px solid rgba(34,36,38,.15);
+    border-radius: 4px;
+    height: 66%;
+    line-height: 36px;
+    padding-left: 15px;
+}
 @import 'partials/main-nav';
 @import 'partials/application-form';
 @import 'partials/application-details-form'; // @import 'partials/image-slider';
