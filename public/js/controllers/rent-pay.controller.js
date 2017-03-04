@@ -7,7 +7,7 @@ angular.module('app')
                 if (!$scope.user.rentPaid && todayIsInTimeFrame($scope.user.rentDueDate)) {
                     $scope.needToPayRent = true;
                     $scope.lateFees = calculateFees($scope.user.rentDueDate);
-                    $scope.user.rentAmount += $scope.lateFees;
+                    $scope.totalRentAmount = $scope.user.rentAmount + $scope.lateFees;
                 } else {
                     $scope.needToPayRent = false;
                 }
@@ -30,7 +30,7 @@ angular.module('app')
                     console.log('ERROR', response.error);
                 } else {
                     var token = response.id;
-                    StripeService.chargeBank(token, $scope.user.rentAmount, $scope.user.email)
+                    StripeService.chargeBank(token, $scope.totalRentAmount, $scope.user.email)
                         .then(function(res) {
                             console.log(res);
                             if (res.status === 200) {
@@ -48,7 +48,7 @@ angular.module('app')
 
         /*********************** PAY RENT ***********************/
         $scope.payRentCard = function() {
-            let rentAmount = $scope.user.rentAmount + (($scope.user.rentAmount * 0.029) + 0.3);
+            let rentAmount = $scope.totalRentAmount + (($scope.totalRentAmount * 0.029) + 0.3);
             Stripe.setPublishableKey('pk_test_GfjALqHyZhwYmd38SfJANoe4');
             Stripe.source.create({
                 type: 'card',
@@ -87,7 +87,7 @@ angular.module('app')
         /*********************** ADD PAYMENT TO USER ***********************/
         function addPaymentToUser() {
             var payment = {
-                amount: $scope.user.rentAmount,
+                amount: $scope.totalRentAmount,
                 date: new Date(),
                 email: $scope.user.email,
                 userid: $scope.user._id
