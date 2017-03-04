@@ -13,10 +13,10 @@ angular.module('app')
                 zip: '='
             },
             link: function(scope, elem, attrs) {
-                scope.name = scope.name.replace(/ /g, '');
+                scope.theName = scope.name.replace(/ /g, '');
 
                 function initMap() {
-                    var map = new google.maps.Map(document.getElementById(scope.name), {
+                    var map = new google.maps.Map(document.getElementById(scope.theName), {
                         zoom: scope.zoom,
                         center: {
                             lat: -34.397,
