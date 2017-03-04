@@ -110,8 +110,29 @@
                         <input type="number" name="rentAmount" id="rentAmount" value="{{user.rentAmount}}" ng-model="user.rentAmount" ng-disabled="!rentEdit" required>
                         <div class="ui basic label">.00</div>
                     </div>
-
                 </div>
+                <div class="field">
+                    <label>Rent Status</label>
+                    <div class="mock-segment">
+                        <div class="ui radio checkbox" style="padding-right: 20px;">
+                            <input type="radio" name="rentStatus" ng-value="true" ng-model="user.rentPaid" ng-disabled="!rentEdit">
+                            <label>Paid</label>
+                        </div>
+                        <div class="ui radio checkbox">
+                            <input type="radio" name="rentStatus" ng-value="false" ng-model="user.rentPaid" ng-disabled="!rentEdit">
+                            <label>Not Paid</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="field">
+                </div> -->
+                <!-- <div class="field">
+                    <label for="rentStatus">Current Rent Status : {{user.rentPaid}}</label>
+                    <select class="ui fluid search dropdown" name="rentStatus" id="rentStatus" ng-model="user.rentPaid" ng-disabled="!rentEdit" required>
+                        <option value="true">Paid</option>
+                        <option value="false">Not Paid</option>
+                    </select>
+                </div> -->
             </div>
         </form>
         <table class="ui table">
