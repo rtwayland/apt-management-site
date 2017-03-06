@@ -335,9 +335,10 @@
                 <input type="text" name="" id="" ng-model="application.signature" required>
             </div>
             <div class="field six wide">
-                <label for="">Date</label>
+                <label for="sign-date">Date</label>
                 <div class="ui input right icon">
-                    <input type="date" name="" id="" value="{{application.signDate | date:'yyyy-MM-dd'}}" disabled>
+                    <!-- <input type="date" name="" id="" value="{{application.signDate | date:'yyyy-MM-dd'}}" disabled> -->
+                    <input type="text" name="sign-date" id="sign-date" value="{{application.signDate | date:'mediumDate'}}" disabled>
                     <i class="calendar icon"></i>
                 </div>
             </div>
