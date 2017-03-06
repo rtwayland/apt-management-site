@@ -1,8 +1,9 @@
 $font-main: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
 $font-serif: 'Josefin Slab', serif;
-$nav-height: 70px;
+$nav-height: 115px;
 $bg-nav: rgba(255, 255, 255, 0.9);
-$color-text-dark: #222; // $color-highlight: #BD542D;
+$color-text-dark: #222;
+// $color-highlight: #BD542D;
 // $color-transparent-highlight: rgba(189,84,45,0.5);
 // .ui.table thead th,
 // .ui.block.header,
@@ -95,6 +96,9 @@ body {
     line-height: 36px;
     padding-left: 15px;
 }
+
+@import 'partials/nav';
+@import 'partials/home';
 @import 'partials/main-nav';
 @import 'partials/application-form';
 @import 'partials/application-details-form'; // @import 'partials/image-slider';

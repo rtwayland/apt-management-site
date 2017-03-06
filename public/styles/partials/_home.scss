@@ -1,0 +1,101 @@
+.three-columns {
+    overflow: auto;
+    padding-top: 10px;
+
+    .image-overlay {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.5);
+        width: 100%;
+        height: 100%;
+        transition: all 0.5s;
+
+        .overlay-text {
+            width: 100%;
+            text-align: center;
+            font-size: 2em;
+            color: white;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    .column {
+        position: relative;
+        @media screen and (min-width: 780px) {
+            &:nth-child(1) {
+                border-right: 5px solid white;
+            }
+
+            &:nth-child(2) {
+                border-left: 5px solid white;
+                border-right: 5px solid white;
+            }
+
+            &:nth-child(3) {
+                border-left: 5px solid white;
+            }
+            float: left;
+            width: calc(100%/3);
+        }
+        @media screen and (min-width: 600px) {
+            &:hover {
+                .image-overlay {
+                    opacity: 0;
+                }
+            }
+        }
+    }
+}
+
+.company-intro-container {
+    display: table;
+    overflow: auto;
+    padding: 40px 0;
+    // background-color: rgba(255,165,0, 0.7);
+
+    .column {
+        @media screen and (min-width: 600px) {
+            display: table-cell;
+            vertical-align: middle;
+            width: 50%;
+        }
+    }
+
+    .text-container {
+        padding: 20px;
+        @media screen and (min-width: 600px) {
+            padding-left: 0;
+            padding-right: 50px;
+        }
+        text-align: justify;
+    }
+
+    .logo-container {
+        max-width: 350px;
+        margin: auto;
+
+        .text-container {
+            text-align: center;
+            font-size: 2.5em;
+            padding: 5px 0;
+        }
+
+        .image-container {
+            width: 50%;
+            margin: auto;
+
+            img {
+                width: 100%;
+                display: block;
+                margin: auto;
+            }
+        }
+    }
+}
+
+.information {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
