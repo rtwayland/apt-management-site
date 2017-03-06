@@ -1,8 +1,96 @@
-<main-nav state="1"></main-nav>
-<h1>Home</h1>
-<div class="ui center aligned container">
-    <div class="ui fluid image">
-        <slider slides="slides"></slider>
+<style media="screen">
+    .ui.container {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+</style>
+<navbar state="1"></navbar>
+<div class="ui fluid image">
+    <img src="https://s3-us-west-2.amazonaws.com/fox-briar-properties/home-page-images/main-img.jpg" alt="Main Image">
+</div>
+<div class="company-intro-container">
+    <div class="column">
+        <div class="logo-container">
+            <div class="text-container serif-font">
+                Fox Briar
+            </div>
+            <div class="image-container">
+                <img src="https://s3-us-west-2.amazonaws.com/fox-briar-properties/fox-logo.png" alt="">
+            </div>
+            <div class="text-container serif-font">
+                Properties
+            </div>
+        </div>
+    </div>
+    <div class="column">
+        <div class="text-container">
+            <div class="ui header">
+                Welcome to Fox Briar Properties
+            </div>
+            <p>Labore incididunt proident minim consectetur sunt sunt sunt ullamco pariatur mollit deserunt laborum tempor elit pariatur fugiat. Magna exercitation qui culpa do officia laboris nisi do esse fugiat excepteur labore Lorem. Tempor esse quis
+                reprehenderit mollit nostrud pariatur pariatur dolor pariatur commodo minim non. Ipsum minim sunt esse veniam consectetur nisi minim nulla. Ullamco quis aliquip Lorem sint aliquip deserunt laborum enim. Fugiat eiusmod ex enim eu culpa
+                veniam laboris ut velit enim duis culpa elit est nostrud ea.</p>
+        </div>
     </div>
 </div>
-<multi-marker-map name="'home-page-map'" addresses="addresses" zoom="11"></multi-marker-map>
+<div class="three-columns">
+    <div class="column">
+        <div class="ui fluid image">
+            <span class="image-overlay"><span class="overlay-text">New Cabinets</span></span>
+            <img src="https://s3-us-west-2.amazonaws.com/fox-briar-properties/home-page-images/interior1.jpg" alt="">
+        </div>
+    </div>
+    <div class="column">
+        <div class="ui fluid image">
+            <span class="image-overlay"><span class="overlay-text">Granite Countertops</span></span>
+            <img src="https://s3-us-west-2.amazonaws.com/fox-briar-properties/home-page-images/interior3.jpg" alt="">
+        </div>
+    </div>
+    <div class="column">
+        <div class="ui fluid image">
+            <span class="image-overlay"><span class="overlay-text">New Carpet</span></span>
+            <img src="https://s3-us-west-2.amazonaws.com/fox-briar-properties/home-page-images/interior5.jpg" alt="">
+        </div>
+    </div>
+</div>
+
+
+<div class="information">
+    <div class="ui stackable center aligned three column grid">
+        <div class="column">
+            <div class="ui header">
+                Navigation
+            </div>
+            <div class="ui list">
+                <div class="item"><a ui-sref="home">Home</a></div>
+                <div class="item"><a ui-sref="availabile-properties">Availabilities</a></div>
+                <div class="item"><a ui-sref="apply">Apply Now</a></div>
+                <div class="item"><a ui-sref="contact">Contact Us</a></div>
+                <div class="item"><a ui-sref="all-properties-map">Map</a></div>
+                <div class="item"><a ui-sref="resident-login">Resident Login</a></div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui header">
+                Information
+            </div>
+            <div class="ui list">
+                <div class="item">Mon - Fri: 9am-6pm</div>
+                <div class="item">Sat: 10am-5pm</div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui header">
+                Contact
+            </div>
+            <div class="ui list">
+                <div class="item">Fox Briar Properties</div>
+                <div class="item">PO BOX 1216</div>
+                <div class="item">Pleasant Grove, Ut 84062</div>
+                <div class="item"><a href="mailto:foxbriarproperties@live.com">foxbriarproperties@live.com</a></div>
+                <div class="item"><a href="tel:801-319-9590">801-319-9590</a></div>
+            </div>
+        </div>
+    </div>
+</div>
