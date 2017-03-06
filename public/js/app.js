@@ -47,7 +47,7 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
                 templateUrl: './views/public/home.html',
                 controller: function($scope, addresses) {
                     $scope.addresses = addresses;
-                    console.log($scope.addresses);
+                    // console.log($scope.addresses);
                     $scope.slides = [
                         "https://s3-us-west-2.amazonaws.com/fox-briar-properties/Corellia0CkVm7z6F.jpeg",
                         "https://s3-us-west-2.amazonaws.com/fox-briar-properties/BelleMonet0XF7NYPkE.png",
@@ -105,6 +105,10 @@ angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ng
             .state('payment-failure', {
                 url: '/payment-failure',
                 templateUrl: './views/public/payment-failure.html'
+            })
+            .state('all-properties-map', {
+                url: '/map',
+                templateUrl: './views/public/all-properties-map.html'
             })
             // RESIDENT PAGES
             .state('resident', {
