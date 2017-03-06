@@ -1,8 +1,5 @@
 <nav class="navbar">
     <ul>
-        <!-- <li class="link" ng-show="!isMobile"><a ui-sref="home">Home</a></li>
-        <li class="link" ng-show="!isMobile"><a ui-sref="available-properties">Availabilities</a></li>
-        <li class="link" ng-show="!isMobile"><a ui-sref="apply">Apply Now</a></li> -->
         <li class="link" ng-show="!isMobile" ng-repeat="link in left"><a ui-sref="{{ link.link }}">{{ link.name }}</a></li>
         <li>
             <div ui-sref="home" class="logo-container">
@@ -17,9 +14,6 @@
                 </div>
             </div>
         </li>
-        <!-- <li class="link" ng-show="!isMobile"><a ui-sref="contact">Contact Us</a></li>
-        <li class="link" ng-show="!isMobile"><a ui-sref="all-properties-map">Map</a></li>
-        <li class="link" ng-show="!isMobile"><a ui-sref="resident-login">Resident Login</a></li> -->
         <li class="link" ng-show="!isMobile" ng-repeat="link in right"><a ui-sref="{{ link.link }}">{{ link.name }}</a></li>
         <li ng-show="isMobile" ng-click="isToggled = !isToggled" class="hamburger-menu">
             <span class="menu item">
@@ -29,11 +23,5 @@
     </ul>
 </nav>
 <div class="ui fluid vertical menu nav-collapse" ng-if="isMobile && isToggled">
-  <div class="link item" ng-repeat="link in links" ui-sref="{{ link.link }}">{{ link.name }}</div>
-  <!-- <div class="link item" ui-sref="home">Home</div>
-  <div class="link item" ui-sref="availabile-properties">Availabilities</div>
-  <div class="link item" ui-sref="apply">Apply Now</div>
-  <div class="link item" ui-sref="contact">Contact Us</div>
-  <div class="link item" ui-sref="all-properties-map">Map</div>
-  <div class="link item" ui-sref="resident-login">Resident Login</div> -->
+    <div class="link item" ng-repeat="link in links" ui-sref="{{ link.link }}">{{ link.name }}</div>
 </div>
