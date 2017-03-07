@@ -1,4 +1,9 @@
 angular.module('app', ['ngSanitize', 'ngMessages', 'ui.router', 'ngAnimate', 'ngTouch', 'ui.bootstrap', 'angularMoment'])
+    .run(function($rootScope, $window) {
+        $rootScope.$on('$stateChangeSuccess', function() {
+            $window.scrollTo(0, 0);
+        });
+    })
     .config(function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
         $urlRouterProvider.when('/applications', '/applications/pending');
