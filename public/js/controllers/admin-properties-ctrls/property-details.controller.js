@@ -17,7 +17,7 @@ angular.module('app')
                                     let newlyAddedPhotos = res;
                                     let combined = $scope.property.photos.concat(newlyAddedPhotos);
                                     $scope.property.photos = combined;
-                                    var temp = [];
+                                    let temp = [];
                                     temp.push($scope.property.mainPhoto);
                                     temp = temp.concat($scope.property.photos);
                                     $scope.property.allPhotos = temp;
@@ -26,6 +26,10 @@ angular.module('app')
                                     console.log(err);
                                 });
                         } else {
+                            let temp = [];
+                            temp.push($scope.property.mainPhoto);
+                            temp = temp.concat($scope.property.photos);
+                            $scope.property.allPhotos = temp;
                             updateProperty($scope.property._id, $scope.property);
                         }
                     }, function(err) {
