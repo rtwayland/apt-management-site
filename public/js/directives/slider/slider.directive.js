@@ -7,7 +7,12 @@ angular.module('app')
                 slides: '='
             },
             link: function(scope, elem, attrs) {
-
+                setTimeout(function() {
+                    var rightArrow = $('<i class="angle right icon glyphicon glyphicon-chevron-right"></i>');
+                    var leftArrow = $('<i class="angle left icon glyphicon glyphicon-chevron-left"></i>');
+                    $('.glyphicon-chevron-right').replaceWith(rightArrow);
+                    $('.glyphicon-chevron-left').replaceWith(leftArrow);
+                }, 0);
             },
             controller: function($scope) {
                 $scope.myInterval = 5000;
