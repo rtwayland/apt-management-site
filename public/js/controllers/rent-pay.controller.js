@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('RentPay', function($scope, user, moment, UserService, StripeService) {
+    .controller('RentPay', function($scope, $state, user, moment, UserService, StripeService) {
         UserService.getUserById(user._id)
             .then(function(res) {
                 $scope.user = res;
