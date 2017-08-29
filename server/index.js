@@ -13,7 +13,7 @@ const express = require('express'),
 // ============================================================
 const applicationCtrl = require('./controllers/application.server.controller'),
     userCtrl = require('./controllers/user.server.controller'),
-    apartmentCtrl = require('./controllers/apartment.server.controller'),
+    propertyCtrl = require('./controllers/property.server.controller'),
     maintenanceRequestCtrl = require('./controllers/maintenance-request.server.controller'),
     stripeCtrl = require('./controllers/stripe.server.controller'),
     amazonS3 = require('./controllers/amazonS3.server.controller'),
@@ -144,11 +144,11 @@ app.put('/api/user/:id', userCtrl.update);
 app.put('/api/user/payment/:id', userCtrl.addPayment);
 app.delete('/api/user/:id', userCtrl.delete);
 
-// APARTMENT ENDPOINTS
-app.get('/api/apartment', apartmentCtrl.read);
-app.post('/api/apartment', apartmentCtrl.create);
-app.put('/api/apartment/:id', apartmentCtrl.update);
-app.delete('/api/apartment/:id', apartmentCtrl.delete);
+// PROPERTY ENDPOINTS
+app.get('/api/property', propertyCtrl.read);
+app.post('/api/property', propertyCtrl.create);
+app.put('/api/property/:id', propertyCtrl.update);
+app.delete('/api/property/:id', propertyCtrl.delete);
 
 // MAINTENANCE REQUEST ENDPOINTS
 app.get('/api/maintenance', maintenanceRequestCtrl.read);
@@ -176,7 +176,7 @@ const mongoURI = config.mongoURI;
 // mongoose.set('debug', true);
 mongoose.connect(mongoURI);
 mongoose.connection.once('open', function() {
-    console.log('Connected to mongo at: ', mongoURI);
+    console.log(`Connected to mongo at: ${mongoURI}`);
 });
 // LISTEN
 // ============================================================

@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('ApplicationCtrl', function($scope, $state, $window, ApplicationService, StripeService, PropertyService) {
+    .controller('ApplicationCtrl', function($scope, $sanitize, $state, $window, ApplicationService, StripeService, PropertyService) {
         $scope.applicationFee = 20;
         /*********************** PAY RENT ***********************/
         $scope.payRentBank = function() {
@@ -73,7 +73,7 @@ angular.module('app')
         $scope.fillForm = function() {
             $scope.numAddOccupants = 0;
             $scope.application = {
-                propertyId: '58adb6ecb31fa177afb422f0',
+                propertyId: '58af206ae7037ba5cf54485b',
                 user: {
                     firstName: 'MyName',
                     middleName: '',
@@ -155,8 +155,9 @@ angular.module('app')
 
         }
 
-        function submitApplication() {
+        $scope.submitApplication = () => {
             checkGeneralInfo();
+            $scope.application = sanitizeData($scope.application);
             PropertyService.getPropertyById($scope.application.propertyId)
                 .then(function(res) {
                     if (res.address.unit) {
@@ -184,6 +185,91 @@ angular.module('app')
             if ($scope.application.generalInfo.hasNegativeCredit == 'false') {
                 $scope.application.generalInfo.creditExplaination = '';
             }
+        }
+
+        function sanitizeData(original) {
+            let sanitizedData = {
+                propertyId: $sanitize(original.propertyId),
+                user: {
+                    firstName: $sanitize(original.user.firstName),
+                    middleName: $sanitize(original.user.middleName),
+                    lastName: $sanitize(original.user.lastName),
+                    birthdate: $sanitize(original.user.birthdate),
+                    email: $sanitize(original.user.email),
+                    phone: $sanitize(original.user.phone),
+                    ssn: $sanitize(original.user.ssn),
+                    driversLicence: $sanitize(original.user.driversLicence),
+                    relations: $sanitize(original.user.relations)
+                },
+                emergency: {
+                    firstName: $sanitize(original.emergency.firstName),
+                    lastName: $sanitize(original.emergency.lastName),
+                    email: $sanitize(original.emergency.email),
+                    phone: $sanitize(original.emergency.phone)
+                },
+                currentResidence: {
+                    address: {
+                        street: $sanitize(original.currentResidence.address.street),
+                        city: $sanitize(original.currentResidence.address.city),
+                        state: $sanitize(original.currentResidence.address.state),
+                        zip: $sanitize(original.currentResidence.address.zip)
+                    },
+                    monthlyRent: $sanitize(original.currentResidence.monthlyRent),
+                    beginningDate: $sanitize(original.currentResidence.beginningDate),
+                    reasonForMoving: $sanitize(original.currentResidence.reasonForMoving),
+                    managerName: $sanitize(original.currentResidence.managerName),
+                    managerPhone: $sanitize(original.currentResidence.managerPhone)
+                },
+                currentEmployment: {
+                    employer: $sanitize(original.currentEmployment.employer),
+                    occupation: $sanitize(original.currentEmployment.occupation),
+                    startDate: $sanitize(original.currentEmployment.startDate),
+                    address: {
+                        street: $sanitize(original.currentEmployment.address.street),
+                        city: $sanitize(original.currentEmployment.address.city),
+                        state: $sanitize(original.currentEmployment.address.state),
+                        zip: $sanitize(original.currentEmployment.address.zip)
+                    },
+                    supervisorName: $sanitize(original.currentEmployment.supervisorName),
+                    supervisorPhone: $sanitize(original.currentEmployment.supervisorPhone),
+                    monthlyPay: $sanitize(original.currentEmployment.monthlyPay)
+                },
+                bankInfo: {
+                    checking: {
+                        name: $sanitize(original.bankInfo.checking.name),
+                        balance: $sanitize(original.bankInfo.checking.balance)
+                    },
+                    savings: {
+                        name: $sanitize(original.bankInfo.savings.name),
+                        balance: $sanitize(original.bankInfo.savings.balance)
+                    }
+                },
+                references: [{
+                        name: $sanitize(original.references[0].name),
+                        phone: $sanitize(original.references[0].phone),
+                        relationship: $sanitize(original.references[0].relationship)
+                    },
+                    {
+                        name: $sanitize(original.references[1].name),
+                        phone: $sanitize(original.references[1].phone),
+                        relationship: $sanitize(original.references[1].relationship)
+                    }
+                ],
+                generalInfo: {
+                    hasBeenLate: $sanitize(original.generalInfo.hasBeenLate),
+                    lateExplaination: $sanitize(original.generalInfo.lateExplaination),
+                    hasHadLawsuit: $sanitize(original.generalInfo.hasHadLawsuit),
+                    lawsuitExplaination: $sanitize(original.generalInfo.lawsuitExplaination),
+                    hasNegativeCredit: $sanitize(original.generalInfo.hasNegativeCredit),
+                    creditExplaination: $sanitize(original.generalInfo.creditExplaination)
+                },
+                additionalQuestions: $sanitize(original.additionalQuestions),
+                signature: $sanitize(original.signature),
+                signDate: $sanitize(original.signDate),
+                applicationStatus: 'pending'
+            }
+
+            return sanitizedData;
         }
 
         function init() {
